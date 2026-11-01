@@ -1,0 +1,292 @@
+[
+  {
+    "id": 9001,
+    "nome": "Novo",
+    "tipos": [
+      "fogo"
+    ],
+    "vida": 15,
+    "atributos": {
+      "forca": {
+        "base": 1,
+        "slots": 3
+      },
+      "energia": {
+        "base": 2,
+        "slots": 3
+      },
+      "agilidade": {
+        "base": 1,
+        "slots": 3
+      },
+      "defesa": {
+        "base": 0,
+        "slots": 3
+      }
+    },
+    "golpes": [
+      {
+        "nome": "Investida",
+        "icone": "bolinha",
+        "elemento": "normal",
+        "atributo": "forca",
+        "dado": "d4",
+        "cargas": 3,
+        "efeito": null,
+        "area": false,
+        "peso": 1,
+        "liberado_em": 1
+      },
+      {
+        "nome": "Asas de Fogo",
+        "icone": "fogo",
+        "elemento": "fogo",
+        "atributo": "energia",
+        "dado": "d12",
+        "cargas": 1,
+        "efeito": null,
+        "area": true,
+        "peso": 5,
+        "liberado_em": 2
+      },
+      {
+        "nome": "Pó do Sono",
+        "icone": "folha",
+        "elemento": "planta",
+        "atributo": "energia",
+        "dado": null,
+        "cargas": 2,
+        "efeito": "sono",
+        "area": false,
+        "peso": 1,
+        "liberado_em": 3
+      },
+      {
+        "nome": "Descanso",
+        "icone": "coracao",
+        "elemento": "normal",
+        "atributo": null,
+        "dado": null,
+        "cargas": 2,
+        "efeito": "cura",
+        "area": false,
+        "peso": 2,
+        "liberado_em": 4
+      }
+    ],
+    "trilho": [
+      {
+        "pos": 1,
+        "tipo": "habilidade",
+        "detalhe": 1
+      },
+      {
+        "pos": 5,
+        "tipo": "habilidade",
+        "detalhe": 2
+      },
+      {
+        "pos": 12,
+        "tipo": "habilidade",
+        "detalhe": 3
+      },
+      {
+        "pos": 30,
+        "tipo": "habilidade",
+        "detalhe": 4
+      },
+      {
+        "pos": 8,
+        "tipo": "coracao"
+      },
+      {
+        "pos": 15,
+        "tipo": "coracao"
+      },
+      {
+        "pos": 40,
+        "tipo": "coracao"
+      },
+      {
+        "pos": 50,
+        "tipo": "poder",
+        "detalhe": "Asas de Fogo"
+      }
+    ],
+    "resistencias": {}
+  },
+  {
+    "id": 9002,
+    "nome": "Legado",
+    "tipos": [
+      "agua"
+    ],
+    "vida": 8,
+    "atributos": {
+      "forca": {
+        "base": 1,
+        "slots": 3
+      },
+      "energia": {
+        "base": 2,
+        "slots": 3
+      },
+      "agilidade": {
+        "base": 1,
+        "slots": 3
+      },
+      "defesa": {
+        "base": 0,
+        "slots": 3
+      }
+    },
+    "golpes": [
+      {
+        "nome": "Arranhar",
+        "icone": "bolinha",
+        "tipo": "normal",
+        "categoria": "fisico",
+        "dado": "d6",
+        "usos": null,
+        "liberado_em": 1
+      },
+      {
+        "nome": "Jato de Água",
+        "icone": "agua",
+        "tipo": "agua",
+        "categoria": "elemental",
+        "dado": "d8",
+        "usos": 2,
+        "liberado_em": 10
+      }
+    ],
+    "trilho": [
+      {
+        "pos": 1,
+        "tipo": "habilidade",
+        "detalhe": "Arranhar"
+      },
+      {
+        "pos": 10,
+        "tipo": "habilidade",
+        "detalhe": "Jato de Água"
+      },
+      {
+        "pos": 20,
+        "tipo": "coracao"
+      }
+    ],
+    "resistencias": {}
+  },
+  {
+    "id": 9003,
+    "nome": "Vida16",
+    "tipos": [
+      "normal"
+    ],
+    "vida": 15,
+    "atributos": {
+      "forca": {
+        "base": 1,
+        "slots": 3
+      },
+      "energia": {
+        "base": 2,
+        "slots": 3
+      },
+      "agilidade": {
+        "base": 1,
+        "slots": 3
+      },
+      "defesa": {
+        "base": 0,
+        "slots": 3
+      }
+    },
+    "golpes": [
+      {
+        "nome": "Investida",
+        "icone": "bolinha",
+        "elemento": "normal",
+        "atributo": "forca",
+        "dado": "d4",
+        "cargas": 3,
+        "efeito": null,
+        "area": false,
+        "peso": 1,
+        "liberado_em": 1
+      },
+      {
+        "nome": "Asas de Fogo",
+        "icone": "fogo",
+        "elemento": "fogo",
+        "atributo": "energia",
+        "dado": "d12",
+        "cargas": 1,
+        "efeito": null,
+        "area": true,
+        "peso": 5,
+        "liberado_em": 2
+      },
+      {
+        "nome": "Pó do Sono",
+        "icone": "folha",
+        "elemento": "planta",
+        "atributo": "energia",
+        "dado": null,
+        "cargas": 2,
+        "efeito": "sono",
+        "area": false,
+        "peso": 1,
+        "liberado_em": 3
+      },
+      {
+        "nome": "Descanso",
+        "icone": "coracao",
+        "elemento": "normal",
+        "atributo": null,
+        "dado": null,
+        "cargas": 2,
+        "efeito": "cura",
+        "area": false,
+        "peso": 2,
+        "liberado_em": 4
+      }
+    ],
+    "trilho": [
+      {
+        "pos": 1,
+        "tipo": "habilidade",
+        "detalhe": 1
+      },
+      {
+        "pos": 5,
+        "tipo": "habilidade",
+        "detalhe": 2
+      },
+      {
+        "pos": 12,
+        "tipo": "habilidade",
+        "detalhe": 3
+      },
+      {
+        "pos": 30,
+        "tipo": "habilidade",
+        "detalhe": 4
+      },
+      {
+        "pos": 8,
+        "tipo": "coracao"
+      },
+      {
+        "pos": 15,
+        "tipo": "coracao"
+      },
+      {
+        "pos": 40,
+        "tipo": "coracao"
+      }
+    ],
+    "resistencias": {}
+  }
+]

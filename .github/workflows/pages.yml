@@ -1,0 +1,46 @@
+name: Página
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Trava de publicação
+        run: node scripts/checar-publicacao.js
+      - name: Montar a página
+        run: |
+          mkdir -p _site/cenarios
+          cp pagina/index.html _site/
+          cp -r site _site/site
+          cp cenarios/padrao.txt _site/cenarios/
+          for c in cenarios/*/; do
+            id=$(basename "$c")
+            if node -e "process.exit(require('./$c/cenario.json').privado === false ? 0 : 1)"; then
+              mkdir -p "_site/cenarios/$id"
+              cp "$c"cenario.json "$c"criaturas.json "$c"tipos.json "_site/cenarios/$id/"
+              [ -d "$c"imagens ] && cp -r "$c"imagens "_site/cenarios/$id/"
+            fi
+          done
+          touch _site/.nojekyll
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deploy
+        uses: actions/deploy-pages@v4

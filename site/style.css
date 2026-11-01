@@ -1,0 +1,1092 @@
+/* ==========================================================================
+   Tokens. Ver docs/design-system.md. Tela e impressão usam os mesmos nomes;
+   o modo escuro redefine só as cores de tela, e o bloco de impressão no fim
+   força a versão clara.
+   ========================================================================== */
+:root {
+  --fonte: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* tela */
+  --cor-fundo: #e4e7ee;
+  --cor-barra: #ffffff;
+  --cor-barra-texto: #1b1f2a;
+  --cor-folha: #ffffff;
+  --cor-texto: #1b1f2a;
+  --cor-texto-suave: #5a6276;
+  --cor-linha: #1b1f2a;          /* tinta: contornos e ícones */
+  --cor-linha-suave: #b9c0cc;
+  --cor-coracao: #e0313a;
+  --cor-destaque: #1b1f2a;       /* símbolo de efeito (vulnerável, imune, resistente) */
+  --cor-botao: #e0313a;
+  --cor-botao-texto: #ffffff;
+  --cor-erro-fundo: #fde8e8;
+  --cor-erro-texto: #8a1c1c;
+  --cor-aviso: #8a5a00;
+  --cor-aviso-fundo: #fff4d6;
+
+  /* tipos */
+  --tipo-eletrico: #f7c600;
+  --tipo-fogo: #f0622a;
+  --tipo-agua: #3b8ee6;
+  --tipo-planta: #3ea650;
+  --tipo-terra: #b98b52;
+  --tipo-gelo: #7fd8ea;
+  --tipo-voador: #9bb8ef;
+  --tipo-veneno: #9a4fc4;
+  --tipo-psiquico: #e95b9a;
+  --tipo-pedra: #a9a17e;
+  --tipo-normal: #c4c4b4;
+  --tipo-lutador: #c8553d;
+  --tipo-inseto: #9bc23c;
+  --tipo-fantasma: #6f5ea8;
+  --tipo-dragao: #5b4fd8;
+  --tipo-padrao: #c4c4b4;
+
+  /* marcas do trilho (cor de fundo claro; a forma diz o tipo) */
+  --marca-habilidade: #bfd9ff;
+  --marca-estrela: #ffe98a;
+  --marca-coracao: #ffc4c7;
+  --marca-forca: #ffd2b0;
+  --marca-poder: #dcc3f2;
+  --marca-evolucao: #bfe9c9;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --cor-fundo: #0e1017;
+    --cor-barra: #1a1e28;
+    --cor-barra-texto: #eef1f7;
+    --cor-texto-suave: #aab2c5;
+    --cor-erro-fundo: #3b1d1f;
+    --cor-erro-texto: #ffb4b4;
+    --cor-aviso: #ffd68a;
+    --cor-aviso-fundo: #3d3420;
+    --cor-botao: #ff6b6f;
+    --cor-botao-texto: #14161c;
+  }
+}
+
+:root[data-theme="dark"] {
+  --cor-fundo: #0e1017;
+  --cor-barra: #1a1e28;
+  --cor-barra-texto: #eef1f7;
+  --cor-texto-suave: #aab2c5;
+  --cor-erro-fundo: #3b1d1f;
+  --cor-erro-texto: #ffb4b4;
+  --cor-aviso: #ffd68a;
+  --cor-aviso-fundo: #3d3420;
+  --cor-botao: #ff6b6f;
+  --cor-botao-texto: #14161c;
+}
+
+/* A4 retrato, sem margens. Cada folha tem 4 cartas (2 x 2). */
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Base e tela
+   ========================================================================== */
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  font-family: var(--fonte);
+  background: var(--cor-fundo);
+  color: var(--cor-barra-texto);
+  min-height: 100vh;
+  -webkit-text-size-adjust: 100%;
+}
+
+.barra {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 20px;
+  padding: 14px 18px;
+  background: var(--cor-barra);
+  color: var(--cor-barra-texto);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.barra h1 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.barra-titulo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+}
+
+.resumo {
+  font-size: 0.9rem;
+  color: var(--cor-texto-suave);
+}
+
+.aviso {
+  font-size: 0.9rem;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--cor-aviso-fundo);
+  color: var(--cor-aviso);
+}
+
+.controles {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+}
+
+.controles label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+}
+
+.links a {
+  color: var(--cor-barra-texto);
+  font-size: 0.95rem;
+}
+
+select,
+button {
+  font: inherit;
+  font-size: 0.98rem;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--cor-linha-suave);
+  background: var(--cor-folha);
+  color: var(--cor-texto);
+}
+
+button {
+  border-color: transparent;
+  background: var(--cor-botao);
+  color: var(--cor-botao-texto);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:disabled,
+select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+input[type="search"] {
+  min-width: 13rem;
+  font: inherit;
+  font-size: 0.95rem;
+  padding: 8px 10px;
+  border: 1px solid var(--cor-linha-suave);
+  border-radius: 8px;
+  background: var(--cor-folha);
+  color: var(--cor-texto);
+}
+
+.painel-selecao {
+  width: min(1100px, calc(100% - 36px));
+  margin: 18px auto 0;
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--cor-barra);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.14);
+}
+
+.selecao-cabecalho,
+.selecao-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 14px;
+}
+
+.selecao-cabecalho h2 {
+  margin: 0 0 2px;
+  font-size: 1.05rem;
+}
+
+.resumo-selecao {
+  color: var(--cor-texto-suave);
+  font-size: 0.86rem;
+}
+
+.busca-criatura {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.9rem;
+}
+
+.botao-secundario {
+  border-color: var(--cor-linha-suave);
+  background: var(--cor-folha);
+  color: var(--cor-texto);
+}
+
+.lista-criaturas {
+  max-height: 250px;
+  margin-top: 14px;
+  padding: 2px;
+  overflow: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 6px;
+}
+
+.opcao-criatura {
+  display: grid;
+  grid-template-columns: auto 3.2rem minmax(0, 1fr);
+  align-items: center;
+  gap: 7px;
+  min-height: 38px;
+  padding: 6px 8px;
+  border: 1px solid var(--cor-linha-suave);
+  border-radius: 8px;
+  background: var(--cor-folha);
+  color: var(--cor-texto);
+  cursor: pointer;
+}
+
+.opcao-criatura:has(input:checked) {
+  border-color: var(--cor-botao);
+  box-shadow: inset 3px 0 var(--cor-botao);
+}
+
+.opcao-criatura input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--cor-botao);
+}
+
+.numero-criatura {
+  color: var(--cor-texto-suave);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.78rem;
+}
+
+.nome-criatura {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 640px) {
+  .painel-selecao { width: calc(100% - 20px); margin-top: 10px; padding: 12px; }
+  .selecao-acoes { width: 100%; }
+  .busca-criatura { width: 100%; }
+  .busca-criatura input { flex: 1; min-width: 0; }
+  .lista-criaturas { grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  padding: 18px;
+}
+
+.mensagem {
+  max-width: 42rem;
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: var(--cor-erro-fundo);
+  color: var(--cor-erro-texto);
+  line-height: 1.5;
+}
+
+#paginas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+}
+
+.rotulo-folha {
+  width: min(210mm, 100%);
+  margin: 14px 0 0;
+  font-size: 0.9rem;
+  color: var(--cor-texto-suave);
+}
+
+/* ==========================================================================
+   Folha A4 (210 x 297 mm), grade 2 x 2 de cartas A6 (105 x 148,5 mm cada).
+   Cada slot é um container: a carta usa --u = 1/105 da largura do slot,
+   então 1 --u = 1 mm na impressão e escala na tela.
+   ========================================================================== */
+.pagina {
+  width: min(210mm, 100%);
+  aspect-ratio: 210 / 297;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  overflow: hidden;
+  background: var(--cor-folha);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+}
+
+.slot {
+  min-width: 0;
+  min-height: 0;
+  container-type: inline-size;
+}
+
+/* ==========================================================================
+   Carta: frente
+   De cima pra baixo: imagem (40% da altura, com tipos na faixa do nome e as
+   resistências no canto inferior direito), vida (2 linhas de corações de 7 mm),
+   atributos, golpes (4 linhas de 10 mm).
+   Medidas em mm (ver docs/design-system.md, seção 7):
+   topo 59,4 | espaço 6,1 | linha de vida 15 | espaço 6,1 | atributos 12,6 |
+   espaço 6,1 | golpes 4 x 10 | margem de baixo 3 = 148,3 mm.
+   Texto visível: nome da criatura, nomes dos golpes e notação dos dados.
+   ========================================================================== */
+.card {
+  --u: calc(100cqw / 105);
+  --esp-1: calc(var(--u) * 1);
+  --esp-2: calc(var(--u) * 2);
+  --esp-3: calc(var(--u) * 3);
+  --esp-4: calc(var(--u) * 4);
+
+  position: relative;
+  width: 100%;
+  aspect-ratio: 105 / 148.5;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--cor-folha);
+  color: var(--cor-texto);
+  /* filete neutro de corte; sem faixas coloridas nas laterais */
+  box-shadow: inset 0 0 0 calc(var(--u) * 0.35) var(--cor-linha-suave);
+  line-height: 1.15;
+}
+
+/* Ícones: SVG em traço, preenchendo o espaço do elemento que os contém */
+.icone {
+  display: block;
+  flex: none;
+  color: var(--cor-linha);
+}
+
+.icone svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ---- topo: imagem (40% da altura) e faixa do nome ---- */
+.topo {
+  position: relative;
+  flex: none;
+  height: calc(var(--u) * 59.4);
+  background:
+    radial-gradient(circle at 50% 58%, color-mix(in srgb, var(--cor-tipo-principal, var(--tipo-padrao)) 35%, #ffffff) 0%, #ffffff 72%);
+}
+
+.imagem {
+  position: absolute;
+  inset: 0;
+  padding: calc(var(--u) * 10.5) var(--esp-4) calc(var(--u) * 2) var(--esp-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imagem img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transform: scale(var(--escala-imagem, 1));
+  transform-origin: center;
+}
+
+/* Sem imagem: forma geométrica neutra (círculo tracejado) */
+.falta {
+  width: calc(var(--u) * 30);
+  height: calc(var(--u) * 30);
+  border: calc(var(--u) * 0.5) dashed var(--cor-linha-suave);
+  border-radius: 50%;
+}
+
+.nome {
+  position: absolute;
+  top: calc(var(--u) * 2.5);
+  left: var(--esp-4);
+  right: var(--esp-4);
+  height: calc(var(--u) * 8);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 calc(var(--u) * 15);
+  border-radius: calc(var(--u) * 2.4);
+  background: var(--cor-folha);
+  border: calc(var(--u) * 0.3) solid var(--cor-linha);
+  font-size: calc(var(--u) * 5.4);
+  font-weight: 800;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--cor-linha);
+}
+
+.tipos-cabecalho {
+  position: absolute;
+  z-index: 2;
+  top: calc(var(--u) * 3.3);
+  left: calc(var(--u) * 4.8);
+  height: calc(var(--u) * 6.4);
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 0.7);
+}
+
+.tipos-cabecalho .tipo-disc {
+  width: calc(var(--u) * 6.4);
+  height: calc(var(--u) * 6.4);
+  padding: calc(var(--u) * 0.8);
+  border-width: calc(var(--u) * 0.3);
+}
+
+/* Resistências: canto inferior direito da imagem, sobre a arte. Não ocupam linha. */
+.efeitos {
+  position: absolute;
+  right: calc(var(--u) * 3);
+  bottom: calc(var(--u) * 2.5);
+  display: flex;
+  gap: calc(var(--u) * 1.2);
+  z-index: 2;
+}
+
+/* Estágio: 1 a 3 bolinhas no canto da imagem (sem texto) */
+.estagio {
+  position: absolute;
+  left: var(--esp-4);
+  bottom: calc(var(--u) * 1.5);
+  display: flex;
+  gap: calc(var(--u) * 1);
+}
+
+.estagio .pip {
+  width: calc(var(--u) * 3);
+  height: calc(var(--u) * 3);
+  border-radius: 50%;
+  border: calc(var(--u) * 0.4) solid var(--cor-linha);
+  background: var(--cor-linha);
+}
+
+.estagio .pip.vazio {
+  background: var(--cor-folha);
+}
+
+/* ---- corpo ---- */
+/* Espaço entre blocos da frente: 6,1 mm (topo -> vida pelo padding de cima; vida -> atributos
+   -> golpes pelo gap). A margem de baixo continua em 3 mm, a margem lateral em 3 mm. */
+.corpo {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 6.1);
+  padding: calc(var(--u) * 6.1) calc(var(--u) * 3) calc(var(--u) * 3);
+}
+
+.corpo > * {
+  flex: none;
+}
+
+/* linha 1: vida (corações de 7 mm, 2 linhas, 15 mm de altura) */
+.linha-vida {
+  height: calc(var(--u) * 15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Disco de tipo: cor do tipo, ícone de tinta por cima */
+.tipo-disc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--u) * 10);
+  height: calc(var(--u) * 10);
+  padding: calc(var(--u) * 1.2);
+  border-radius: 50%;
+  border: calc(var(--u) * 0.35) solid var(--cor-linha);
+  background: var(--cor-tipo, var(--tipo-padrao));
+  color: var(--cor-linha);
+}
+
+.tipo-disc .icone {
+  width: 100%;
+  height: 100%;
+}
+
+/* Vida: corações de 7 mm, 8 por linha, 2 linhas.
+   Uma linha vazia fica no lugar: a linha de vida tem sempre 15 mm. */
+.vida {
+  flex: none;
+  width: calc(var(--u) * 59.5);
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(8, calc(var(--u) * 7));
+  grid-template-rows: repeat(2, calc(var(--u) * 7));
+  column-gap: calc(var(--u) * 0.5);
+  row-gap: calc(var(--u) * 1);
+  justify-content: center;
+  align-content: center;
+}
+
+.vida .coracao {
+  width: calc(var(--u) * 7);
+  height: calc(var(--u) * 7);
+  color: var(--cor-coracao);
+}
+
+.vida .coracao path {
+  fill: currentColor;
+}
+
+/* Chip de resistência (sobre a imagem): disco do tipo de 5,75 mm + símbolo do efeito de 2,4 mm */
+.efeito {
+  position: relative;
+  width: calc(var(--u) * 5.75);
+  height: calc(var(--u) * 5.75);
+}
+
+.efeito .tipo-disc {
+  width: 100%;
+  height: 100%;
+  padding: calc(var(--u) * 0.6);
+  border-width: calc(var(--u) * 0.3);
+}
+
+.efeito-acao {
+  position: absolute;
+  right: calc(var(--u) * -0.8);
+  bottom: calc(var(--u) * -0.8);
+  width: calc(var(--u) * 2.4);
+  height: calc(var(--u) * 2.4);
+  padding: calc(var(--u) * 0.3);
+  border-radius: 50%;
+  background: var(--cor-folha);
+  border: calc(var(--u) * 0.25) solid var(--cor-linha);
+  color: var(--cor-destaque);
+}
+
+/* linha 2: atributos (4 colunas: ícone de 8 mm, igual ao da linha do golpe, respiro de 2 mm e caixas de 2,6 mm).
+   Caixas reduzidas de 3,6 para 2,6 mm para caber o espaço de 4 mm acima da vida. */
+.atributos {
+  height: calc(var(--u) * 12.6);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--esp-1);
+}
+
+.atributo {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--u) * 2);
+}
+
+.atributo-icone {
+  width: calc(var(--u) * 8);
+  height: calc(var(--u) * 8);
+}
+
+.caixas {
+  display: flex;
+  justify-content: center;
+  gap: calc(var(--u) * 0.6);
+}
+
+.caixa {
+  width: calc(var(--u) * 2.6);
+  height: calc(var(--u) * 2.6);
+  border: calc(var(--u) * 0.35) solid var(--cor-linha);
+  border-radius: calc(var(--u) * 0.45);
+  background: var(--cor-folha);
+}
+
+.caixa.ligada {
+  background: var(--cor-linha);
+}
+
+/* linha 3: golpes (4 linhas contíguas de 10 mm) */
+.golpes {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.golpe {
+  height: calc(var(--u) * 10);
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 1.5);
+}
+
+/* Quadrado de liberação: vazio = não liberado; com marca = liberado */
+.golpe-marca {
+  flex: none;
+  width: calc(var(--u) * 10);
+  height: calc(var(--u) * 10);
+  display: grid;
+  place-items: center;
+  border: calc(var(--u) * 0.4) solid var(--cor-linha);
+  border-radius: calc(var(--u) * 1.5);
+  background: var(--cor-folha);
+}
+
+.marca-icone {
+  width: calc(var(--u) * 7.5);
+  height: calc(var(--u) * 7.5);
+  color: var(--cor-linha);
+}
+
+.marca-icone svg {
+  stroke-width: 2.6;
+}
+
+/* Caixa do golpe: ícone (foco), nome (pequeno), dado + atributo, bolinhas de uso */
+.golpe-caixa {
+  flex: 1;
+  min-width: 0;
+  height: calc(var(--u) * 10);
+  display: grid;
+  /* ícone | nome | dado | + | atributo | efeito | área | cargas (colunas fixas: as 4 linhas alinham) */
+  grid-template-columns:
+    calc(var(--u) * 10) minmax(0, 1fr) calc(var(--u) * 9) calc(var(--u) * 2.5) calc(var(--u) * 8)
+    calc(var(--u) * 7.5) calc(var(--u) * 6.5) calc(var(--u) * 4);
+  align-items: center;
+  gap: calc(var(--u) * 0.8);
+  padding: 0 calc(var(--u) * 1.5) 0 var(--esp-1);
+  border-radius: calc(var(--u) * 2.4);
+  background: color-mix(in srgb, var(--cor-tipo-golpe, var(--tipo-padrao)) 22%, #ffffff);
+  box-shadow: inset 0 0 0 calc(var(--u) * 0.35) var(--cor-linha);
+}
+
+.golpe.nao-liberado .golpe-caixa {
+  background: var(--cor-folha);
+}
+
+.golpe-icone {
+  width: calc(var(--u) * 10);
+  height: calc(var(--u) * 10);
+}
+
+/* Nome do golpe: menor que a versão anterior (4,2 mm), agora 3,6 mm (~10 pt).
+   Decisão do autor: passa por cima do mínimo de 14 pt da seção 11 da especificação.
+   Até 2 linhas dentro dos 10 mm da linha. */
+.golpe-nome {
+  min-width: 0;
+  font-size: calc(var(--u) * 3.6);
+  font-weight: 700;
+  line-height: 1.05;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Dado: notação textual direta (d4, d6, d8 ou d12) */
+.golpe-dado {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(var(--u) * 4.5);
+  font-weight: 900;
+  letter-spacing: calc(var(--u) * -0.25);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Soma: "+" e o ícone do atributo (Força ou Energia) */
+.golpe-soma {
+  display: contents;
+}
+
+.golpe-mais {
+  width: calc(var(--u) * 3);
+  height: calc(var(--u) * 3);
+}
+
+.golpe-atributo {
+  width: calc(var(--u) * 8);
+  height: calc(var(--u) * 8);
+}
+
+.golpe-efeito,
+.golpe-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.golpe-efeito-icone {
+  width: calc(var(--u) * 7.5);
+  height: calc(var(--u) * 7.5);
+}
+
+.golpe-area-icone {
+  width: calc(var(--u) * 6.5);
+  height: calc(var(--u) * 6.5);
+}
+
+/* Bolinhas de carga (3, 2 ou 1; ilimitado não tem). Empilhadas na vertical, largura fixa de 4 mm. */
+.golpe-usos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: calc(var(--u) * 0.6);
+  width: calc(var(--u) * 4);
+}
+
+.bolinha {
+  width: calc(var(--u) * 2.6);
+  height: calc(var(--u) * 2.6);
+  border: calc(var(--u) * 0.35) solid var(--cor-linha);
+  border-radius: 50%;
+  background: var(--cor-folha);
+  position: relative;
+  flex: none;
+}
+
+/* Esgotado: bolinha com X (estado da legenda; a carta impressa não marca uso) */
+.bolinha.esgotada::before,
+.bolinha.esgotada::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 130%;
+  height: calc(var(--u) * 0.35);
+  background: var(--cor-linha);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.bolinha.esgotada::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* ==========================================================================
+   Carta: verso
+   Só o trilho de 70 quadradinhos: 7 colunas x 10 linhas, quadradinho de 10 mm,
+   4 mm entre eles. Sem texto.
+   ========================================================================== */
+.verso {
+  justify-content: center;
+  align-items: center;
+}
+
+.trilho {
+  display: grid;
+  grid-template-columns: repeat(7, calc(var(--u) * 10));
+  grid-auto-rows: calc(var(--u) * 10);
+  gap: calc(var(--u) * 4);
+}
+
+.quadrado {
+  position: relative;
+  width: calc(var(--u) * 10);
+  height: calc(var(--u) * 10);
+  display: grid;
+  place-items: center;
+  border: calc(var(--u) * 0.4) solid var(--cor-linha);
+  border-radius: calc(var(--u) * 1.2);
+  background: var(--cor-folha);
+}
+
+.quadrado .trilho-icone {
+  width: calc(var(--u) * 6.5);
+  height: calc(var(--u) * 6.5);
+}
+
+.quadrado.habilidade { background: var(--marca-habilidade); }
+.quadrado.estrela { background: var(--marca-estrela); }
+.quadrado.coracao { background: var(--marca-coracao); }
+.quadrado.forca { background: var(--marca-forca); }
+.quadrado.poder { background: var(--marca-poder); }
+.quadrado.evolucao { background: var(--marca-evolucao); border-width: calc(var(--u) * 0.7); }
+
+/* Quadradinho "próximo": borda dupla */
+.quadrado.proximo {
+  border-style: double;
+  border-width: calc(var(--u) * 1.2);
+}
+
+/* Item (pedra) do marco de evolução: pequeno, no canto */
+.item-icone {
+  position: absolute;
+  right: calc(var(--u) * -1);
+  bottom: calc(var(--u) * -1);
+  width: calc(var(--u) * 4);
+  height: calc(var(--u) * 4);
+  padding: calc(var(--u) * 0.4);
+  border-radius: 50%;
+  background: var(--cor-folha);
+  border: calc(var(--u) * 0.3) solid var(--cor-linha);
+}
+
+/* ==========================================================================
+   Legenda (site/legenda.html): página de referência para o adulto.
+   Texto permitido aqui.
+   ========================================================================== */
+.legenda {
+  width: min(960px, 100%);
+  margin: 0 auto;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  color: var(--cor-barra-texto);
+  line-height: 1.5;
+}
+
+.legenda h1 { margin: 0; font-size: 1.6rem; }
+.legenda h2 { margin: 0 0 8px; font-size: 1.2rem; }
+.legenda p { margin: 0 0 8px; }
+
+.legenda-bloco {
+  padding: 18px;
+  border-radius: 12px;
+  background: var(--cor-barra);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+.legenda-grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 12px;
+}
+
+.legenda-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid var(--cor-linha-suave);
+  background: var(--cor-folha);
+  color: var(--cor-texto);
+}
+
+.legenda-item .icone {
+  width: 40px;
+  height: 40px;
+  flex: none;
+}
+
+.dado-texto-legenda {
+  width: 44px;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 900;
+}
+
+.legenda-item .tipo-disc {
+  width: 44px;
+  height: 44px;
+  padding: 9px;
+  flex: none;
+}
+
+.legenda-item .tipo-disc .icone {
+  width: 100%;
+  height: 100%;
+}
+
+.legenda-item .marca {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border: 2px solid var(--cor-linha);
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+}
+
+.legenda-item .marca .icone {
+  width: 22px;
+  height: 22px;
+}
+
+.legenda-item small {
+  display: block;
+  color: var(--cor-texto-suave);
+}
+
+.legenda-tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.legenda-tabela th,
+.legenda-tabela td {
+  text-align: left;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--cor-linha-suave);
+  vertical-align: top;
+}
+
+.legenda-tabela td.nome-col { font-weight: 700; white-space: nowrap; }
+
+.legenda-tabela .efeito-lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+}
+
+.legenda-tabela .efeito-lista span {
+  white-space: nowrap;
+}
+
+.legenda-tabela-wrap {
+  overflow-x: auto;
+}
+
+.legenda-item .bolinha-legenda,
+.legenda-item .caixa-legenda {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--cor-linha);
+  background: var(--cor-folha);
+}
+
+.legenda-item .regua-cargas {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  min-height: 18px;
+}
+.legenda-item .bolinha-legenda { border-radius: 50%; }
+.legenda-item .caixa-legenda { border-radius: 4px; }
+.legenda-item .caixa-legenda.ligada { background: var(--cor-linha); }
+
+.legenda-item .bolinha-legenda.esgotada { position: relative; }
+.legenda-item .bolinha-legenda.esgotada::before,
+.legenda-item .bolinha-legenda.esgotada::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 130%;
+  height: 2px;
+  background: var(--cor-linha);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.legenda-item .bolinha-legenda.esgotada::after { transform: translate(-50%, -50%) rotate(-45deg); }
+
+.legenda-ficha-status {
+  margin-bottom: 8px;
+  color: var(--cor-texto-suave);
+  font-size: 0.9rem;
+}
+
+.legenda-estados {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+/* ==========================================================================
+   Impressão: frente e verso, 4 cartas por folha A4 retrato. Este bloco fica
+   por último para vencer o modo escuro.
+   ========================================================================== */
+@media print {
+  :root {
+    --cor-fundo: #ffffff;
+    --cor-barra: #ffffff;
+    --cor-barra-texto: #000000;
+    --cor-folha: #ffffff;
+    --cor-texto: #000000;
+    --cor-texto-suave: #444444;
+    --cor-linha: #000000;
+    --cor-linha-suave: #9aa1ad;
+    --cor-destaque: #000000;
+    --cor-botao: #ffffff;
+    --cor-botao-texto: #000000;
+  }
+
+  /* Sem isso, o navegador não imprime os fundos (cores de tipo, marcas) */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  html,
+  body {
+    background: #ffffff;
+    color: #000000;
+  }
+
+  .barra,
+  .painel-selecao,
+  .mensagem,
+  .rotulo-folha {
+    display: none !important;
+  }
+
+  main {
+    display: block;
+    padding: 0;
+    gap: 0;
+  }
+
+  /* Folga de impressão: margem de 20 mm em cima e 14 mm à esquerda, aplicada
+     pelo @page, então vale pra todas as folhas (não só a primeira). */
+  @page {
+    size: A4 portrait;
+    margin: 20mm 0 0 14mm;
+  }
+
+  #paginas {
+    display: block;
+    gap: 0;
+  }
+
+  /* Tamanho físico já reduzido (86% de 210 x 296 mm), sem zoom: o navegador
+     fragmenta a página no lugar certo quando o tamanho real cabe na área
+     impressa (277 mm de altura depois da margem de 20 mm). */
+  .pagina {
+    width: 180.6mm;
+    height: 254.6mm;
+    max-height: 254.6mm;
+    aspect-ratio: auto;
+    overflow: hidden;
+    box-shadow: none;
+    break-inside: avoid;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .pagina:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+}

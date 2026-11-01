@@ -1,0 +1,759 @@
+[
+  {
+    "id": 1,
+    "nome": "Brotinho",
+    "tipos": [
+      "planta"
+    ],
+    "descricao": "Criatura de tipo Planta.",
+    "vida": 8,
+    "status": "rascunho",
+    "atributos": {
+      "forca": {
+        "base": 1,
+        "slots": 2
+      },
+      "energia": {
+        "base": 2,
+        "slots": 2
+      },
+      "agilidade": {
+        "base": 1,
+        "slots": 2
+      },
+      "defesa": {
+        "base": 1,
+        "slots": 2
+      }
+    },
+    "golpes": [
+      {
+        "nome": "Chicote de Cipó",
+        "icone": "folha",
+        "elemento": "planta",
+        "atributo": "forca",
+        "dado": "d4",
+        "cargas": null,
+        "efeito": null,
+        "area": false,
+        "peso": 1,
+        "liberado_em": 1
+      },
+      {
+        "nome": "Pó Sonolento",
+        "icone": "veneno",
+        "elemento": "planta",
+        "atributo": null,
+        "dado": null,
+        "cargas": 2,
+        "efeito": "sono",
+        "area": false,
+        "peso": 1,
+        "liberado_em": 2
+      },
+      {
+        "nome": "Feixe de Sol",
+        "icone": "folha",
+        "elemento": "planta",
+        "atributo": "energia",
+        "dado": "d6",
+        "cargas": 3,
+        "efeito": null,
+        "area": false,
+        "peso": 1,
+        "liberado_em": 3
+      },
+      {
+        "nome": "Encontrão Duplo",
+        "icone": "bolinha",
+        "elemento": "normal",
+        "atributo": "forca",
+        "dado": "d6",
+        "cargas": null,
+        "efeito": null,
+        "area": false,
+        "peso": 2,
+        "liberado_em": 4
+      }
+    ],
+    "trilho": [
+      {
+        "pos": 1,
+        "tipo": "habilidade",
+        "detalhe": 1
+      },
+      {
+        "pos": 4,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 8,
+        "tipo": "forca"
+      },
+      {
+        "pos": 11,
+        "tipo": "habilidade",
+        "detalhe": 2
+      },
+      {
+        "pos": 13,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 15,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 16,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 20,
+        "tipo": "coracao"
+      },
+      {
+        "pos": 22,
+        "tipo": "coracao"
+      },
+      {
+        "pos": 23,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 26,
+        "tipo": "habilidade",
+        "detalhe": 3
+      },
+      {
+        "pos": 30,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 31,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 35,
+        "tipo": "habilidade",
+        "detalhe": 4
+      },
+      {
+        "pos": 39,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 40,
+        "tipo": "forca"
+      },
+      {
+        "pos": 44,
+        "tipo": "poder",
+        "detalhe": 1
+      },
+      {
+        "pos": 45,
+        "tipo": "poder",
+        "detalhe": 3
+      },
+      {
+        "pos": 47,
+        "tipo": "evolucao",
+        "detalhe": "Brotão"
+      },
+      {
+        "pos": 48,
+        "tipo": "coracao"
+      }
+    ],
+    "xp": 2,
+    "inicio": 1,
+    "evolucao": [
+      {
+        "para": "Brotão",
+        "pos": 47
+      }
+    ],
+    "resistencias": {
+      "fogo": "vulneravel",
+      "gelo": "vulneravel",
+      "psiquico": "vulneravel",
+      "voador": "vulneravel",
+      "agua": "resistente",
+      "eletrico": "resistente",
+      "lutador": "resistente",
+      "planta": "resistente"
+    },
+    "tamanho": "pequeno"
+  },
+  {
+    "id": 2,
+    "nome": "Brotão",
+    "tipos": [
+      "planta"
+    ],
+    "descricao": "Criatura de tipo Planta.",
+    "vida": 9,
+    "status": "rascunho",
+    "atributos": null,
+    "herda_atributos": true,
+    "golpes": [
+      {
+        "nome": "Chicote de Cipó",
+        "icone": "folha",
+        "elemento": "planta",
+        "atributo": "forca",
+        "dado": "d6",
+        "cargas": null,
+        "efeito": null,
+        "area": false,
+        "peso": 2,
+        "liberado_em": 1
+      },
+      {
+        "nome": "Pó Sonolento",
+        "icone": "veneno",
+        "elemento": "planta",
+        "atributo": null,
+        "dado": null,
+        "cargas": 2,
+        "efeito": "sono",
+        "area": false,
+        "peso": 1,
+        "liberado_em": 2
+      },
+      {
+        "nome": "Folha Cortante",
+        "icone": "folha",
+        "elemento": "planta",
+        "atributo": "forca",
+        "dado": "d8",
+        "cargas": 2,
+        "efeito": "fraqueza",
+        "area": true,
+        "peso": 5,
+        "liberado_em": 3
+      },
+      {
+        "nome": "Raiz Forte",
+        "icone": "folha",
+        "elemento": "planta",
+        "atributo": "forca",
+        "dado": "d4",
+        "cargas": null,
+        "efeito": null,
+        "area": false,
+        "peso": 1,
+        "liberado_em": 4
+      }
+    ],
+    "trilho": [
+      {
+        "pos": 1,
+        "tipo": "habilidade",
+        "detalhe": 1
+      },
+      {
+        "pos": 4,
+        "tipo": "habilidade",
+        "detalhe": 2
+      },
+      {
+        "pos": 5,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 8,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 12,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 14,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 16,
+        "tipo": "coracao"
+      },
+      {
+        "pos": 17,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 21,
+        "tipo": "habilidade",
+        "detalhe": 3
+      },
+      {
+        "pos": 22,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 26,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 27,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 29,
+        "tipo": "forca"
+      },
+      {
+        "pos": 31,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 35,
+        "tipo": "forca"
+      },
+      {
+        "pos": 37,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 38,
+        "tipo": "coracao"
+      },
+      {
+        "pos": 40,
+        "tipo": "coracao"
+      },
+      {
+        "pos": 41,
+        "tipo": "poder",
+        "detalhe": 1
+      },
+      {
+        "pos": 44,
+        "tipo": "poder",
+        "detalhe": 1
+      },
+      {
+        "pos": 45,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 47,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 49,
+        "tipo": "habilidade",
+        "detalhe": 4
+      },
+      {
+        "pos": 50,
+        "tipo": "evolucao",
+        "detalhe": "Florão"
+      }
+    ],
+    "xp": 3,
+    "inicio": 1,
+    "evolucao": [
+      {
+        "para": "Florão",
+        "pos": 50
+      }
+    ],
+    "resistencias": {
+      "fogo": "vulneravel",
+      "gelo": "vulneravel",
+      "psiquico": "vulneravel",
+      "voador": "vulneravel",
+      "agua": "resistente",
+      "eletrico": "resistente",
+      "lutador": "resistente",
+      "planta": "resistente"
+    },
+    "tamanho": "medio"
+  },
+  {
+    "id": 3,
+    "nome": "Mentalix",
+    "raro": true,
+    "tipos": [
+      "psiquico"
+    ],
+    "descricao": "Criatura de tipo Psíquico.",
+    "vida": 16,
+    "status": "rascunho",
+    "atributos": {
+      "forca": {
+        "base": 3,
+        "slots": 5
+      },
+      "energia": {
+        "base": 3,
+        "slots": 5
+      },
+      "agilidade": {
+        "base": 3,
+        "slots": 5
+      },
+      "defesa": {
+        "base": 3,
+        "slots": 5
+      }
+    },
+    "golpes": [
+      {
+        "nome": "Pancada Mental",
+        "icone": "olho",
+        "elemento": "psiquico",
+        "atributo": "energia",
+        "dado": "d6",
+        "cargas": null,
+        "efeito": "ligeiro",
+        "area": false,
+        "peso": 3,
+        "liberado_em": 1
+      },
+      {
+        "nome": "Barreira",
+        "icone": "escudo-inexistente",
+        "elemento": "psiquico",
+        "atributo": null,
+        "dado": null,
+        "cargas": 3,
+        "efeito": "escudo",
+        "area": false,
+        "peso": 0,
+        "liberado_em": 2
+      },
+      {
+        "nome": "Feixe Mental",
+        "icone": "olho",
+        "elemento": "psiquico",
+        "atributo": "energia",
+        "dado": "d12",
+        "cargas": 2,
+        "efeito": "paralisia",
+        "area": false,
+        "peso": 6,
+        "liberado_em": 3
+      },
+      {
+        "nome": "Onda Mental",
+        "icone": "olho",
+        "elemento": "psiquico",
+        "atributo": "energia",
+        "dado": "d12",
+        "cargas": 1,
+        "efeito": "sono",
+        "area": true,
+        "peso": 7,
+        "liberado_em": 4
+      }
+    ],
+    "trilho": [
+      {
+        "pos": 1,
+        "tipo": "habilidade",
+        "detalhe": 1
+      },
+      {
+        "pos": 2,
+        "tipo": "forca"
+      },
+      {
+        "pos": 6,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 8,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 9,
+        "tipo": "coracao"
+      },
+      {
+        "pos": 12,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 14,
+        "tipo": "habilidade",
+        "detalhe": 2
+      },
+      {
+        "pos": 15,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 17,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 18,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 20,
+        "tipo": "coracao"
+      },
+      {
+        "pos": 21,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 23,
+        "tipo": "habilidade",
+        "detalhe": 3
+      },
+      {
+        "pos": 24,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 26,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 27,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 29,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 30,
+        "tipo": "forca"
+      },
+      {
+        "pos": 32,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 34,
+        "tipo": "poder",
+        "detalhe": 1
+      },
+      {
+        "pos": 35,
+        "tipo": "habilidade",
+        "detalhe": 4
+      },
+      {
+        "pos": 37,
+        "tipo": "coracao"
+      },
+      {
+        "pos": 38,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 40,
+        "tipo": "poder",
+        "detalhe": 1
+      },
+      {
+        "pos": 41,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 43,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 44,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 46,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 47,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 49,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 50,
+        "tipo": "estrela"
+      }
+    ],
+    "xp": 5,
+    "inicio": 1,
+    "resistencias": {
+      "fantasma": "vulneravel",
+      "inseto": "vulneravel",
+      "lutador": "resistente",
+      "psiquico": "resistente"
+    },
+    "tamanho": "medio"
+  },
+  {
+    "id": 4,
+    "nome": "Mutalu",
+    "tipos": [
+      "normal"
+    ],
+    "descricao": "Criatura de tipo Normal.",
+    "vida": 8,
+    "status": "rascunho",
+    "atributos": {
+      "forca": {
+        "base": 0,
+        "slots": 2
+      },
+      "energia": {
+        "base": 0,
+        "slots": 2
+      },
+      "agilidade": {
+        "base": 0,
+        "slots": 2
+      },
+      "defesa": {
+        "base": 0,
+        "slots": 2
+      }
+    },
+    "golpes": [
+      {
+        "nome": "Encontrão",
+        "icone": "bolinha",
+        "elemento": "normal",
+        "atributo": "forca",
+        "dado": "d4",
+        "cargas": null,
+        "efeito": null,
+        "area": false,
+        "peso": 1,
+        "liberado_em": 1
+      },
+      {
+        "nome": "Mordida",
+        "icone": "ferrao",
+        "elemento": "normal",
+        "atributo": "forca",
+        "dado": "d6",
+        "cargas": null,
+        "efeito": null,
+        "area": false,
+        "peso": 2,
+        "liberado_em": 2
+      },
+      {
+        "nome": "Disparada",
+        "icone": "bolinha",
+        "elemento": "normal",
+        "atributo": "forca",
+        "dado": "d6",
+        "cargas": 3,
+        "efeito": null,
+        "area": false,
+        "peso": 1,
+        "liberado_em": 3
+      },
+      {
+        "nome": "Rabada",
+        "icone": "bolinha",
+        "elemento": "normal",
+        "atributo": "forca",
+        "dado": "d8",
+        "cargas": 2,
+        "efeito": null,
+        "area": false,
+        "peso": 2,
+        "liberado_em": 4
+      }
+    ],
+    "trilho": [
+      {
+        "pos": 1,
+        "tipo": "habilidade",
+        "detalhe": 1
+      },
+      {
+        "pos": 5,
+        "tipo": "habilidade",
+        "detalhe": 2
+      },
+      {
+        "pos": 6,
+        "tipo": "forca"
+      },
+      {
+        "pos": 10,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 13,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 16,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 28,
+        "tipo": "coracao"
+      },
+      {
+        "pos": 39,
+        "tipo": "habilidade",
+        "detalhe": 3
+      },
+      {
+        "pos": 40,
+        "tipo": "evolucao",
+        "detalhe": "Aqualu"
+      },
+      {
+        "pos": 41,
+        "tipo": "estrela"
+      },
+      {
+        "pos": 44,
+        "tipo": "coracao"
+      },
+      {
+        "pos": 46,
+        "tipo": "forca"
+      },
+      {
+        "pos": 61,
+        "tipo": "poder",
+        "detalhe": 1
+      },
+      {
+        "pos": 63,
+        "tipo": "coracao"
+      },
+      {
+        "pos": 65,
+        "tipo": "habilidade",
+        "detalhe": 4
+      },
+      {
+        "pos": 69,
+        "tipo": "poder",
+        "detalhe": 1
+      }
+    ],
+    "xp": 2,
+    "inicio": 1,
+    "evolucao": [
+      {
+        "para": "Aqualu",
+        "pos": 40,
+        "requisito": "pedra-agua"
+      }
+    ],
+    "resistencias": {
+      "lutador": "vulneravel",
+      "fantasma": "imune"
+    },
+    "tamanho": "pequeno"
+  }
+]

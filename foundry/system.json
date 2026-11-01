@@ -1,0 +1,18 @@
+{
+  "id": "kindlewild",
+  "title": "Kindlewild",
+  "description": "RPG infantil de criaturas: ficha em formato de carta, golpes e trilho de XP. As criaturas vêm de módulos de cenário.",
+  "version": "0.2.0",
+  "compatibility": { "minimum": "14.364", "verified": "14.365", "maximum": "14" },
+  "authors": [{ "name": "Alan Leite" }],
+  "esmodules": ["kindlewild.mjs"],
+  "styles": ["styles/kindlewild.css"],
+  "languages": [{ "lang": "pt-BR", "name": "Português (Brasil)", "path": "lang/pt-BR.json" }],
+  "documentTypes": {
+    "Actor": { "criatura": {} },
+    "Item": { "golpe": {} }
+  },
+  "grid": { "distance": 1, "units": "m" },
+  "primaryTokenAttribute": "vida",
+  "initiative": "1d10"
+}

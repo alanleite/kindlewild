@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kindlewild · RPG infantil de criaturas</title>
+  <meta name="description" content="RPG de mesa com cartas para crianças pequenas jogarem com um adulto: criaturas que crescem, liberam golpes e evoluem.">
+  <style>
+    :root { --tinta: #22201c; --suave: #6b6457; --papel: #fbf7ee; --borda: #e4dccb; --destaque: #2e9e4f; --fundo: #f3eee2; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--tinta); background: var(--fundo); line-height: 1.55; }
+    main { max-width: 860px; margin: 0 auto; padding: 48px 20px 64px; }
+    header h1 { font-size: clamp(2.4rem, 7vw, 3.6rem); margin: 0; letter-spacing: -0.02em; }
+    header p { font-size: 1.2rem; color: var(--suave); margin: 8px 0 0; }
+    .acoes { display: flex; flex-wrap: wrap; gap: 12px; margin: 28px 0 8px; }
+    .botao { display: inline-block; padding: 12px 20px; border-radius: 12px; font-weight: 700; text-decoration: none; border: 2px solid var(--tinta); color: var(--tinta); background: #fff; }
+    .botao.principal { background: var(--destaque); border-color: var(--destaque); color: #fff; }
+    .aviso { font-size: .95rem; color: var(--suave); }
+    section { margin-top: 40px; }
+    h2 { font-size: 1.4rem; margin: 0 0 12px; }
+    .sensacoes { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; padding: 0; list-style: none; }
+    .sensacoes li { background: var(--papel); border: 2px solid var(--borda); border-radius: 14px; padding: 16px; font-weight: 700; font-size: 1.05rem; }
+    .sensacoes li span { display: block; font-weight: 400; font-size: .95rem; color: var(--suave); margin-top: 4px; }
+    ul.lista li { margin-bottom: 6px; }
+    footer { margin-top: 56px; font-size: .9rem; color: var(--suave); border-top: 1px solid var(--borda); padding-top: 16px; }
+    a { color: var(--destaque); }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Kindlewild</h1>
+      <p>RPG de mesa com cartas para crianças pequenas jogarem junto com um adulto.</p>
+    </header>
+
+    <div class="acoes">
+      <a class="botao principal" href="site/">Ver as cartas</a>
+      <a class="botao" href="site/legenda.html">Legenda das cartas</a>
+      <a class="botao" href="https://github.com/alanleite/kindlewild/blob/main/docs/especificacao.md">Regras</a>
+      <a class="botao" href="https://github.com/alanleite/kindlewild">Código</a>
+    </div>
+    <p class="aviso">Em desenvolvimento: as regras ainda estão em playtest, e as cartas de exemplo usam criaturas provisórias, sem arte.</p>
+
+    <section>
+      <h2>A ideia</h2>
+      <p>Cada criança cuida de uma criatura. A cada aventura ela risca quadradinhos no verso da carta e, no caminho, libera golpes, pinta estrelas nos atributos, ganha corações e chega ao marco de evolução, quando troca de carta. O jogo foi feito para causar três sensações:</p>
+      <ul class="sensacoes">
+        <li>"Essa criatura é minha."<span>Uma carta só dela, marcada a lápis.</span></li>
+        <li>"Ela está ficando mais forte."<span>Mais corações, mais estrelas, dados maiores.</span></li>
+        <li>"Ganhei uma coisa nova!"<span>Um golpe liberado, uma evolução.</span></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Como se joga</h2>
+      <ul class="lista">
+        <li><strong>Quase sem texto:</strong> na carta só aparecem o nome da criatura e o dos golpes. O resto é ícone, cor e quadradinho, e o adulto lê em voz alta.</li>
+        <li><strong>Combate simples:</strong> d10 para acertar, contra a Agilidade do alvo. O dano é o dado do golpe (d4, d6, d8 ou d12) mais Força ou Energia, menos a Defesa.</li>
+        <li><strong>Imprima em casa:</strong> cartas A6 frente e verso, 4 por folha A4, prontas para cortar.</li>
+        <li><strong>Também na mesa virtual:</strong> há um sistema para Foundry VTT com a mesma ficha em formato de carta.</li>
+      </ul>
+    </section>
+
+    <footer>
+      Kindlewild, por Alan Leite. <a href="https://github.com/alanleite/kindlewild">github.com/alanleite/kindlewild</a>
+    </footer>
+  </main>
+</body>
+</html>

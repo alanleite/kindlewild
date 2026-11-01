@@ -1,0 +1,10 @@
+{
+  "TYPES": { "Actor": { "criatura": "Criatura" }, "Item": { "golpe": "Golpe" } },
+  "KINDLEWILD": {
+    "Aba": { "Carta": "Carta", "Trilho": "Trilho" },
+    "Atributo": { "forca": "Força", "energia": "Energia", "agilidade": "Agilidade", "defesa": "Defesa" },
+    "Botao": { "Centro": "Centro de Cura", "Descanso": "Descanso" },
+    "Chat": { "Acerto": "Acerto", "AcertaSe": "acerta se ≥ Agilidade do alvo", "Dano": "Dano", "Efeito": "Efeito", "Area": "Acerta todos os inimigos", "Alvo": "Alvo", "Defesa": "Defesa", "Agilidade": "Agilidade", "Resistencia": "Resistência" },
+    "Aviso": { "SemCarga": "{nome}: sem cargas. Use o Centro de Cura.", "Bloqueado": "{nome}: golpe ainda não liberado." }
+  }
+}

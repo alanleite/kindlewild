@@ -1,0 +1,15 @@
+node_modules/
+.DS_Store
+._*
+
+# Cenários: só os públicos entram no git. Cenários privados ficam fora do repositório
+# (podem ser ligados aqui por link simbólico). A trava scripts/checar-publicacao.js confere.
+cenarios/*
+!cenarios/padrao.txt
+!cenarios/exemplo/
+
+# Gerados por "npm run gerar" (raiz e foundry/)
+cenarios/*/impressao/
+cenarios/*/foundry/src/
+cenarios/*/foundry/packs/
+cenarios/*/foundry/assets/

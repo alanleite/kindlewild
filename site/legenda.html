@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Legenda das cartas · Kindlewild</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="barra">
+    <div class="barra-titulo">
+      <h1>Legenda das cartas</h1>
+    </div>
+    <nav class="links"><a href="index.html">Voltar para as cartas</a></nav>
+  </header>
+
+  <main>
+    <div class="legenda">
+      <p>Página de referência para o adulto. Cada ícone, cor e quadradinho da carta está explicado aqui. Na carta só aparecem o nome da criatura e o nome dos golpes.</p>
+
+      <section class="legenda-bloco" aria-labelledby="t-frente">
+        <h2 id="t-frente">Frente e verso</h2>
+        <p>A frente tem o nome, a imagem, os tipos, a vida, os atributos, os golpes e as resistências. O verso tem só o trilho de experiência, com 70 quadradinhos. Cada folha A4 tem 4 cartas: a folha de frente e a folha de verso saem uma após a outra, e devem ser impressas nos dois lados da mesma folha.</p>
+      </section>
+
+      <section class="legenda-bloco" aria-labelledby="t-tipos">
+        <h2 id="t-tipos">Tipos (disco colorido)</h2>
+        <p>Cada tipo tem uma cor e um ícone. Os discos pequenos ficam no canto esquerdo da barra do nome.</p>
+        <div id="grade-tipos" class="legenda-grade"></div>
+      </section>
+
+      <section class="legenda-bloco" aria-labelledby="t-efeitos">
+        <h2 id="t-efeitos">Resistências (chips)</h2>
+        <p>Cada chip mostra um tipo e o efeito dele sobre a criatura. Ficam no canto inferior direito da imagem, sobre a arte. A carta mostra até 3 chips, vulneráveis primeiro, depois imunes, depois resistentes. As outras resistências da espécie estão na ficha abaixo.</p>
+        <div class="legenda-grade">
+          <div class="legenda-item"><span class="icone" data-grupo="efeito" data-nome="vulneravel"></span><span>Vulnerável<small>Dano dobrado (×2).</small></span></div>
+          <div class="legenda-item"><span class="icone" data-grupo="efeito" data-nome="imune"></span><span>Imune<small>Dano zero.</small></span></div>
+          <div class="legenda-item"><span class="icone" data-grupo="efeito" data-nome="resistente"></span><span>Resistente<small>Metade do dano, arredondada pra cima.</small></span></div>
+        </div>
+      </section>
+
+      <section class="legenda-bloco" aria-labelledby="t-atributos">
+        <h2 id="t-atributos">Atributos</h2>
+        <p>Cada atributo tem um ícone e uma linha de caixas. A caixa cheia é um ponto que já vem de nascença (base). A criança pinta caixas com estrelas até o limite (slots). Nas formas evoluídas, as caixas saem vazias: o valor é herdado da forma anterior na evolução.</p>
+        <div class="legenda-grade">
+          <div class="legenda-item"><span class="icone" data-grupo="atributo" data-nome="forca"></span><span>Força<small>Soma ao dano de golpes físicos.</small></span></div>
+          <div class="legenda-item"><span class="icone" data-grupo="atributo" data-nome="energia"></span><span>Energia<small>Soma ao dano de golpes elementais.</small></span></div>
+          <div class="legenda-item"><span class="icone" data-grupo="atributo" data-nome="agilidade"></span><span>Agilidade<small>Chance de esquiva (d10 contra este valor).</small></span></div>
+          <div class="legenda-item"><span class="icone" data-grupo="atributo" data-nome="defesa"></span><span>Defesa<small>Reduz o dano recebido.</small></span></div>
+        </div>
+      </section>
+
+      <section class="legenda-bloco" aria-labelledby="t-golpes">
+        <h2 id="t-golpes">Golpes</h2>
+        <p>Cada golpe tem um quadrado (marca de liberação), o ícone do golpe, o nome, a notação do dado, um "+" e o ícone do atributo que entra na soma: Força para golpe físico e Energia para golpe elemental. Depois vêm o efeito (se houver), a marca de área (se houver) e as bolinhas de carga. O golpe de suporte não causa dano: não tem dado nem atributo, só o efeito. O golpe 1 de cada carta é sempre ilimitado.</p>
+        <div class="legenda-grade">
+          <div class="legenda-item"><span class="marca"><span class="caixa-legenda"></span></span><span>Quadrado vazio<small>Golpe ainda não liberado. A criança marca o quadrado quando libera.</small></span></div>
+          <div class="legenda-item"><span class="marca"><span class="icone" data-grupo="geral" data-nome="marcado"></span></span><span>Quadrado marcado<small>Golpe liberado.</small></span></div>
+          <div class="legenda-item"><strong class="dado-texto-legenda">d4</strong><span>d4<small>Dado de 4 lados (média 2,5).</small></span></div>
+          <div class="legenda-item"><strong class="dado-texto-legenda">d6</strong><span>d6<small>Dado de 6 lados (média 3,5).</small></span></div>
+          <div class="legenda-item"><strong class="dado-texto-legenda">d8</strong><span>d8<small>Dado de 8 lados (média 4,5).</small></span></div>
+          <div class="legenda-item"><strong class="dado-texto-legenda">d12</strong><span>d12<small>Dado de 12 lados (média 6,5). Só em forma final ou espécie rara.</small></span></div>
+        </div>
+      </section>
+
+      <section class="legenda-bloco" aria-labelledby="t-cargas">
+        <h2 id="t-cargas">Cargas (bolinhas)</h2>
+        <p>Cada bolinha é um uso do golpe. Golpe sem bolinhas é ilimitado. Os usos voltam no Centro de Cura. Esgotado: bolinha com X.</p>
+        <div class="legenda-grade">
+          <div class="legenda-item"><span class="regua-cargas"><span class="bolinha-legenda"></span><span class="bolinha-legenda"></span><span class="bolinha-legenda"></span></span><span>3 bolinhas<small>3 usos.</small></span></div>
+          <div class="legenda-item"><span class="regua-cargas"><span class="bolinha-legenda"></span><span class="bolinha-legenda"></span></span><span>2 bolinhas<small>2 usos.</small></span></div>
+          <div class="legenda-item"><span class="regua-cargas"><span class="bolinha-legenda"></span></span><span>1 bolinha<small>1 uso só.</small></span></div>
+          <div class="legenda-item"><span class="regua-cargas"><span class="bolinha-legenda esgotada"></span></span><span>Bolinha com X<small>Uso já gasto.</small></span></div>
+          <div class="legenda-item"><span class="regua-cargas"></span><span>Sem bolinhas<small>Ilimitado: pode usar quantas vezes quiser.</small></span></div>
+        </div>
+      </section>
+
+      <section class="legenda-bloco" aria-labelledby="t-efeitos-golpe">
+        <h2 id="t-efeitos-golpe">Efeitos dos golpes (tokens)</h2>
+        <p>Um golpe tem no máximo um efeito. O efeito vira um token (marcador) colocado ao lado da criatura e não acumula: se já está ativo, nada muda. Todos saem no fim da luta. Os negativos só valem se o golpe acertar.</p>
+        <div class="legenda-grade">
+          <div class="legenda-item"><span class="icone" data-grupo="efeito" data-nome="fraqueza"></span><span>Fraqueza (cinza, seta para baixo)<small>No alvo: os golpes do alvo causam 2 de dano a menos.</small></span></div>
+          <div class="legenda-item"><span class="icone" data-grupo="efeito" data-nome="veneno"></span><span>Veneno (roxo, gota)<small>No alvo: perde 1 coração no fim de cada turno dele.</small></span></div>
+          <div class="legenda-item"><span class="icone" data-grupo="efeito" data-nome="paralisia"></span><span>Paralisia (amarelo, raio)<small>No alvo: no turno dele, role um d10; de 1 a 4, ele não ataca.</small></span></div>
+          <div class="legenda-item"><span class="icone" data-grupo="efeito" data-nome="sono"></span><span>Sono (azul, Z)<small>No alvo: perde o próximo turno. O token sai depois que ele perde a vez.</small></span></div>
+          <div class="legenda-item"><span class="icone" data-grupo="efeito" data-nome="ligeiro"></span><span>Ligeiro (azul-claro, pena)<small>Em você: +3 de Agilidade, até o máximo de 8.</small></span></div>
+          <div class="legenda-item"><span class="icone" data-grupo="efeito" data-nome="escudo"></span><span>Escudo (laranja, escudo)<small>Em você: o próximo golpe que você receber causa 0 de dano. O token sai depois disso.</small></span></div>
+          <div class="legenda-item"><span class="icone" data-grupo="efeito" data-nome="forca_extra"></span><span>Força Extra (vermelho, seta para cima)<small>Em você: +2 no dano de todos os seus golpes.</small></span></div>
+          <div class="legenda-item"><span class="icone" data-grupo="efeito" data-nome="cura"></span><span>Cura (verde, coração)<small>Em você: recupera 1d6 corações.</small></span></div>
+        </div>
+      </section>
+
+      <section class="legenda-bloco" aria-labelledby="t-area">
+        <h2 id="t-area">Área (vários alvos)</h2>
+        <p>O golpe acerta todos os inimigos. Role o dano uma vez; cada alvo aplica a própria resistência e Defesa, e o acerto (d10) é rolado contra cada alvo.</p>
+        <div class="legenda-grade">
+          <div class="legenda-item"><span class="icone" data-grupo="geral" data-nome="area"></span><span>Área<small>Atinge todos os inimigos.</small></span></div>
+        </div>
+      </section>
+
+      <section class="legenda-bloco" aria-labelledby="t-trilho">
+        <h2 id="t-trilho">Trilho de experiência (verso, 70 quadradinhos)</h2>
+        <p>A criança risca um quadradinho a cada vitória. As marcas valem como abaixo. O quadradinho com borda dupla é o próximo.</p>
+        <div class="legenda-grade">
+          <div class="legenda-item"><span class="marca" style="background:var(--marca-habilidade)"><span class="icone" data-grupo="trilho" data-nome="habilidade"></span></span><span>Habilidade<small>Libera um dos 4 golpes. O primeiro já vem liberado.</small></span></div>
+          <div class="legenda-item"><span class="marca" style="background:var(--marca-estrela)"><span class="icone" data-grupo="trilho" data-nome="estrela"></span></span><span>Estrela<small>+1 em um atributo à escolha, até os slots dele.</small></span></div>
+          <div class="legenda-item"><span class="marca" style="background:var(--marca-coracao)"><span class="icone" data-grupo="trilho" data-nome="coracao"></span></span><span>Coração<small>+1 de vida, automático.</small></span></div>
+          <div class="legenda-item"><span class="marca" style="background:var(--marca-forca)"><span class="icone" data-grupo="trilho" data-nome="forca"></span></span><span>Força<small>+1 de Força, automático.</small></span></div>
+          <div class="legenda-item"><span class="marca" style="background:var(--marca-poder)"><span class="icone" data-grupo="trilho" data-nome="poder"></span></span><span>Poder<small>+1 no resultado do dado de um golpe já liberado.</small></span></div>
+          <div class="legenda-item"><span class="marca" style="background:var(--marca-evolucao)"><span class="icone" data-grupo="trilho" data-nome="evolucao"></span></span><span>Evolução<small>Marco que permite evoluir. Com a pedra ao lado, precisa do item. Espécie com várias pedras tem um só marcador, na posição 40; a criança escolhe a pedra ao chegar lá.</small></span></div>
+          <div class="legenda-item"><span class="icone" data-grupo="geral" data-nome="item"></span><span>Pedra (item)<small>Evolução que pede um item.</small></span></div>
+        </div>
+      </section>
+
+      <section class="legenda-bloco" aria-labelledby="t-estados">
+        <h2 id="t-estados">Estados</h2>
+        <p>Cada estado tem forma e cor, não só cor. Na carta impressa não há cinza nem cadeado.</p>
+        <div class="legenda-estados">
+          <div class="legenda-item"><span class="marca"><span class="caixa-legenda ligada"></span></span><span>Pintado<small>Caixa cheia ou quadradinho colorido.</small></span></div>
+          <div class="legenda-item"><span class="marca"><span class="caixa-legenda"></span></span><span>Vazio<small>Contorno fino, fundo branco. Golpe não liberado ou marca ainda não riscada.</small></span></div>
+          <div class="legenda-item"><span class="marca"><span class="icone" data-grupo="geral" data-nome="marcado"></span></span><span>Marcado<small>Quadrado com um traço dentro: golpe liberado.</small></span></div>
+          <div class="legenda-item"><span class="marca"><span class="bolinha-legenda esgotada"></span></span><span>Esgotado<small>Bolinha de uso com X.</small></span></div>
+        </div>
+      </section>
+
+      <section class="legenda-bloco" aria-labelledby="t-ficha">
+        <h2 id="t-ficha">Ficha de efeitos de tipo (todas as espécies)</h2>
+        <p>Lista completa de resistências de cada espécie. Use para conferir qualquer uma, ou quando a carta mostra só os 3 primeiros chips.</p>
+        <div id="ficha-status" class="legenda-ficha-status"></div>
+        <div class="legenda-tabela-wrap">
+          <table class="legenda-tabela">
+            <thead><tr><th scope="col">Criatura</th><th scope="col">Vulnerável</th><th scope="col">Imune</th><th scope="col">Resistente</th></tr></thead>
+            <tbody id="ficha-corpo"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="icones.js?v=20261004-1" defer></script>
+  <script src="cenario-web.js" defer></script>
+  <script src="legenda.js" defer></script>
+</body>
+</html>

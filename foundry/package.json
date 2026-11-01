@@ -1,0 +1,11 @@
+{
+  "name": "kindlewild-foundry",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "gerar": "node build/gerar-compendio.mjs",
+    "deploy": "node build/deploy.mjs"
+  },
+  "devDependencies": { "@foundryvtt/foundryvtt-cli": "3.0.4" }
+}
