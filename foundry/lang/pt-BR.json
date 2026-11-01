@@ -1,10 +1,13 @@
 {
-  "TYPES": { "Actor": { "criatura": "Criatura" }, "Item": { "golpe": "Golpe" } },
+  "TYPES": { "Actor": { "creature": "Criatura" }, "Item": { "move": "Golpe" } },
   "KINDLEWILD": {
-    "Aba": { "Carta": "Carta", "Trilho": "Trilho" },
-    "Atributo": { "forca": "Força", "energia": "Energia", "agilidade": "Agilidade", "defesa": "Defesa" },
-    "Botao": { "Centro": "Centro de Cura", "Descanso": "Descanso" },
-    "Chat": { "Acerto": "Acerto", "AcertaSe": "acerta se ≥ Agilidade do alvo", "Dano": "Dano", "Efeito": "Efeito", "Area": "Acerta todos os inimigos", "Alvo": "Alvo", "Defesa": "Defesa", "Agilidade": "Agilidade", "Resistencia": "Resistência" },
-    "Aviso": { "SemCarga": "{nome}: sem cargas. Use o Centro de Cura.", "Bloqueado": "{nome}: golpe ainda não liberado." }
+    "Tab": { "Card": "Carta", "Track": "Trilho" },
+    "Attribute": { "strength": "Força", "energy": "Energia", "agility": "Agilidade", "defense": "Defesa" },
+    "Type": { "normal": "Normal", "fire": "Fogo", "water": "Água", "plant": "Planta", "electric": "Elétrico", "ice": "Gelo", "fighter": "Lutador", "poison": "Veneno", "earth": "Terra", "air": "Voador", "psychic": "Psíquico", "insect": "Inseto", "stone": "Pedra", "ghost": "Fantasma", "dragon": "Dragão" },
+    "Effect": { "weakness": "Fraqueza", "poison": "Veneno", "paralysis": "Paralisia", "sleep": "Sono", "swift": "Ligeiro", "shield": "Escudo", "extra_strength": "Força Extra", "heal": "Cura" },
+    "Sheet": { "Area": "Área", "Support": "suporte" },
+    "Button": { "HealingCenter": "Centro de Cura", "Rest": "Descanso" },
+    "Chat": { "Hit": "Acerto", "HitsIf": "acerta se ≥ Agilidade do alvo", "Damage": "Dano", "Effect": "Efeito", "Area": "Acerta todos os inimigos", "Target": "Alvo", "Defense": "Defesa", "Agility": "Agilidade", "Resistance": "Resistência" },
+    "Warning": { "NoCharges": "{name}: sem cargas. Use o Centro de Cura.", "Locked": "{name}: golpe ainda não liberado." }
   }
 }

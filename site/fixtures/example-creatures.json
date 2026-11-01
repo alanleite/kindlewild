@@ -1,0 +1,759 @@
+[
+  {
+    "id": 1,
+    "name": "Brotinho",
+    "types": [
+      "plant"
+    ],
+    "description": "Criatura de tipo Planta.",
+    "health": 8,
+    "status": "draft",
+    "attributes": {
+      "strength": {
+        "base": 1,
+        "slots": 2
+      },
+      "energy": {
+        "base": 2,
+        "slots": 2
+      },
+      "agility": {
+        "base": 1,
+        "slots": 2
+      },
+      "defense": {
+        "base": 1,
+        "slots": 2
+      }
+    },
+    "moves": [
+      {
+        "name": "Chicote de Cipó",
+        "icon": "leaf",
+        "element": "plant",
+        "attribute": "strength",
+        "die": "d4",
+        "charges": null,
+        "effect": null,
+        "area": false,
+        "weight": 1,
+        "unlocked_at": 1
+      },
+      {
+        "name": "Pó Sonolento",
+        "icon": "poison",
+        "element": "plant",
+        "attribute": null,
+        "die": null,
+        "charges": 2,
+        "effect": "sleep",
+        "area": false,
+        "weight": 1,
+        "unlocked_at": 2
+      },
+      {
+        "name": "Feixe de Sol",
+        "icon": "leaf",
+        "element": "plant",
+        "attribute": "energy",
+        "die": "d6",
+        "charges": 3,
+        "effect": null,
+        "area": false,
+        "weight": 1,
+        "unlocked_at": 3
+      },
+      {
+        "name": "Encontrão Duplo",
+        "icon": "dot",
+        "element": "normal",
+        "attribute": "strength",
+        "die": "d6",
+        "charges": null,
+        "effect": null,
+        "area": false,
+        "weight": 2,
+        "unlocked_at": 4
+      }
+    ],
+    "track": [
+      {
+        "pos": 1,
+        "kind": "skill",
+        "detail": 1
+      },
+      {
+        "pos": 4,
+        "kind": "star"
+      },
+      {
+        "pos": 8,
+        "kind": "strength"
+      },
+      {
+        "pos": 11,
+        "kind": "skill",
+        "detail": 2
+      },
+      {
+        "pos": 13,
+        "kind": "star"
+      },
+      {
+        "pos": 15,
+        "kind": "star"
+      },
+      {
+        "pos": 16,
+        "kind": "star"
+      },
+      {
+        "pos": 20,
+        "kind": "heart"
+      },
+      {
+        "pos": 22,
+        "kind": "heart"
+      },
+      {
+        "pos": 23,
+        "kind": "star"
+      },
+      {
+        "pos": 26,
+        "kind": "skill",
+        "detail": 3
+      },
+      {
+        "pos": 30,
+        "kind": "star"
+      },
+      {
+        "pos": 31,
+        "kind": "star"
+      },
+      {
+        "pos": 35,
+        "kind": "skill",
+        "detail": 4
+      },
+      {
+        "pos": 39,
+        "kind": "star"
+      },
+      {
+        "pos": 40,
+        "kind": "strength"
+      },
+      {
+        "pos": 44,
+        "kind": "power",
+        "detail": 1
+      },
+      {
+        "pos": 45,
+        "kind": "power",
+        "detail": 3
+      },
+      {
+        "pos": 47,
+        "kind": "evolution",
+        "detail": "Brotão"
+      },
+      {
+        "pos": 48,
+        "kind": "heart"
+      }
+    ],
+    "xp": 2,
+    "start": 1,
+    "evolutions": [
+      {
+        "into": "Brotão",
+        "pos": 47
+      }
+    ],
+    "resistances": {
+      "fire": "vulnerable",
+      "ice": "vulnerable",
+      "psychic": "vulnerable",
+      "air": "vulnerable",
+      "water": "resistant",
+      "electric": "resistant",
+      "fighter": "resistant",
+      "plant": "resistant"
+    },
+    "size": "small"
+  },
+  {
+    "id": 2,
+    "name": "Brotão",
+    "types": [
+      "plant"
+    ],
+    "description": "Criatura de tipo Planta.",
+    "health": 9,
+    "status": "draft",
+    "attributes": null,
+    "inherits_attributes": true,
+    "moves": [
+      {
+        "name": "Chicote de Cipó",
+        "icon": "leaf",
+        "element": "plant",
+        "attribute": "strength",
+        "die": "d6",
+        "charges": null,
+        "effect": null,
+        "area": false,
+        "weight": 2,
+        "unlocked_at": 1
+      },
+      {
+        "name": "Pó Sonolento",
+        "icon": "poison",
+        "element": "plant",
+        "attribute": null,
+        "die": null,
+        "charges": 2,
+        "effect": "sleep",
+        "area": false,
+        "weight": 1,
+        "unlocked_at": 2
+      },
+      {
+        "name": "Folha Cortante",
+        "icon": "leaf",
+        "element": "plant",
+        "attribute": "strength",
+        "die": "d8",
+        "charges": 2,
+        "effect": "weakness",
+        "area": true,
+        "weight": 5,
+        "unlocked_at": 3
+      },
+      {
+        "name": "Raiz Forte",
+        "icon": "leaf",
+        "element": "plant",
+        "attribute": "strength",
+        "die": "d4",
+        "charges": null,
+        "effect": null,
+        "area": false,
+        "weight": 1,
+        "unlocked_at": 4
+      }
+    ],
+    "track": [
+      {
+        "pos": 1,
+        "kind": "skill",
+        "detail": 1
+      },
+      {
+        "pos": 4,
+        "kind": "skill",
+        "detail": 2
+      },
+      {
+        "pos": 5,
+        "kind": "star"
+      },
+      {
+        "pos": 8,
+        "kind": "star"
+      },
+      {
+        "pos": 12,
+        "kind": "star"
+      },
+      {
+        "pos": 14,
+        "kind": "star"
+      },
+      {
+        "pos": 16,
+        "kind": "heart"
+      },
+      {
+        "pos": 17,
+        "kind": "star"
+      },
+      {
+        "pos": 21,
+        "kind": "skill",
+        "detail": 3
+      },
+      {
+        "pos": 22,
+        "kind": "star"
+      },
+      {
+        "pos": 26,
+        "kind": "star"
+      },
+      {
+        "pos": 27,
+        "kind": "star"
+      },
+      {
+        "pos": 29,
+        "kind": "strength"
+      },
+      {
+        "pos": 31,
+        "kind": "star"
+      },
+      {
+        "pos": 35,
+        "kind": "strength"
+      },
+      {
+        "pos": 37,
+        "kind": "star"
+      },
+      {
+        "pos": 38,
+        "kind": "heart"
+      },
+      {
+        "pos": 40,
+        "kind": "heart"
+      },
+      {
+        "pos": 41,
+        "kind": "power",
+        "detail": 1
+      },
+      {
+        "pos": 44,
+        "kind": "power",
+        "detail": 1
+      },
+      {
+        "pos": 45,
+        "kind": "star"
+      },
+      {
+        "pos": 47,
+        "kind": "star"
+      },
+      {
+        "pos": 49,
+        "kind": "skill",
+        "detail": 4
+      },
+      {
+        "pos": 50,
+        "kind": "evolution",
+        "detail": "Florão"
+      }
+    ],
+    "xp": 3,
+    "start": 1,
+    "evolutions": [
+      {
+        "into": "Florão",
+        "pos": 50
+      }
+    ],
+    "resistances": {
+      "fire": "vulnerable",
+      "ice": "vulnerable",
+      "psychic": "vulnerable",
+      "air": "vulnerable",
+      "water": "resistant",
+      "electric": "resistant",
+      "fighter": "resistant",
+      "plant": "resistant"
+    },
+    "size": "medium"
+  },
+  {
+    "id": 3,
+    "name": "Mentalix",
+    "rare": true,
+    "types": [
+      "psychic"
+    ],
+    "description": "Criatura de tipo Psíquico.",
+    "health": 16,
+    "status": "draft",
+    "attributes": {
+      "strength": {
+        "base": 3,
+        "slots": 5
+      },
+      "energy": {
+        "base": 3,
+        "slots": 5
+      },
+      "agility": {
+        "base": 3,
+        "slots": 5
+      },
+      "defense": {
+        "base": 3,
+        "slots": 5
+      }
+    },
+    "moves": [
+      {
+        "name": "Pancada Mental",
+        "icon": "eye",
+        "element": "psychic",
+        "attribute": "energy",
+        "die": "d6",
+        "charges": null,
+        "effect": "swift",
+        "area": false,
+        "weight": 3,
+        "unlocked_at": 1
+      },
+      {
+        "name": "Barreira",
+        "icon": "missing-shield",
+        "element": "psychic",
+        "attribute": null,
+        "die": null,
+        "charges": 3,
+        "effect": "shield",
+        "area": false,
+        "weight": 0,
+        "unlocked_at": 2
+      },
+      {
+        "name": "Feixe Mental",
+        "icon": "eye",
+        "element": "psychic",
+        "attribute": "energy",
+        "die": "d12",
+        "charges": 2,
+        "effect": "paralysis",
+        "area": false,
+        "weight": 6,
+        "unlocked_at": 3
+      },
+      {
+        "name": "Onda Mental",
+        "icon": "eye",
+        "element": "psychic",
+        "attribute": "energy",
+        "die": "d12",
+        "charges": 1,
+        "effect": "sleep",
+        "area": true,
+        "weight": 7,
+        "unlocked_at": 4
+      }
+    ],
+    "track": [
+      {
+        "pos": 1,
+        "kind": "skill",
+        "detail": 1
+      },
+      {
+        "pos": 2,
+        "kind": "strength"
+      },
+      {
+        "pos": 6,
+        "kind": "star"
+      },
+      {
+        "pos": 8,
+        "kind": "star"
+      },
+      {
+        "pos": 9,
+        "kind": "heart"
+      },
+      {
+        "pos": 12,
+        "kind": "star"
+      },
+      {
+        "pos": 14,
+        "kind": "skill",
+        "detail": 2
+      },
+      {
+        "pos": 15,
+        "kind": "star"
+      },
+      {
+        "pos": 17,
+        "kind": "star"
+      },
+      {
+        "pos": 18,
+        "kind": "star"
+      },
+      {
+        "pos": 20,
+        "kind": "heart"
+      },
+      {
+        "pos": 21,
+        "kind": "star"
+      },
+      {
+        "pos": 23,
+        "kind": "skill",
+        "detail": 3
+      },
+      {
+        "pos": 24,
+        "kind": "star"
+      },
+      {
+        "pos": 26,
+        "kind": "star"
+      },
+      {
+        "pos": 27,
+        "kind": "star"
+      },
+      {
+        "pos": 29,
+        "kind": "star"
+      },
+      {
+        "pos": 30,
+        "kind": "strength"
+      },
+      {
+        "pos": 32,
+        "kind": "star"
+      },
+      {
+        "pos": 34,
+        "kind": "power",
+        "detail": 1
+      },
+      {
+        "pos": 35,
+        "kind": "skill",
+        "detail": 4
+      },
+      {
+        "pos": 37,
+        "kind": "heart"
+      },
+      {
+        "pos": 38,
+        "kind": "star"
+      },
+      {
+        "pos": 40,
+        "kind": "power",
+        "detail": 1
+      },
+      {
+        "pos": 41,
+        "kind": "star"
+      },
+      {
+        "pos": 43,
+        "kind": "star"
+      },
+      {
+        "pos": 44,
+        "kind": "star"
+      },
+      {
+        "pos": 46,
+        "kind": "star"
+      },
+      {
+        "pos": 47,
+        "kind": "star"
+      },
+      {
+        "pos": 49,
+        "kind": "star"
+      },
+      {
+        "pos": 50,
+        "kind": "star"
+      }
+    ],
+    "xp": 5,
+    "start": 1,
+    "resistances": {
+      "ghost": "vulnerable",
+      "insect": "vulnerable",
+      "fighter": "resistant",
+      "psychic": "resistant"
+    },
+    "size": "medium"
+  },
+  {
+    "id": 4,
+    "name": "Mutalu",
+    "types": [
+      "normal"
+    ],
+    "description": "Criatura de tipo Normal.",
+    "health": 8,
+    "status": "draft",
+    "attributes": {
+      "strength": {
+        "base": 0,
+        "slots": 2
+      },
+      "energy": {
+        "base": 0,
+        "slots": 2
+      },
+      "agility": {
+        "base": 0,
+        "slots": 2
+      },
+      "defense": {
+        "base": 0,
+        "slots": 2
+      }
+    },
+    "moves": [
+      {
+        "name": "Encontrão",
+        "icon": "dot",
+        "element": "normal",
+        "attribute": "strength",
+        "die": "d4",
+        "charges": null,
+        "effect": null,
+        "area": false,
+        "weight": 1,
+        "unlocked_at": 1
+      },
+      {
+        "name": "Mordida",
+        "icon": "stinger",
+        "element": "normal",
+        "attribute": "strength",
+        "die": "d6",
+        "charges": null,
+        "effect": null,
+        "area": false,
+        "weight": 2,
+        "unlocked_at": 2
+      },
+      {
+        "name": "Disparada",
+        "icon": "dot",
+        "element": "normal",
+        "attribute": "strength",
+        "die": "d6",
+        "charges": 3,
+        "effect": null,
+        "area": false,
+        "weight": 1,
+        "unlocked_at": 3
+      },
+      {
+        "name": "Rabada",
+        "icon": "dot",
+        "element": "normal",
+        "attribute": "strength",
+        "die": "d8",
+        "charges": 2,
+        "effect": null,
+        "area": false,
+        "weight": 2,
+        "unlocked_at": 4
+      }
+    ],
+    "track": [
+      {
+        "pos": 1,
+        "kind": "skill",
+        "detail": 1
+      },
+      {
+        "pos": 5,
+        "kind": "skill",
+        "detail": 2
+      },
+      {
+        "pos": 6,
+        "kind": "strength"
+      },
+      {
+        "pos": 10,
+        "kind": "star"
+      },
+      {
+        "pos": 13,
+        "kind": "star"
+      },
+      {
+        "pos": 16,
+        "kind": "star"
+      },
+      {
+        "pos": 28,
+        "kind": "heart"
+      },
+      {
+        "pos": 39,
+        "kind": "skill",
+        "detail": 3
+      },
+      {
+        "pos": 40,
+        "kind": "evolution",
+        "detail": "Aqualu"
+      },
+      {
+        "pos": 41,
+        "kind": "star"
+      },
+      {
+        "pos": 44,
+        "kind": "heart"
+      },
+      {
+        "pos": 46,
+        "kind": "strength"
+      },
+      {
+        "pos": 61,
+        "kind": "power",
+        "detail": 1
+      },
+      {
+        "pos": 63,
+        "kind": "heart"
+      },
+      {
+        "pos": 65,
+        "kind": "skill",
+        "detail": 4
+      },
+      {
+        "pos": 69,
+        "kind": "power",
+        "detail": 1
+      }
+    ],
+    "xp": 2,
+    "start": 1,
+    "evolutions": [
+      {
+        "into": "Aqualu",
+        "pos": 40,
+        "requires": "water-stone"
+      }
+    ],
+    "resistances": {
+      "fighter": "vulnerable",
+      "ghost": "immune"
+    },
+    "size": "small"
+  }
+]

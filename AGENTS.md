@@ -1,29 +1,29 @@
-# Kindlewild: RPG infantil de criaturas
+# Kindlewild: children's creature RPG
 
-RPG de cartas para crianças pequenas jogarem com um adulto: criaturas com trilho de XP, atributos, golpes e evolução. As regras estão em `docs/especificacao.md` (fonte de verdade) e o formato dos dados em `docs/schema.md`.
+Card RPG for young children to play with an adult: creatures with an XP track, attributes, moves and evolution. The rules are in `docs/rules.md` (source of truth) and the data format in `docs/schema.md`. The project started in Portuguese; `docs/glossary.md` is the Portuguese→English reference for terms, data fields and file names.
 
-**Este repositório é público** (github.com/alanleite/kindlewild, com página no GitHub Pages).
+**This repository is public** (github.com/alanleite/kindlewild, with a GitHub Pages page).
 
-## Núcleo e cenários
+## Core and scenarios
 
-- **Núcleo** (tudo fora de `cenarios/`): regras, simulador, site, PDFs e sistema do Foundry. Não pode ter conteúdo de terceiros: nada de nomes, personagens, lugares, golpes ou arte de outras franquias, nem ids de cenário fixos no código. O que for de um cenário vira campo nos dados (ex.: `raro`, `escala_imagem`).
-- **Cenários** (`cenarios/<id>/`): `cenario.json` (manifesto), `criaturas.json`, `tipos.json`, `imagens/`. Só entram no git os cenários com `"privado": false` (hoje, `exemplo`). O padrão fica em `cenarios/padrao.txt` ou em `KINDLEWILD_CENARIO`.
-- **Cenários privados** podem estar ligados em `cenarios/` por link simbólico. O git os ignora. Nunca copie nada deles para fora da pasta deles, não mude o `.gitignore` para incluí-los e não use os dados deles como exemplo em código, testes ou documentos.
+- **Core** (everything outside `scenarios/`): rules, simulator, site, PDFs and the Foundry system. It cannot have third-party content: no names, characters, places, moves or art from other franchises, and no hardcoded scenario ids in the code. Anything specific to a scenario becomes a field in the data (e.g.: `rare`, `image_scale`).
+- **Scenarios** (`scenarios/<id>/`): `scenario.json` (manifest), `creatures.json`, `types.json`, `images/`. Only scenarios with `"private": false` go into git (today, `example`). The default is in `scenarios/default.txt` or in `KINDLEWILD_SCENARIO`.
+- **Private scenarios** may be linked into `scenarios/` with a symlink. Git ignores them. Never copy anything from them outside their own folder, don't change `.gitignore` to include them and don't use their data as examples in code, tests or docs.
 
-## Trava de publicação
+## Publication guard
 
-`npm run checar` (`scripts/checar-publicacao.js`) bloqueia termos de terceiros (comparando hashes; a lista legível fica fora do repositório), imagens fora de `cenarios/<id>/imagens/` e arquivos de cenários privados. Ela roda no pre-commit desta máquina e no CI do GitHub. Se ela reclamar, corrija o conteúdo; não contorne a trava.
+`npm run check` (`scripts/check-publication.js`) blocks third-party terms (by comparing hashes; the readable list lives outside the repository), images outside `scenarios/<id>/images/` and files from private scenarios. It runs in this machine's pre-commit and in GitHub CI. If it complains, fix the content; don't bypass the guard.
 
-## Estrutura
+## Structure
 
-| Pasta | O quê |
+| Folder | What |
 |-------|-------|
-| `docs/` | Regras, catálogo de golpes, geração de trilhas, design system e `schema.md` |
-| `lib/cenario.js` | Localiza e carrega o cenário (simulador, scripts e Foundry) |
-| `site/` | Cartas e impressão (HTML, CSS e JS puros; `?cenario=<id>`) |
-| `pagina/` | Página inicial do GitHub Pages |
-| `sim/` | Simulador de combate para calibrar as regras |
-| `scripts/` | PDFs de impressão (`npm run gerar`), validadores e a trava |
-| `foundry/` | Sistema `kindlewild` do Foundry VTT; cada cenário vira um módulo |
+| `docs/` | Rules, move catalog, track generation, design system, `schema.md` and `glossary.md` |
+| `lib/scenario.js` | Finds and loads the scenario (simulator, scripts and Foundry) |
+| `site/` | Cards and printing (plain HTML, CSS and JS; `?scenario=<id>`) |
+| `page/` | GitHub Pages home page |
+| `sim/` | Combat simulator to calibrate the rules |
+| `scripts/` | Print PDFs (`npm run build`), validators (`npm run check:alignment`, `npm run check:moves`) and the guard |
+| `foundry/` | `kindlewild` system for Foundry VTT; each scenario becomes a module |
 
-Testes: `npm test` na raiz e em `foundry/`. Node vem do nvm nesta máquina (`source ~/.nvm/nvm.sh`).
+Tests: `npm test` at the root and in `foundry/`. Node comes from nvm on this machine (`source ~/.nvm/nvm.sh`).

@@ -1,11 +1,11 @@
-import { CriaturaData } from './module/dados/criatura.mjs';
-import { GolpeData } from './module/dados/golpe.mjs';
-import { CriaturaSheet } from './module/ficha/ficha-criatura.mjs';
+import { CreatureData } from './module/data/creature.mjs';
+import { MoveData } from './module/data/move.mjs';
+import { CreatureSheet } from './module/sheet/creature-sheet.mjs';
 
 Hooks.once('init', () => {
-  CONFIG.Actor.dataModels.criatura = CriaturaData;
-  CONFIG.Item.dataModels.golpe = GolpeData;
+  CONFIG.Actor.dataModels.creature = CreatureData;
+  CONFIG.Item.dataModels.move = MoveData;
   const DocumentSheetConfig = foundry.applications.apps.DocumentSheetConfig;
-  DocumentSheetConfig.registerSheet(Actor, 'kindlewild', CriaturaSheet, { types: ['criatura'], makeDefault: true, label: 'Kindlewild: Criatura' });
-  console.log('Kindlewild | pronto');
+  DocumentSheetConfig.registerSheet(Actor, 'kindlewild', CreatureSheet, { types: ['creature'], makeDefault: true, label: 'Kindlewild: Creature' });
+  console.log('Kindlewild | ready');
 });

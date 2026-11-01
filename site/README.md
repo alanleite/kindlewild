@@ -1,94 +1,95 @@
-# Cartas do Kindlewild (site de impressão)
+# Kindlewild cards (printing site)
 
-Site estático que permite escolher e monta as cartas das criaturas do cenário em folhas A4. Cada carta é A6 (105 × 148,5 mm) e tem frente e verso. Uma folha A4 retrato tem 4 cartas (grade 2 × 2). Sem framework e sem build: `index.html`, `legenda.html`, `style.css`, `app.js`, `apresentacao-carta.js`, `selecao-impressao.js`, `cenario-web.js`, `escala-imagens.js`, `legenda.js` e `icones.js`.
+Static site that lets you pick the scenario's creatures and lays out their cards on A4 sheets. Each card is A6 (105 × 148.5 mm) and has a front and a back. One A4 portrait sheet holds 4 cards (2 × 2 grid). No framework and no build: `index.html`, `legend.html`, `style.css`, `app.js`, `card-view.js`, `print-selection.js`, `scenario-web.js`, `image-scale.js`, `legend.js` and `icons.js`.
 
-Regras visuais (tokens, tamanhos de ícone, estados, decisões): `docs/design-system.md`. Regras de jogo (trilho, atributos, resistências): `docs/especificacao.md`.
+Visual rules (tokens, icon sizes, states, decisions): `docs/design-system.md`. Game rules (track, attributes, resistances): `docs/rules.md`.
 
-## Como rodar
+## How to run
 
-O site lê as criaturas de um cenário (`../cenarios/<id>/criaturas.json`) com `fetch`. O cenário vem de `?cenario=<id>` ou, sem parâmetro, de `cenarios/padrao.txt` (ver `cenario-web.js`). Navegadores bloqueiam `fetch` quando o arquivo é aberto direto do disco (`file://`), então é preciso servir a pasta do projeto. Na raiz do projeto (`kindlewild/`):
+The site reads the creatures of a scenario (`../scenarios/<id>/creatures.json`) with `fetch`. The scenario comes from `?scenario=<id>` or, without a parameter, from `scenarios/default.txt` (see `scenario-web.js`). Browsers block `fetch` when the file is opened straight from disk (`file://`), so the project folder has to be served. At the project root (`kindlewild/`):
 
 ```sh
 python3 -m http.server
 ```
 
-Depois abra:
+Then open:
 
-- http://localhost:8000/site/ (cartas)
-- http://localhost:8000/site/legenda.html (legenda, para o adulto)
+- http://localhost:8000/site/ (cards)
+- http://localhost:8000/site/legend.html (legend, for the adult)
 
-Se abrir o `index.html` com duplo clique, a página mostra uma mensagem explicando isso.
+If you open `index.html` with a double click, the page shows a message explaining this.
 
-## Dados alternativos
+## Alternative data
 
-Para escolher o cenário: http://localhost:8000/site/?cenario=exemplo
+To pick the scenario: http://localhost:8000/site/?scenario=example
 
-Para testar com outro arquivo, passe `?dados=` com caminho relativo a `site/` (as imagens são procuradas na pasta desse arquivo):
+To test with another file, pass `?data=` with a path relative to `site/` (images are looked up in that file's folder):
 
-- http://localhost:8000/site/?dados=fixtures/criaturas-exemplo.json
+- http://localhost:8000/site/?data=fixtures/example-creatures.json
 
-O fixture `fixtures/criaturas-exemplo.json` (formato novo de golpe) tem 4 criaturas fictícias, sem imagem (aparece o círculo tracejado), e segue a especificação (seção 4 para o trilho):
+The fixture `fixtures/example-creatures.json` (new move format) has 4 fictional creatures, without images (the dashed circle shows up), and follows the rules (section 4 for the track):
 
-- **Brotinho (1):** forma base. Golpes d4, atributos com base pintada.
-- **Brotão (2):** forma evoluída. `atributos: null` e `herda_atributos: true`, então as caixas saem vazias.
-- **Mentalix (3):** espécie rara, com 5 slots nos atributos, vida 16, d12, área, suporte e um ícone de golpe inexistente (testa o placeholder).
-- **Mutalu (4):** evolui com pedra, marco na posição 40.
+- **Brotinho (1):** base form. d4 moves, attributes with a filled base.
+- **Brotão (2):** evolved form. `attributes: null` and `inherits_attributes: true`, so the boxes come out empty.
+- **Mentalix (3):** rare species, with 5 attribute slots, health 16, d12, area, support and a move icon that does not exist (tests the placeholder).
+- **Mutalu (4):** evolves with a stone, mark at position 40.
 
-O fixture não substitui o cenário.
+The fixture does not replace the scenario.
 
-## Como imprimir (frente e verso)
+## How to print (front and back)
 
-A carta tem frente e verso. Use **Escolher criaturas** para buscar e marcar apenas as cartas desejadas. Todos começam selecionados; **Limpar seleção** permite começar do zero. Cada grupo de 4 selecionados gera **duas folhas seguidas**: a folha de frente e a folha de verso. Elas são impressas uma depois da outra e devem ficar no mesmo papel, uma de cada lado.
+The card has a front and a back. Use **Choose creatures** to search and check only the cards you want. All start selected; **Clear selection** lets you start from scratch. Each group of 4 selected cards produces **two consecutive sheets**: the front sheet and the back sheet. They are printed one after the other and must end up on the same paper, one on each side.
 
-1. Clique em **Imprimir selecionados** (ou Ctrl/Cmd + P).
-2. Papel: **A4**, orientação **retrato**. Margens: **nenhuma**. Escala: **100%**.
-3. Desmarque **Cabeçalhos e rodapés** (o navegador imprime data, título e URL por padrão).
-4. Marque **Gráficos de fundo** (ou "Imprimir cores e imagens de fundo"), para as cores de tipo e as marcas saírem.
-5. Em **Frente e verso** (ou "Dos dois lados"), escolha **virar pela borda longa** (lateral esquerda ou direita, como um livro). Não escolha a borda curta: o verso sairia de cabeça para baixo.
-6. Corte pelas linhas claras de cada carta.
+1. Click **Print selected** (or Ctrl/Cmd + P).
+2. Paper: **A4**, orientation **portrait**. Margins: **none**. Scale: **100%**.
+3. Uncheck **Headers and footers** (the browser prints date, title and URL by default).
+4. Check **Background graphics** (or "Print background colors and images"), so the type colors and the marks come out.
+5. In **Two-sided** (or "Print on both sides"), choose **flip on long edge** (left or right side, like a book). Do not choose the short edge: the back would come out upside down.
+6. Cut along the light lines of each card.
 
-O verso de cada folha já sai espelhado nas colunas. Assim, cada verso fica atrás da carta de frente certa quando a folha é virada pela borda longa.
+The back of each sheet already comes out with mirrored columns. This way, each back sits behind the right front card when the sheet is flipped on the long edge.
 
-Se a impressora não faz frente e verso automático, as páginas ímpares são as frentes e as páginas pares são os versos. Imprima primeiro somente as ímpares. Recoloque as folhas na bandeja e imprima somente as pares, virando pela borda longa. A posição e a ordem de reinserção variam conforme a impressora; faça primeiro um teste com uma única folha (páginas 1 e 2) antes de imprimir o conjunto inteiro.
+If the printer does not do automatic two-sided printing, odd pages are the fronts and even pages are the backs. Print only the odd ones first. Put the sheets back in the tray and print only the even ones, flipping on the long edge. The position and order of reinsertion vary by printer; first do a test with a single sheet (pages 1 and 2) before printing the whole set.
 
-O CSS usa `@page { size: A4 portrait; margin: 0 }` e uma quebra de página depois de cada folha.
+The CSS uses `@page { size: A4 portrait; margin: 0 }` and a page break after each sheet.
 
-## Controles
+## Controls
 
-- **Escolher criaturas:** busca por nome ou número e inclui ou remove cada criatura da impressão. A prévia é reorganizada automaticamente na ordem do número.
-- **Selecionar todos / Limpar seleção:** altera todas as caixas de uma vez. Com nenhuma carta selecionada, o botão de impressão fica desativado.
-- **Folha:** pula para a folha escolhida (a de frente).
-- **Habilidades liberadas:** quantos golpes já estão liberados. O padrão é 1 (o primeiro golpe já vem liberado). Os golpes além desse número saem com o quadrado vazio.
-- **Aviso de trilho:** aparece no cabeçalho quando alguma carta está fora de uma regra (trilho, golpes, dados ou perfil da linha evolutiva). Os detalhes estão no `title` do aviso e no console.
+- **Choose creatures:** search by name or number and include or remove each creature from printing. The preview is reordered automatically by number.
+- **Select all / Clear selection:** changes all checkboxes at once. With no card selected, the print button is disabled.
+- **Sheet:** jumps to the chosen sheet (the front one).
+- **Unlocked skills:** how many moves are already unlocked. The default is 1 (the first move comes unlocked). Moves beyond this number come out with an empty square.
+- **Track warning:** shows up in the header when some card breaks a rule (track, moves, dice or evolution line profile). The details are in the warning's `title` and in the console.
 
-## Como a carta lê os dados
+## How the card reads the data
 
-Cada campo do `criaturas.json` está descrito em `docs/schema.md`. Pontos que o site decide sozinho:
+Each field of `creatures.json` is described in `docs/schema.md`. Points the site decides on its own:
 
-- **Texto:** a carta tem o nome da criatura, o nome dos golpes e a notação dos dados (`d4`, `d6`, `d8`, `d12`). O verso não tem texto. Todo o resto é ícone, cor ou quadradinho.
-- **Imagem:** `imagem` é relativa à pasta do arquivo de dados (no cenário: `imagens/025.png`). Se o arquivo não existir, aparece um círculo tracejado. A área da imagem (faixa do nome incluída) ocupa 40% da altura da carta: 59,4 mm. O campo opcional `escala_imagem` da criatura (lido por `escala-imagens.js`, teto 1,18) amplia de forma conservadora as silhuetas visualmente pequenas, sem alterar os PNGs (ver `docs/design-system.md`, seção 6.8).
-- **Estágio:** 1 a 3 bolinhas no canto inferior esquerdo da imagem, pela cadeia de evolução da lista.
-- **Tipos:** um disco pequeno por tipo, com ícone, no canto esquerdo da barra branca do nome. A cor fica concentrada nos discos e no fundo suave da imagem; as bordas da carta são neutras para não interferir no corte.
-- **Vida:** um coração de 1 cm por ponto (área de toque da caneta), 8 por linha, até 2 linhas. O teto dos dados é 16, exatamente o que cabe na carta.
-- **Resistências:** campo `resistencias`, com valores `vulneravel`, `imune` e `resistente`. A carta mostra até 3 chips no canto inferior direito da imagem, vulneráveis primeiro, depois imunes e depois resistentes. A ficha completa fica em `legenda.html`.
-- **Atributos:** uma coluna por atributo, com ícone e uma caixa por slot. Forma base: `base` pinta as caixas. Forma evoluída (`atributos: null`): as caixas saem vazias, porque o valor é herdado. Os slots dessa forma vêm do estágio (inicial 2, intermediária 3, última 4, sem evolução 4), porque o dado não traz número. Base negativa vira 0.
-- **Golpes:** formato `{ nome, icone, elemento, atributo, dado, cargas, efeito, area, peso, liberado_em }` (ver `docs/golpes-catalogo.md`); o formato antigo (`tipo`/`categoria`/`usos`) ainda é aceito. Cada linha: quadrado de liberação, ícone do golpe (placeholder tracejado se não existir no mapa), nome, dado (`d4`, `d6`, `d8`, `d12`), "+" e ícone de Força ou Energia, token do efeito (8 efeitos, em `icones.js`, grupo `efeito`), ícone de área (vários alvos) e bolinhas de carga (3, 2 ou 1; ilimitado sem bolinhas). Suporte (`dado: null`) mostra só o efeito. Elemento dá a cor do fundo.
-- **Trilho (verso):** 70 quadradinhos, em 7 colunas por 10 linhas, cada um de 10 mm. O quadradinho **próximo** tem borda dupla e é a posição `inicio`.
+- **Text:** the card has the creature name, the move names and the die notation (`d4`, `d6`, `d8`, `d12`). The back has no text. Everything else is an icon, a color or a box.
+- **Image:** `image` is relative to the folder of the data file (in the scenario: `images/025.png`). If the file does not exist, a dashed circle shows up. The image area (name band included) takes 40% of the card height: 59.4 mm. The creature's optional `image_scale` field (read by `image-scale.js`, capped at 1.18) conservatively enlarges visually small silhouettes, without changing the PNGs (see `docs/design-system.md`, section 6.8).
+- **Stage:** 1 to 3 dots in the bottom left corner of the image, from the evolution chain of the list.
+- **Types:** a small disc per type, with an icon, at the left end of the white name bar. The color is concentrated in the discs and in the soft background of the image; the card edges are neutral so they do not interfere with cutting.
+- **Health:** one 1 cm heart per point (pen touch area), 8 per row, up to 2 rows. The data cap is 16, exactly what fits on the card.
+- **Resistances:** `resistances` field, with values `vulnerable`, `immune` and `resistant`. The card shows up to 3 chips in the bottom right corner of the image, vulnerable first, then immune and then resistant. The full chart is in `legend.html`.
+- **Attributes:** one column per attribute, with an icon and one box per slot. Base form: `base` fills the boxes. Evolved form (`attributes: null`): the boxes come out empty, because the value is inherited. The slots of that form come from the stage (base 2, middle 3, last 4, no evolution 4), because the data has no number. A negative base becomes 0.
+- **Moves:** format `{ name, icon, element, attribute, die, charges, effect, area, weight, unlocked_at }` (see `docs/moves.md`); the legacy format (`type`/`category`/`uses`) is still accepted. Each row: unlock square, move icon (dashed placeholder if it is not in the map), name, die (`d4`, `d6`, `d8`, `d12`), "+" and the Strength or Energy icon, effect token (8 effects, in `icons.js`, group `effect`), area icon (several targets) and charge dots (3, 2 or 1; unlimited without dots). Support (`die: null`) shows only the effect. The element sets the background color.
+- **Track (back):** 70 boxes, in 7 columns by 10 rows, each 10 mm. The **next** box has a double border and is the `start` position.
 
-### Avisos de regra
+### Rule warnings
 
-O cabeçalho mostra quantas cartas estão fora da regra, e o `title` do aviso lista os motivos. Os motivos conferidos são: trilho (seção 4 da especificação), golpes e dados, perfil igual ao da forma anterior e vida acima do que cabe na carta. O site não reescreve os dados.
+The header shows how many cards break a rule, and the warning's `title` lists the reasons. The reasons checked are: track (section 4 of the rules), moves and dice, profile equal to the previous form's and health above what fits on the card. The site does not rewrite the data.
 
-## Ícones
+## Icons
 
-Todos os ícones ficam em `icones.js`, num mapa por grupo: `tipo`, `golpe`, `atributo`, `trilho`, `efeito`, `dado`, `simbolo`, `geral`. Cada entrada é um SVG de traço simples (24 × 24, cor = `currentColor`). Para trocar um ícone, substitua o SVG da chave.
+All icons live in `icons.js`, in a map by group: `type`, `move`, `attribute`, `track`, `effect`, `die`, `symbol`, `general`. Each entry is a simple stroke SVG (24 × 24, color = `currentColor`). To swap an icon, replace the key's SVG.
 
-Chave sem desenho no mapa mostra o **placeholder**: um quadrado arredondado tracejado. Assim a carta nunca mostra texto no lugar do ícone.
+A key without a drawing in the map shows the **placeholder**: a dashed rounded square. This way the card never shows text in place of an icon.
 
-## Validação
+## Validation
 
 ```sh
-node site/validacao.js
+node site/validation.js
+node --test site/tests/*.test.js
 ```
 
-Confere a escala das imagens, a lógica da seleção para impressão e a apresentação das cartas: dados em notação textual válida e até dois tipos no cabeçalho.
+Checks the image scale, the print selection logic and the card view: dice in valid text notation and up to two types in the header. The tests in `tests/` check the icon map.

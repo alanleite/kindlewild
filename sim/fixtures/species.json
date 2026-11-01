@@ -1,0 +1,292 @@
+[
+  {
+    "id": 9001,
+    "name": "Novo",
+    "types": [
+      "fire"
+    ],
+    "health": 15,
+    "attributes": {
+      "strength": {
+        "base": 1,
+        "slots": 3
+      },
+      "energy": {
+        "base": 2,
+        "slots": 3
+      },
+      "agility": {
+        "base": 1,
+        "slots": 3
+      },
+      "defense": {
+        "base": 0,
+        "slots": 3
+      }
+    },
+    "moves": [
+      {
+        "name": "Investida",
+        "icon": "dot",
+        "element": "normal",
+        "attribute": "strength",
+        "die": "d4",
+        "charges": 3,
+        "effect": null,
+        "area": false,
+        "weight": 1,
+        "unlocked_at": 1
+      },
+      {
+        "name": "Asas de Fogo",
+        "icon": "fire",
+        "element": "fire",
+        "attribute": "energy",
+        "die": "d12",
+        "charges": 1,
+        "effect": null,
+        "area": true,
+        "weight": 5,
+        "unlocked_at": 2
+      },
+      {
+        "name": "Pó do Sono",
+        "icon": "leaf",
+        "element": "plant",
+        "attribute": "energy",
+        "die": null,
+        "charges": 2,
+        "effect": "sleep",
+        "area": false,
+        "weight": 1,
+        "unlocked_at": 3
+      },
+      {
+        "name": "Descanso",
+        "icon": "heart",
+        "element": "normal",
+        "attribute": null,
+        "die": null,
+        "charges": 2,
+        "effect": "heal",
+        "area": false,
+        "weight": 2,
+        "unlocked_at": 4
+      }
+    ],
+    "track": [
+      {
+        "pos": 1,
+        "kind": "skill",
+        "detail": 1
+      },
+      {
+        "pos": 5,
+        "kind": "skill",
+        "detail": 2
+      },
+      {
+        "pos": 12,
+        "kind": "skill",
+        "detail": 3
+      },
+      {
+        "pos": 30,
+        "kind": "skill",
+        "detail": 4
+      },
+      {
+        "pos": 8,
+        "kind": "heart"
+      },
+      {
+        "pos": 15,
+        "kind": "heart"
+      },
+      {
+        "pos": 40,
+        "kind": "heart"
+      },
+      {
+        "pos": 50,
+        "kind": "power",
+        "detail": "Asas de Fogo"
+      }
+    ],
+    "resistances": {}
+  },
+  {
+    "id": 9002,
+    "name": "Legado",
+    "types": [
+      "water"
+    ],
+    "health": 8,
+    "attributes": {
+      "strength": {
+        "base": 1,
+        "slots": 3
+      },
+      "energy": {
+        "base": 2,
+        "slots": 3
+      },
+      "agility": {
+        "base": 1,
+        "slots": 3
+      },
+      "defense": {
+        "base": 0,
+        "slots": 3
+      }
+    },
+    "moves": [
+      {
+        "name": "Arranhar",
+        "icon": "dot",
+        "type": "normal",
+        "category": "physical",
+        "die": "d6",
+        "uses": null,
+        "unlocked_at": 1
+      },
+      {
+        "name": "Jato de Água",
+        "icon": "water",
+        "type": "water",
+        "category": "elemental",
+        "die": "d8",
+        "uses": 2,
+        "unlocked_at": 10
+      }
+    ],
+    "track": [
+      {
+        "pos": 1,
+        "kind": "skill",
+        "detail": "Arranhar"
+      },
+      {
+        "pos": 10,
+        "kind": "skill",
+        "detail": "Jato de Água"
+      },
+      {
+        "pos": 20,
+        "kind": "heart"
+      }
+    ],
+    "resistances": {}
+  },
+  {
+    "id": 9003,
+    "name": "Vida16",
+    "types": [
+      "normal"
+    ],
+    "health": 15,
+    "attributes": {
+      "strength": {
+        "base": 1,
+        "slots": 3
+      },
+      "energy": {
+        "base": 2,
+        "slots": 3
+      },
+      "agility": {
+        "base": 1,
+        "slots": 3
+      },
+      "defense": {
+        "base": 0,
+        "slots": 3
+      }
+    },
+    "moves": [
+      {
+        "name": "Investida",
+        "icon": "dot",
+        "element": "normal",
+        "attribute": "strength",
+        "die": "d4",
+        "charges": 3,
+        "effect": null,
+        "area": false,
+        "weight": 1,
+        "unlocked_at": 1
+      },
+      {
+        "name": "Asas de Fogo",
+        "icon": "fire",
+        "element": "fire",
+        "attribute": "energy",
+        "die": "d12",
+        "charges": 1,
+        "effect": null,
+        "area": true,
+        "weight": 5,
+        "unlocked_at": 2
+      },
+      {
+        "name": "Pó do Sono",
+        "icon": "leaf",
+        "element": "plant",
+        "attribute": "energy",
+        "die": null,
+        "charges": 2,
+        "effect": "sleep",
+        "area": false,
+        "weight": 1,
+        "unlocked_at": 3
+      },
+      {
+        "name": "Descanso",
+        "icon": "heart",
+        "element": "normal",
+        "attribute": null,
+        "die": null,
+        "charges": 2,
+        "effect": "heal",
+        "area": false,
+        "weight": 2,
+        "unlocked_at": 4
+      }
+    ],
+    "track": [
+      {
+        "pos": 1,
+        "kind": "skill",
+        "detail": 1
+      },
+      {
+        "pos": 5,
+        "kind": "skill",
+        "detail": 2
+      },
+      {
+        "pos": 12,
+        "kind": "skill",
+        "detail": 3
+      },
+      {
+        "pos": 30,
+        "kind": "skill",
+        "detail": 4
+      },
+      {
+        "pos": 8,
+        "kind": "heart"
+      },
+      {
+        "pos": 15,
+        "kind": "heart"
+      },
+      {
+        "pos": 40,
+        "kind": "heart"
+      }
+    ],
+    "resistances": {}
+  }
+]

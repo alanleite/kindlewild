@@ -1,0 +1,13 @@
+{
+  "TYPES": { "Actor": { "creature": "Creature" }, "Item": { "move": "Move" } },
+  "KINDLEWILD": {
+    "Tab": { "Card": "Card", "Track": "Track" },
+    "Attribute": { "strength": "Strength", "energy": "Energy", "agility": "Agility", "defense": "Defense" },
+    "Type": { "normal": "Normal", "fire": "Fire", "water": "Water", "plant": "Plant", "electric": "Electric", "ice": "Ice", "fighter": "Fighter", "poison": "Poison", "earth": "Earth", "air": "Air", "psychic": "Psychic", "insect": "Insect", "stone": "Stone", "ghost": "Ghost", "dragon": "Dragon" },
+    "Effect": { "weakness": "Weakness", "poison": "Poison", "paralysis": "Paralysis", "sleep": "Sleep", "swift": "Swift", "shield": "Shield", "extra_strength": "Extra Strength", "heal": "Heal" },
+    "Sheet": { "Area": "Area", "Support": "support" },
+    "Button": { "HealingCenter": "Healing Center", "Rest": "Rest" },
+    "Chat": { "Hit": "Hit", "HitsIf": "hits if ≥ target's Agility", "Damage": "Damage", "Effect": "Effect", "Area": "Hits every enemy", "Target": "Target", "Defense": "Defense", "Agility": "Agility", "Resistance": "Resistance" },
+    "Warning": { "NoCharges": "{name}: no charges left. Use the Healing Center.", "Locked": "{name}: move not unlocked yet." }
+  }
+}

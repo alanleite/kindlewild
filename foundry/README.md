@@ -1,19 +1,19 @@
-# Kindlewild: sistema para Foundry VTT v14
+# Kindlewild: Foundry VTT v14 system
 
-Ficha de criatura em formato de carta e rolagem de golpes no chat. O sistema não traz criaturas: elas vêm de um **módulo por cenário** (ex.: `kindlewild-exemplo`), gerado a partir de `cenarios/<id>/`.
+Card-style creature sheet and move rolls in the chat. The system ships no creatures: they come from a **per-scenario module** (e.g. `kindlewild-example`), built from `scenarios/<id>/`.
 
-## Comandos (rodar dentro de `foundry/`)
+## Commands (run inside `foundry/`)
 
-- `npm install`: instala o empacotador de compêndios do Foundry.
-- `npm test`: testa regras, conversor, manifestos e o compêndio do cenário padrão.
-- `npm run gerar [-- --cenario <id>]`: gera o módulo do cenário em `cenarios/<id>/foundry/` (`module.json`, compêndio e imagens) a partir de `cenarios/<id>/criaturas.json`. Sem `--cenario`, usa `cenarios/padrao.txt`.
-- `npm run deploy [-- --cenario <id>]`: copia o sistema para `systems/kindlewild` e o módulo para `modules/<modulo>` dentro de `$FOUNDRY_DATA` (padrão: `~/services/foundry/data/Data`), sem tocar no compêndio já instalado. `npm run deploy -- --packs` também substitui o compêndio: só com o mundo fechado.
+- `npm install`: installs Foundry's compendium packer.
+- `npm test`: tests the rules, converter, manifests and the default scenario's compendium.
+- `npm run build [-- --scenario <id>]`: builds the scenario module in `scenarios/<id>/foundry/` (`module.json`, compendium and images) from `scenarios/<id>/creatures.json`. Without `--scenario`, uses `scenarios/default.txt`.
+- `npm run deploy [-- --scenario <id>]`: copies the system to `systems/kindlewild` and the module to `modules/<module>` inside `$FOUNDRY_DATA` (default: `~/services/foundry/data/Data`), without touching an already installed compendium. `npm run deploy -- --packs` also replaces the compendium: only with the world closed.
 
-Na primeira instalação, reinicie o servidor Foundry para ele reconhecer o sistema e o módulo, e ative o módulo do cenário no mundo. Depois, a cada deploy, basta recarregar o mundo (F5). Compêndios só atualizam com o mundo fechado.
+On the first install, restart the Foundry server so it picks up the system and the module, and enable the scenario module in the world. After that, on each deploy, just reload the world (F5). Compendiums only update with the world closed.
 
-## Uso na mesa
+## At the table
 
-- Ficha (aba Carta): clique nos corações e nas caixinhas de atributo; o quadrado ao lado do golpe libera o golpe; clique no golpe para rolar.
-- Aba Trilho: clique na casa até onde a criatura chegou. A vida máxima acompanha os corações do trilho.
-- Centro de Cura: vida e cargas ao máximo. Descanso: recupera metade da vida máxima.
-- Selecione um alvo (tecla T sobre o token) antes de rolar para ver Agilidade, Defesa e resistência dele no chat.
+- Sheet (Card tab): click the hearts and the attribute boxes; the square next to a move unlocks it; click the move to roll.
+- Track tab: click the box the creature has reached. Max health follows the hearts on the track.
+- Healing Center: health and charges to max. Rest: recovers half of max health.
+- Select a target (T key over the token) before rolling to see its Agility, Defense and resistance in the chat.

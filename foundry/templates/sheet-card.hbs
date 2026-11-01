@@ -1,0 +1,50 @@
+<section class="tab card {{tab.cssClass}}" data-tab="card" data-group="primary">
+  <div class="kw-card" style="--type-color: {{typeColor}}">
+    <header class="kw-header">
+      <span class="kw-number">#{{number}}</span>
+      <h1 class="kw-name">{{actor.name}}</h1>
+      <span class="kw-types">{{#each types}}<span class="kw-type" style="--color: {{color}}">{{name}}</span>{{/each}}</span>
+    </header>
+    <figure class="kw-art"><img src="{{actor.img}}" alt="{{actor.name}}"></figure>
+
+    <div class="kw-block">
+      <div class="kw-hearts">
+        {{#each hearts}}<button type="button" class="kw-heart {{#if full}}full{{/if}}" data-action="heart" data-index="{{index}}" aria-label="heart {{index}}">♥</button>{{/each}}
+      </div>
+      <div class="kw-actions">
+        <button type="button" data-action="healingCenter">🏥 {{localize "KINDLEWILD.Button.HealingCenter"}}</button>
+        <button type="button" data-action="rest">🌙 {{localize "KINDLEWILD.Button.Rest"}}</button>
+      </div>
+    </div>
+
+    <div class="kw-attributes">
+      {{#each attributes}}
+      <div class="kw-attribute">
+        <span class="kw-label">{{label}}</span>
+        <span class="kw-boxes">{{#each boxes}}<button type="button" class="kw-box {{#if full}}full{{/if}}" data-action="star" data-attribute="{{../key}}" data-index="{{index}}" aria-label="star {{index}}"></button>{{/each}}</span>
+      </div>
+      {{/each}}
+    </div>
+
+    <ol class="kw-moves">
+      {{#each moves}}
+      <li class="kw-move {{#unless unlocked}}locked{{/unless}}" style="--color: {{elementColor}}">
+        <button type="button" class="kw-unlock {{#if unlocked}}checked{{/if}}" data-action="unlock" data-item-id="{{id}}" aria-label="unlock move">{{#if unlocked}}✓{{/if}}</button>
+        <button type="button" class="kw-roll" data-action="roll" data-item-id="{{id}}" {{#unless unlocked}}disabled{{/unless}}>
+          <span class="kw-move-name">{{name}}</span>
+          {{#if effect}}<span class="kw-effect">{{effect}}</span>{{/if}}
+          {{#if sys.area}}<span class="kw-effect">{{localize "KINDLEWILD.Sheet.Area"}}</span>{{/if}}
+          {{#if sys.die}}<span class="kw-die">{{sys.die}}<small>+ {{attribute}}</small></span>{{else}}<span class="kw-die support">{{localize "KINDLEWILD.Sheet.Support"}}</span>{{/if}}
+          {{#if dots.length}}<span class="kw-dots">{{#each dots}}<i class="{{#if full}}full{{/if}}"></i>{{/each}}</span>{{/if}}
+        </button>
+      </li>
+      {{/each}}
+    </ol>
+
+    {{#if resistances.length}}
+    <div class="kw-resist">
+      {{#each resistances}}<span class="kw-chip {{effect}}" style="--color: {{color}}">{{name}} <b>{{mark}}</b></span>{{/each}}
+    </div>
+    {{/if}}
+  </div>
+</section>

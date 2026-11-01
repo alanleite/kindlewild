@@ -1,79 +1,79 @@
-/* Kindlewild — ficha em formato de carta, clara mesmo no tema escuro do Foundry. */
-.application.kindlewild.ficha-criatura .window-content { padding: 0; background: #2b2a33; }
-.application.kindlewild.ficha-criatura nav.tabs { margin: 0; padding: 6px 12px 0; gap: 4px; border-bottom: none; }
-.application.kindlewild.ficha-criatura nav.tabs > a { padding: 6px 14px; border-radius: 8px 8px 0 0; color: #ddd; }
-.application.kindlewild.ficha-criatura nav.tabs > a.active { background: #fbf7ee; color: #222; text-shadow: none; }
-.application.kindlewild.ficha-criatura .tab { padding: 0 12px 12px; }
+/* Kindlewild — card-style sheet, light even in Foundry's dark theme. */
+.application.kindlewild.creature-sheet .window-content { padding: 0; background: #2b2a33; }
+.application.kindlewild.creature-sheet nav.tabs { margin: 0; padding: 6px 12px 0; gap: 4px; border-bottom: none; }
+.application.kindlewild.creature-sheet nav.tabs > a { padding: 6px 14px; border-radius: 8px 8px 0 0; color: #ddd; }
+.application.kindlewild.creature-sheet nav.tabs > a.active { background: #fbf7ee; color: #222; text-shadow: none; }
+.application.kindlewild.creature-sheet .tab { padding: 0 12px 12px; }
 
-.kindlewild .kw-carta {
-  --papel: #fbf7ee; --tinta: #23212b; --suave: #6b6676; --borda: #d8d0c0;
-  background: var(--papel); color: var(--tinta);
-  border: 6px solid var(--cor-tipo); border-radius: 0 14px 14px 14px;
+.kindlewild .kw-card {
+  --paper: #fbf7ee; --ink: #23212b; --muted: #6b6676; --border: #d8d0c0;
+  background: var(--paper); color: var(--ink);
+  border: 6px solid var(--type-color); border-radius: 0 14px 14px 14px;
   padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 14px;
   font-family: var(--font-body, sans-serif);
 }
-.kindlewild .kw-carta * { color: inherit; text-shadow: none; }
-.kindlewild .kw-carta button { font-family: inherit; box-shadow: none; }
+.kindlewild .kw-card * { color: inherit; text-shadow: none; }
+.kindlewild .kw-card button { font-family: inherit; box-shadow: none; }
 
-.kindlewild .kw-topo { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.kindlewild .kw-numero { font-weight: 700; color: var(--suave); font-size: 14px; }
-.kindlewild .kw-nome { flex: 1; margin: 0; border: none; font-size: 26px; line-height: 1.1; font-family: inherit; font-weight: 800; color: var(--tinta); }
-.kindlewild .kw-tipos { display: flex; gap: 6px; }
-.kindlewild .kw-tipo { background: var(--cor); color: #fff !important; font-weight: 700; font-size: 12px; padding: 3px 10px; border-radius: 999px; text-shadow: 0 1px 1px rgba(0,0,0,.35) !important; }
-.kindlewild .kw-progresso { font-weight: 700; color: var(--suave); }
+.kindlewild .kw-header { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.kindlewild .kw-number { font-weight: 700; color: var(--muted); font-size: 14px; }
+.kindlewild .kw-name { flex: 1; margin: 0; border: none; font-size: 26px; line-height: 1.1; font-family: inherit; font-weight: 800; color: var(--ink); }
+.kindlewild .kw-types { display: flex; gap: 6px; }
+.kindlewild .kw-type { background: var(--color); color: #fff !important; font-weight: 700; font-size: 12px; padding: 3px 10px; border-radius: 999px; text-shadow: 0 1px 1px rgba(0,0,0,.35) !important; }
+.kindlewild .kw-progress { font-weight: 700; color: var(--muted); }
 
-.kindlewild .kw-arte { margin: 0; height: 190px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
-  background: radial-gradient(circle at 50% 60%, color-mix(in srgb, var(--cor-tipo) 35%, #fff) 0%, #fff 70%); border: 2px solid var(--borda); }
-.kindlewild .kw-arte img { height: 175px; width: auto; border: none !important; outline: none; background: none; box-shadow: none !important; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,.2)); }
+.kindlewild .kw-art { margin: 0; height: 190px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(circle at 50% 60%, color-mix(in srgb, var(--type-color) 35%, #fff) 0%, #fff 70%); border: 2px solid var(--border); }
+.kindlewild .kw-art img { height: 175px; width: auto; border: none !important; outline: none; background: none; box-shadow: none !important; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,.2)); }
 
-.kindlewild .kw-bloco { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-.kindlewild .kw-coracoes { display: grid; grid-template-columns: repeat(8, 34px); gap: 2px; }
-.kindlewild .kw-coracao { width: 34px; height: 34px; min-height: 0; padding: 0; border: none; background: none; font-family: Arial, sans-serif !important; font-size: 36px !important; line-height: 34px; color: #d9d3c7 !important; cursor: pointer; }
-.kindlewild .kw-coracao.cheio { color: #e5383b !important; }
-.kindlewild .kw-coracao:hover { transform: scale(1.12); }
-.kindlewild .kw-acoes { display: flex; flex-direction: column; gap: 6px; }
-.kindlewild .kw-acoes button { background: #fff; border: 2px solid var(--borda); border-radius: 10px; padding: 4px 12px; font-weight: 700; font-size: 13px; color: var(--tinta); cursor: pointer; }
-.kindlewild .kw-acoes button:hover { border-color: var(--cor-tipo); }
+.kindlewild .kw-block { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.kindlewild .kw-hearts { display: grid; grid-template-columns: repeat(8, 34px); gap: 2px; }
+.kindlewild .kw-heart { width: 34px; height: 34px; min-height: 0; padding: 0; border: none; background: none; font-family: Arial, sans-serif !important; font-size: 36px !important; line-height: 34px; color: #d9d3c7 !important; cursor: pointer; }
+.kindlewild .kw-heart.full { color: #e5383b !important; }
+.kindlewild .kw-heart:hover { transform: scale(1.12); }
+.kindlewild .kw-actions { display: flex; flex-direction: column; gap: 6px; }
+.kindlewild .kw-actions button { background: #fff; border: 2px solid var(--border); border-radius: 10px; padding: 4px 12px; font-weight: 700; font-size: 13px; color: var(--ink); cursor: pointer; }
+.kindlewild .kw-actions button:hover { border-color: var(--type-color); }
 
-.kindlewild .kw-atributos { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; padding: 10px 12px; background: #fff; border: 2px solid var(--borda); border-radius: 12px; }
-.kindlewild .kw-atributo { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-.kindlewild .kw-rotulo { font-weight: 700; font-size: 14px; }
-.kindlewild .kw-caixas { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
-.kindlewild .kw-caixa { width: 20px; height: 20px; min-height: 0; padding: 0; border: 2px solid #8c8578; border-radius: 5px; background: #fff; cursor: pointer; }
-.kindlewild .kw-caixa.cheia { background: #f6c437; border-color: #c99a10; }
-.kindlewild .kw-caixa.cheia::after { content: '★'; font-size: 12px; line-height: 16px; color: #7a5a00; }
+.kindlewild .kw-attributes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; padding: 10px 12px; background: #fff; border: 2px solid var(--border); border-radius: 12px; }
+.kindlewild .kw-attribute { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.kindlewild .kw-label { font-weight: 700; font-size: 14px; }
+.kindlewild .kw-boxes { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+.kindlewild .kw-box { width: 20px; height: 20px; min-height: 0; padding: 0; border: 2px solid #8c8578; border-radius: 5px; background: #fff; cursor: pointer; }
+.kindlewild .kw-box.full { background: #f6c437; border-color: #c99a10; }
+.kindlewild .kw-box.full::after { content: '★'; font-size: 12px; line-height: 16px; color: #7a5a00; }
 
-.kindlewild .kw-golpes { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
-.kindlewild .kw-golpe { display: flex; gap: 8px; align-items: stretch; }
-.kindlewild .kw-liberar { flex: 0 0 34px; height: auto; min-height: 40px; padding: 0; border: 2px solid #8c8578; border-radius: 8px; background: #fff; font-weight: 900; font-size: 18px; color: #2e9e4f !important; cursor: pointer; }
-.kindlewild .kw-rolar { flex: 1; display: flex; align-items: center; gap: 8px; min-height: 40px; padding: 4px 10px;
-  background: #fff; border: 2px solid var(--borda); border-left: 8px solid var(--cor); border-radius: 10px; cursor: pointer; text-align: left; }
-.kindlewild .kw-rolar:hover:not(:disabled) { border-color: var(--cor); background: color-mix(in srgb, var(--cor) 10%, #fff); }
-.kindlewild .kw-golpe.bloqueado .kw-rolar { opacity: .5; cursor: not-allowed; }
-.kindlewild .kw-golpe-nome { flex: 1; font-weight: 800; font-size: 15px; }
-.kindlewild .kw-efeito { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: #efe9ff; color: #4b2fa8 !important; }
-.kindlewild .kw-dado { font-weight: 900; font-size: 16px; white-space: nowrap; }
-.kindlewild .kw-dado small { font-weight: 600; font-size: 11px; color: var(--suave) !important; margin-left: 3px; }
-.kindlewild .kw-dado.suporte { font-size: 12px; color: var(--suave) !important; }
-.kindlewild .kw-bolinhas { display: flex; gap: 3px; }
-.kindlewild .kw-bolinhas i { width: 12px; height: 12px; border-radius: 50%; border: 2px solid #8c8578; background: #fff; }
-.kindlewild .kw-bolinhas i.cheia { background: var(--cor); border-color: color-mix(in srgb, var(--cor) 70%, #000); }
+.kindlewild .kw-moves { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.kindlewild .kw-move { display: flex; gap: 8px; align-items: stretch; }
+.kindlewild .kw-unlock { flex: 0 0 34px; height: auto; min-height: 40px; padding: 0; border: 2px solid #8c8578; border-radius: 8px; background: #fff; font-weight: 900; font-size: 18px; color: #2e9e4f !important; cursor: pointer; }
+.kindlewild .kw-roll { flex: 1; display: flex; align-items: center; gap: 8px; min-height: 40px; padding: 4px 10px;
+  background: #fff; border: 2px solid var(--border); border-left: 8px solid var(--color); border-radius: 10px; cursor: pointer; text-align: left; }
+.kindlewild .kw-roll:hover:not(:disabled) { border-color: var(--color); background: color-mix(in srgb, var(--color) 10%, #fff); }
+.kindlewild .kw-move.locked .kw-roll { opacity: .5; cursor: not-allowed; }
+.kindlewild .kw-move-name { flex: 1; font-weight: 800; font-size: 15px; }
+.kindlewild .kw-effect { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: #efe9ff; color: #4b2fa8 !important; }
+.kindlewild .kw-die { font-weight: 900; font-size: 16px; white-space: nowrap; }
+.kindlewild .kw-die small { font-weight: 600; font-size: 11px; color: var(--muted) !important; margin-left: 3px; }
+.kindlewild .kw-die.support { font-size: 12px; color: var(--muted) !important; }
+.kindlewild .kw-dots { display: flex; gap: 3px; }
+.kindlewild .kw-dots i { width: 12px; height: 12px; border-radius: 50%; border: 2px solid #8c8578; background: #fff; }
+.kindlewild .kw-dots i.full { background: var(--color); border-color: color-mix(in srgb, var(--color) 70%, #000); }
 
 .kindlewild .kw-resist { display: flex; flex-wrap: wrap; gap: 6px; }
-.kindlewild .kw-chip { font-size: 12px; font-weight: 700; padding: 3px 9px; border-radius: 999px; background: #fff; border: 2px solid var(--cor); color: var(--tinta) !important; }
+.kindlewild .kw-chip { font-size: 12px; font-weight: 700; padding: 3px 9px; border-radius: 999px; background: #fff; border: 2px solid var(--color); color: var(--ink) !important; }
 .kindlewild .kw-chip b { margin-left: 2px; }
-.kindlewild .kw-chip.vulneravel { background: #ffe1e1; }
-.kindlewild .kw-chip.imune { background: #e3ecff; }
+.kindlewild .kw-chip.vulnerable { background: #ffe1e1; }
+.kindlewild .kw-chip.immune { background: #e3ecff; }
 
-.kindlewild .kw-trilho { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
-.kindlewild .kw-casa { width: 100%; height: auto; aspect-ratio: 1; min-height: 0; padding: 0; border: 2px solid #b7ae9d; border-radius: 8px; background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-.kindlewild .kw-casa:hover { border-color: var(--cor-tipo); }
+.kindlewild .kw-track { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+.kindlewild .kw-track-box { width: 100%; height: auto; aspect-ratio: 1; min-height: 0; padding: 0; border: 2px solid #b7ae9d; border-radius: 8px; background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.kindlewild .kw-track-box:hover { border-color: var(--type-color); }
 .kindlewild .kw-pos { font-size: 20px; font-weight: 700; color: #b7ae9d !important; }
-.kindlewild .kw-icone { font-size: 26px; }
-.kindlewild .kw-casa.marca { background: #fff7dc; }
-.kindlewild .kw-casa.marca-evolucao { background: #efe3ff; border-color: #8a5cf6; }
-.kindlewild .kw-casa.riscada { background: color-mix(in srgb, var(--cor-tipo) 55%, #fff); border-color: color-mix(in srgb, var(--cor-tipo) 80%, #000); }
-.kindlewild .kw-casa.riscada .kw-pos { color: #fff !important; }
+.kindlewild .kw-icon { font-size: 26px; }
+.kindlewild .kw-track-box.mark { background: #fff7dc; }
+.kindlewild .kw-track-box.mark-evolution { background: #efe3ff; border-color: #8a5cf6; }
+.kindlewild .kw-track-box.crossed { background: color-mix(in srgb, var(--type-color) 55%, #fff); border-color: color-mix(in srgb, var(--type-color) 80%, #000); }
+.kindlewild .kw-track-box.crossed .kw-pos { color: #fff !important; }
 
-.kindlewild-chat .linha { display: flex; justify-content: space-between; gap: 8px; }
-.kindlewild-chat .referencia { font-size: .85em; opacity: .8; border-top: 1px solid currentColor; margin-top: 4px; padding-top: 4px; }
+.kindlewild-chat .row { display: flex; justify-content: space-between; gap: 8px; }
+.kindlewild-chat .reference { font-size: .85em; opacity: .8; border-top: 1px solid currentColor; margin-top: 4px; padding-top: 4px; }

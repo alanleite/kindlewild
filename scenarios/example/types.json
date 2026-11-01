@@ -1,0 +1,82 @@
+[
+  {
+    "id": "normal",
+    "name": "Normal",
+    "icon": "dot"
+  },
+  {
+    "id": "fire",
+    "name": "Fire",
+    "icon": "flame"
+  },
+  {
+    "id": "water",
+    "name": "Water",
+    "icon": "drop"
+  },
+  {
+    "id": "electric",
+    "name": "Electric",
+    "icon": "bolt"
+  },
+  {
+    "id": "plant",
+    "name": "Plant",
+    "icon": "leaf"
+  },
+  {
+    "id": "ice",
+    "name": "Ice",
+    "icon": "snowflake"
+  },
+  {
+    "id": "fighter",
+    "name": "Fighter",
+    "icon": "fist"
+  },
+  {
+    "id": "poison",
+    "name": "Poison",
+    "icon": "bubbles"
+  },
+  {
+    "id": "earth",
+    "name": "Earth",
+    "icon": "mountain"
+  },
+  {
+    "id": "air",
+    "name": "Air",
+    "icon": "wing"
+  },
+  {
+    "id": "psychic",
+    "name": "Psychic",
+    "icon": "eye"
+  },
+  {
+    "id": "insect",
+    "name": "Insect",
+    "icon": "stinger"
+  },
+  {
+    "id": "stone",
+    "name": "Stone",
+    "icon": "rock"
+  },
+  {
+    "id": "ghost",
+    "name": "Ghost",
+    "icon": "ghost"
+  },
+  {
+    "id": "dragon",
+    "name": "Dragon",
+    "icon": "dragon"
+  },
+  {
+    "id": "physical",
+    "name": "Physical",
+    "icon": "claw"
+  }
+]

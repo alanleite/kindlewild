@@ -1,0 +1,12 @@
+<section class="tab track {{tab.cssClass}}" data-tab="track" data-group="primary">
+  <div class="kw-card" style="--type-color: {{typeColor}}">
+    <header class="kw-header"><span class="kw-number">#{{number}}</span><h1 class="kw-name">{{actor.name}}</h1><span class="kw-progress">{{system.track.progress}} / 70</span></header>
+    <div class="kw-track">
+      {{#each track}}
+      <button type="button" class="kw-track-box {{#if crossed}}crossed{{/if}} {{#if kind}}mark mark-{{kind}}{{/if}}" data-action="progress" data-pos="{{pos}}" data-tooltip="{{pos}}">
+        {{#if icon}}<span class="kw-icon">{{icon}}</span>{{else}}<span class="kw-pos">{{pos}}</span>{{/if}}
+      </button>
+      {{/each}}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kindlewild · Children's creature RPG</title>
+  <meta name="description" content="A tabletop RPG with cards for young children to play with an adult: creatures that grow, unlock moves and evolve.">
+  <style>
+    :root { --ink: #22201c; --muted: #6b6457; --paper: #fbf7ee; --border: #e4dccb; --accent: #2e9e4f; --background: #f3eee2; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--ink); background: var(--background); line-height: 1.55; }
+    main { max-width: 860px; margin: 0 auto; padding: 48px 20px 64px; }
+    header h1 { font-size: clamp(2.4rem, 7vw, 3.6rem); margin: 0; letter-spacing: -0.02em; }
+    header p { font-size: 1.2rem; color: var(--muted); margin: 8px 0 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 28px 0 8px; }
+    .button { display: inline-block; padding: 12px 20px; border-radius: 12px; font-weight: 700; text-decoration: none; border: 2px solid var(--ink); color: var(--ink); background: #fff; }
+    .button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .notice { font-size: .95rem; color: var(--muted); }
+    section { margin-top: 40px; }
+    h2 { font-size: 1.4rem; margin: 0 0 12px; }
+    .feelings { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; padding: 0; list-style: none; }
+    .feelings li { background: var(--paper); border: 2px solid var(--border); border-radius: 14px; padding: 16px; font-weight: 700; font-size: 1.05rem; }
+    .feelings li span { display: block; font-weight: 400; font-size: .95rem; color: var(--muted); margin-top: 4px; }
+    ul.list li { margin-bottom: 6px; }
+    footer { margin-top: 56px; font-size: .9rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: 16px; }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Kindlewild</h1>
+      <p>A tabletop RPG with cards for young children to play together with an adult.</p>
+    </header>
+
+    <div class="actions">
+      <a class="button primary" href="site/">See the cards</a>
+      <a class="button" href="site/legend.html">Card legend</a>
+      <a class="button" href="https://github.com/alanleite/kindlewild/blob/main/docs/rules.md">Rules</a>
+      <a class="button" href="https://github.com/alanleite/kindlewild">Code</a>
+    </div>
+    <p class="notice">Work in progress: the rules are still in playtest, and the example cards use placeholder creatures, with no art.</p>
+
+    <section>
+      <h2>The idea</h2>
+      <p>Each child looks after a creature. On every adventure they cross out boxes on the back of the card and, along the way, unlock moves, color in stars on the attributes, earn hearts and reach the evolution milestone, when they switch cards. The game was made to create three feelings:</p>
+      <ul class="feelings">
+        <li>"This creature is mine."<span>A card all their own, marked in pencil.</span></li>
+        <li>"It's getting stronger."<span>More hearts, more stars, bigger dice.</span></li>
+        <li>"I got something new!"<span>An unlocked move, an evolution.</span></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>How to play</h2>
+      <ul class="list">
+        <li><strong>Almost no text:</strong> the card only shows the creature's name and the move names. The rest is icon, color and box, and the adult reads out loud.</li>
+        <li><strong>Simple combat:</strong> d10 to hit, against the target's Agility. Damage is the move's die (d4, d6, d8 or d12) plus Strength or Energy, minus Defense.</li>
+        <li><strong>Print at home:</strong> A6 cards, front and back, 4 per A4 sheet, ready to cut.</li>
+        <li><strong>On the virtual tabletop too:</strong> there is a Foundry VTT system with the same sheet in card format.</li>
+      </ul>
+    </section>
+
+    <footer>
+      Kindlewild, by Alan Leite. <a href="https://github.com/alanleite/kindlewild">github.com/alanleite/kindlewild</a>
+    </footer>
+  </main>
+</body>
+</html>

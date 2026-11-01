@@ -1,13 +1,14 @@
 {
   "name": "kindlewild",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
-  "description": "Kindlewild: RPG infantil de criaturas. Núcleo (regras, simulador, site, PDFs) e cenários.",
+  "description": "Kindlewild: a tabletop card RPG for young children. Core (rules, simulator, site, PDFs) and scenarios.",
   "scripts": {
-    "test": "node sim/validacao.js && node site/validacao.js && node --test site/tests/*.test.js && node scripts/validar-golpes.js",
-    "gerar": "node scripts/gerar-pdf-preciso.js",
-    "validar": "node scripts/validar-alinhamento.js",
-    "checar": "node scripts/checar-publicacao.js"
+    "test": "node sim/validation.js && node site/validation.js && node --test site/tests/*.test.js && node scripts/check-moves.js",
+    "check": "node scripts/check-publication.js",
+    "build": "node scripts/build-pdf.js",
+    "check:alignment": "node scripts/check-alignment.js",
+    "check:moves": "node scripts/check-moves.js"
   },
   "license": "UNLICENSED",
   "dependencies": {

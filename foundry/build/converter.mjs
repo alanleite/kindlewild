@@ -1,79 +1,79 @@
-// Converte uma criatura de cenarios/<id>/criaturas.json num documento de ator do Foundry (com golpes embutidos).
-// As imagens ficam no módulo do cenário: modules/<modulo>/assets/<arquivo>.
+// Converts a creature from scenarios/<id>/creatures.json into a Foundry actor document (with embedded moves).
+// Images live in the scenario module: modules/<module>/assets/<file>.
 
-export const SISTEMA = 'kindlewild';
-const ATRS = ['forca', 'energia', 'agilidade', 'defesa'];
-const tres = (n) => String(n).padStart(3, '0');
-const LADO = { pequeno: 0.5, medio: 1, grande: 2 };
+export const SYSTEM = 'kindlewild';
+const ATTRS = ['strength', 'energy', 'agility', 'defense'];
+const three = (n) => String(n).padStart(3, '0');
+const SIDE = { small: 0.5, medium: 1, large: 2 };
 
-export const idAtor = (id) => `crit${tres(id)}000000000`;
-export const idGolpe = (id, ordem) => `golp${tres(id)}${ordem}00000000`;
-export const arquivoImagem = (especie) => (especie.imagem ? especie.imagem.split('/').pop() : `${tres(especie.id)}.png`);
-export const IMAGEM_PADRAO = 'icons/svg/mystery-man.svg';
-const imagem = (especie, modulo) => (especie.imagem ? `modules/${modulo}/assets/${arquivoImagem(especie)}` : IMAGEM_PADRAO);
+export const actorId = (id) => `crit${three(id)}000000000`;
+export const moveId = (id, order) => `move${three(id)}${order}00000000`;
+export const imageFile = (creature) => (creature.image ? creature.image.split('/').pop() : `${three(creature.id)}.png`);
+export const DEFAULT_IMAGE = 'icons/svg/mystery-man.svg';
+const image = (creature, module) => (creature.image ? `modules/${module}/assets/${imageFile(creature)}` : DEFAULT_IMAGE);
 
-function raiz(especie, todas) {
-  let atual = especie;
-  while (atual.herda_atributos) {
-    const filho = atual;
-    atual = todas.find((p) => (p.evolucao || []).some((e) => e.para === filho.nome));
-    if (!atual) throw new Error(`${especie.nome}: sem forma anterior para herdar atributos`);
+function root(creature, all) {
+  let current = creature;
+  while (current.inherits_attributes) {
+    const child = current;
+    current = all.find((p) => (p.evolutions || []).some((e) => e.into === child.name));
+    if (!current) throw new Error(`${creature.name}: no previous form to inherit attributes from`);
   }
-  return atual;
+  return current;
 }
 
-function golpeParaItem(g, ordem, especie, atorId) {
-  const _id = idGolpe(especie.id, ordem);
+function moveToItem(m, order, creature, ownerId) {
+  const _id = moveId(creature.id, order);
   return {
     _id,
-    _key: `!actors.items!${atorId}.${_id}`,
-    name: g.nome,
-    type: 'golpe',
+    _key: `!actors.items!${ownerId}.${_id}`,
+    name: m.name,
+    type: 'move',
     img: 'icons/svg/combat.svg',
     system: {
-      elemento: g.elemento,
-      atributo: g.atributo ?? null,
-      dado: g.dado ?? null,
-      cargas: g.cargas == null || ordem === 1 ? { valor: null, max: null } : { valor: g.cargas, max: g.cargas },
-      efeito: g.efeito ?? null,
-      area: Boolean(g.area),
-      peso: g.peso ?? 0,
-      ordem,
-      liberado: ordem === 1
+      element: m.element,
+      attribute: m.attribute ?? null,
+      die: m.die ?? null,
+      charges: m.charges == null || order === 1 ? { value: null, max: null } : { value: m.charges, max: m.charges },
+      effect: m.effect ?? null,
+      area: Boolean(m.area),
+      weight: m.weight ?? 0,
+      order,
+      unlocked: order === 1
     },
-    flags: { [SISTEMA]: { icone: g.icone } }
+    flags: { [SYSTEM]: { icon: m.icon } }
   };
 }
 
-export function especieParaAtor(especie, todas, { modulo } = {}) {
-  if (!modulo) throw new Error('especieParaAtor: informe o módulo do cenário');
-  const _id = idAtor(especie.id);
-  const fonte = raiz(especie, todas);
-  const atributos = Object.fromEntries(ATRS.map((a) => [a, { slots: fonte.atributos[a].slots, estrelas: 0 }]));
-  const img = imagem(especie, modulo);
+export function creatureToActor(creature, all, { module } = {}) {
+  if (!module) throw new Error('creatureToActor: the scenario module is required');
+  const _id = actorId(creature.id);
+  const source = root(creature, all);
+  const attributes = Object.fromEntries(ATTRS.map((a) => [a, { slots: source.attributes[a].slots, stars: 0 }]));
+  const img = image(creature, module);
   return {
     _id,
     _key: `!actors!${_id}`,
-    name: especie.nome,
-    type: 'criatura',
+    name: creature.name,
+    type: 'creature',
     img,
-    prototypeToken: { name: especie.nome, texture: { src: img }, width: LADO[especie.tamanho] ?? 1, height: LADO[especie.tamanho] ?? 1, actorLink: false, disposition: 0 },
+    prototypeToken: { name: creature.name, texture: { src: img }, width: SIDE[creature.size] ?? 1, height: SIDE[creature.size] ?? 1, actorLink: false, disposition: 0 },
     system: {
-      especieId: especie.id,
-      tamanho: especie.tamanho ?? 'medio',
-      tipos: especie.tipos,
-      raro: Boolean(especie.raro),
-      xp: especie.xp ?? 1,
-      herdaAtributos: Boolean(especie.herda_atributos),
-      evolucao: (especie.evolucao || []).map((e) => ({ para: e.para, pos: e.pos, requisito: e.requisito ?? null })),
-      vida: { base: especie.vida, value: especie.vida },
-      atributos,
-      trilho: {
-        progresso: 0,
-        marcas: especie.trilho.map((m) => ({ pos: m.pos, tipo: m.tipo, detalhe: m.detalhe == null ? null : String(m.detalhe) }))
+      speciesId: creature.id,
+      size: creature.size ?? 'medium',
+      types: creature.types,
+      rare: Boolean(creature.rare),
+      xp: creature.xp ?? 1,
+      inheritsAttributes: Boolean(creature.inherits_attributes),
+      evolutions: (creature.evolutions || []).map((e) => ({ into: e.into, pos: e.pos, requires: e.requires ?? null })),
+      health: { base: creature.health, value: creature.health },
+      attributes,
+      track: {
+        progress: 0,
+        marks: creature.track.map((m) => ({ pos: m.pos, kind: m.kind, detail: m.detail == null ? null : String(m.detail) }))
       },
-      resistencias: especie.resistencias || {}
+      resistances: creature.resistances || {}
     },
-    items: especie.golpes.map((g, i) => golpeParaItem(g, i + 1, especie, _id))
+    items: creature.moves.map((m, i) => moveToItem(m, i + 1, creature, _id))
   };
 }

@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Card legend · Kindlewild</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="bar">
+    <div class="bar-title">
+      <h1>Card legend</h1>
+    </div>
+    <nav class="links"><a href="index.html">Back to the cards</a></nav>
+  </header>
+
+  <main>
+    <div class="legend">
+      <p>Reference page for the adult. Every icon, color and box on the card is explained here. The card only shows the creature name and the move names.</p>
+
+      <section class="legend-block" aria-labelledby="t-sides">
+        <h2 id="t-sides">Front and back</h2>
+        <p>The front has the name, the image, the types, the health, the attributes, the moves and the resistances. The back has only the experience track, with 70 boxes. Each A4 sheet has 4 cards: the front sheet and the back sheet come out one after the other, and must be printed on both sides of the same sheet.</p>
+      </section>
+
+      <section class="legend-block" aria-labelledby="t-types">
+        <h2 id="t-types">Types (colored disc)</h2>
+        <p>Each type has a color and an icon. The small discs sit at the left end of the name bar.</p>
+        <div id="type-grid" class="legend-grid"></div>
+      </section>
+
+      <section class="legend-block" aria-labelledby="t-resistances">
+        <h2 id="t-resistances">Resistances (chips)</h2>
+        <p>Each chip shows a type and its effect on the creature. They sit in the bottom right corner of the image, over the art. The card shows up to 3 chips, vulnerable first, then immune, then resistant. The other resistances of the species are in the chart below.</p>
+        <div class="legend-grid">
+          <div class="legend-item"><span class="icon" data-group="effect" data-name="vulnerable"></span><span>Vulnerable<small>Double damage (×2).</small></span></div>
+          <div class="legend-item"><span class="icon" data-group="effect" data-name="immune"></span><span>Immune<small>Zero damage.</small></span></div>
+          <div class="legend-item"><span class="icon" data-group="effect" data-name="resistant"></span><span>Resistant<small>Half the damage, rounded up.</small></span></div>
+        </div>
+      </section>
+
+      <section class="legend-block" aria-labelledby="t-attributes">
+        <h2 id="t-attributes">Attributes</h2>
+        <p>Each attribute has an icon and a row of boxes. A filled box is a point the creature is born with (base). The child fills boxes with stars up to the limit (slots). On evolved forms, the boxes come out empty: the value is inherited from the previous form on evolution.</p>
+        <div class="legend-grid">
+          <div class="legend-item"><span class="icon" data-group="attribute" data-name="strength"></span><span>Strength<small>Added to the damage of physical moves.</small></span></div>
+          <div class="legend-item"><span class="icon" data-group="attribute" data-name="energy"></span><span>Energy<small>Added to the damage of elemental moves.</small></span></div>
+          <div class="legend-item"><span class="icon" data-group="attribute" data-name="agility"></span><span>Agility<small>Chance to dodge (d10 against this value).</small></span></div>
+          <div class="legend-item"><span class="icon" data-group="attribute" data-name="defense"></span><span>Defense<small>Reduces the damage taken.</small></span></div>
+        </div>
+      </section>
+
+      <section class="legend-block" aria-labelledby="t-moves">
+        <h2 id="t-moves">Moves</h2>
+        <p>Each move has a square (unlock mark), the move icon, the name, the die notation, a "+" and the icon of the attribute added to the sum: Strength for a physical move and Energy for an elemental move. Then come the effect (if any), the area mark (if any) and the charge dots. A support move deals no damage: it has no die and no attribute, only the effect. Move 1 of every card is always unlimited.</p>
+        <div class="legend-grid">
+          <div class="legend-item"><span class="mark"><span class="legend-box"></span></span><span>Empty square<small>Move not unlocked yet. The child checks the square when unlocking it.</small></span></div>
+          <div class="legend-item"><span class="mark"><span class="icon" data-group="general" data-name="checked"></span></span><span>Checked square<small>Move unlocked.</small></span></div>
+          <div class="legend-item"><strong class="legend-die-text">d4</strong><span>d4<small>4-sided die (average 2.5).</small></span></div>
+          <div class="legend-item"><strong class="legend-die-text">d6</strong><span>d6<small>6-sided die (average 3.5).</small></span></div>
+          <div class="legend-item"><strong class="legend-die-text">d8</strong><span>d8<small>8-sided die (average 4.5).</small></span></div>
+          <div class="legend-item"><strong class="legend-die-text">d12</strong><span>d12<small>12-sided die (average 6.5). Only on a final form or a rare species.</small></span></div>
+        </div>
+      </section>
+
+      <section class="legend-block" aria-labelledby="t-charges">
+        <h2 id="t-charges">Charges (dots)</h2>
+        <p>Each dot is one use of the move. A move without dots is unlimited. Uses come back at the Healing Center. Spent: dot with an X.</p>
+        <div class="legend-grid">
+          <div class="legend-item"><span class="charges-row"><span class="legend-dot"></span><span class="legend-dot"></span><span class="legend-dot"></span></span><span>3 dots<small>3 uses.</small></span></div>
+          <div class="legend-item"><span class="charges-row"><span class="legend-dot"></span><span class="legend-dot"></span></span><span>2 dots<small>2 uses.</small></span></div>
+          <div class="legend-item"><span class="charges-row"><span class="legend-dot"></span></span><span>1 dot<small>Only 1 use.</small></span></div>
+          <div class="legend-item"><span class="charges-row"><span class="legend-dot spent"></span></span><span>Dot with an X<small>Use already spent.</small></span></div>
+          <div class="legend-item"><span class="charges-row"></span><span>No dots<small>Unlimited: use it as many times as you like.</small></span></div>
+        </div>
+      </section>
+
+      <section class="legend-block" aria-labelledby="t-move-effects">
+        <h2 id="t-move-effects">Move effects (tokens)</h2>
+        <p>A move has at most one effect. The effect becomes a token (marker) placed next to the creature and does not stack: if it is already active, nothing changes. All of them are removed at the end of the fight. Negative ones only apply if the move hits.</p>
+        <div class="legend-grid">
+          <div class="legend-item"><span class="icon" data-group="effect" data-name="weakness"></span><span>Weakness (gray, arrow down)<small>On the target: the target's moves deal 2 less damage.</small></span></div>
+          <div class="legend-item"><span class="icon" data-group="effect" data-name="poison"></span><span>Poison (purple, drop)<small>On the target: loses 1 heart at the end of each of its turns.</small></span></div>
+          <div class="legend-item"><span class="icon" data-group="effect" data-name="paralysis"></span><span>Paralysis (yellow, bolt)<small>On the target: on its turn, roll a d10; on 1 to 4, it does not attack.</small></span></div>
+          <div class="legend-item"><span class="icon" data-group="effect" data-name="sleep"></span><span>Sleep (blue, Z)<small>On the target: loses its next turn. The token is removed after it loses the turn.</small></span></div>
+          <div class="legend-item"><span class="icon" data-group="effect" data-name="swift"></span><span>Swift (light blue, feather)<small>On you: +3 Agility, up to a maximum of 8.</small></span></div>
+          <div class="legend-item"><span class="icon" data-group="effect" data-name="shield"></span><span>Shield (orange, shield)<small>On you: the next move that hits you deals 0 damage. The token is removed after that.</small></span></div>
+          <div class="legend-item"><span class="icon" data-group="effect" data-name="extra_strength"></span><span>Extra Strength (red, arrow up)<small>On you: +2 damage on all your moves.</small></span></div>
+          <div class="legend-item"><span class="icon" data-group="effect" data-name="heal"></span><span>Heal (green, heart)<small>On you: recovers 1d6 hearts.</small></span></div>
+        </div>
+      </section>
+
+      <section class="legend-block" aria-labelledby="t-area">
+        <h2 id="t-area">Area (several targets)</h2>
+        <p>The move hits every enemy. Roll the damage once; each target applies its own resistance and Defense, and the hit roll (d10) is rolled against each target.</p>
+        <div class="legend-grid">
+          <div class="legend-item"><span class="icon" data-group="general" data-name="area"></span><span>Area<small>Hits every enemy.</small></span></div>
+        </div>
+      </section>
+
+      <section class="legend-block" aria-labelledby="t-track">
+        <h2 id="t-track">Experience track (back, 70 boxes)</h2>
+        <p>The child crosses out one box for each victory. The marks work as below. The box with a double border is the next one.</p>
+        <div class="legend-grid">
+          <div class="legend-item"><span class="mark" style="background:var(--mark-skill)"><span class="icon" data-group="track" data-name="skill"></span></span><span>Skill<small>Unlocks one of the 4 moves. The first one comes unlocked.</small></span></div>
+          <div class="legend-item"><span class="mark" style="background:var(--mark-star)"><span class="icon" data-group="track" data-name="star"></span></span><span>Star<small>+1 to an attribute of your choice, up to its slots.</small></span></div>
+          <div class="legend-item"><span class="mark" style="background:var(--mark-heart)"><span class="icon" data-group="track" data-name="heart"></span></span><span>Heart<small>+1 health, automatic.</small></span></div>
+          <div class="legend-item"><span class="mark" style="background:var(--mark-strength)"><span class="icon" data-group="track" data-name="strength"></span></span><span>Strength<small>+1 Strength, automatic.</small></span></div>
+          <div class="legend-item"><span class="mark" style="background:var(--mark-power)"><span class="icon" data-group="track" data-name="power"></span></span><span>Power<small>+1 to the die result of a move already unlocked.</small></span></div>
+          <div class="legend-item"><span class="mark" style="background:var(--mark-evolution)"><span class="icon" data-group="track" data-name="evolution"></span></span><span>Evolution<small>Milestone that allows evolving. With the stone next to it, it needs the item. A species with several stones has a single mark, at position 40; the child picks the stone on reaching it.</small></span></div>
+          <div class="legend-item"><span class="icon" data-group="general" data-name="item"></span><span>Stone (item)<small>Evolution that needs an item.</small></span></div>
+        </div>
+      </section>
+
+      <section class="legend-block" aria-labelledby="t-states">
+        <h2 id="t-states">States</h2>
+        <p>Each state has a shape and a color, not just a color. The printed card has no gray and no padlock.</p>
+        <div class="legend-states">
+          <div class="legend-item"><span class="mark"><span class="legend-box filled"></span></span><span>Filled<small>Full box or colored square.</small></span></div>
+          <div class="legend-item"><span class="mark"><span class="legend-box"></span></span><span>Empty<small>Thin outline, white background. Move not unlocked or mark not crossed out yet.</small></span></div>
+          <div class="legend-item"><span class="mark"><span class="icon" data-group="general" data-name="checked"></span></span><span>Checked<small>Square with a stroke inside: move unlocked.</small></span></div>
+          <div class="legend-item"><span class="mark"><span class="legend-dot spent"></span></span><span>Spent<small>Use dot with an X.</small></span></div>
+        </div>
+      </section>
+
+      <section class="legend-block" aria-labelledby="t-chart">
+        <h2 id="t-chart">Type effects chart (all species)</h2>
+        <p>Full list of resistances of each species. Use it to check any of them, or when the card shows only the first 3 chips.</p>
+        <div id="chart-status" class="legend-chart-status"></div>
+        <div class="legend-table-wrap">
+          <table class="legend-table">
+            <thead><tr><th scope="col">Creature</th><th scope="col">Vulnerable</th><th scope="col">Immune</th><th scope="col">Resistant</th></tr></thead>
+            <tbody id="chart-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="icons.js?v=20261004-1" defer></script>
+  <script src="scenario-web.js" defer></script>
+  <script src="legend.js" defer></script>
+</body>
+</html>

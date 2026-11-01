@@ -1,0 +1,12 @@
+{
+  "id": "example",
+  "name": "Example",
+  "description": "Demo scenario with 4 placeholder creatures and no art. Used to show the cards and to test the core.",
+  "private": false,
+  "foundry": {
+    "module": "kindlewild-example",
+    "title": "Kindlewild: Example",
+    "pack": "creatures",
+    "label": "Example creatures"
+  }
+}

@@ -1,0 +1,15 @@
+<div class="kindlewild-chat">
+  <h3>{{attacker}}: {{move}}</h3>
+  <div class="row"><span>{{sys.element}}</span>{{#if sys.area}}<span>{{localize "KINDLEWILD.Chat.Area"}}</span>{{/if}}</div>
+  {{#if formula}}
+  <div class="row"><strong>{{localize "KINDLEWILD.Chat.Hit"}}: {{hit}}</strong><span>{{localize "KINDLEWILD.Chat.HitsIf"}}</span></div>
+  <div class="row"><strong>{{localize "KINDLEWILD.Chat.Damage"}}: {{damage}}</strong><span>{{formula}}</span></div>
+  {{/if}}
+  {{#if sys.effect}}<div class="row"><span>{{localize "KINDLEWILD.Chat.Effect"}}</span><strong>{{sys.effect}}</strong></div>{{/if}}
+  <div class="reference">
+    {{localize "KINDLEWILD.Chat.Target"}}: {{#if target}}{{target}}{{else}}—{{/if}} ·
+    {{localize "KINDLEWILD.Chat.Agility"}} {{ref.agility}} ·
+    {{localize "KINDLEWILD.Chat.Defense"}} {{ref.defense}} ·
+    {{localize "KINDLEWILD.Chat.Resistance"}} {{ref.resistance}}
+  </div>
+</div>

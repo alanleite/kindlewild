@@ -1,62 +1,62 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cartas · Kindlewild</title>
+  <title>Cards · Kindlewild</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="barra">
-    <div class="barra-titulo">
-      <h1>Cartas do Kindlewild</h1>
-      <span id="resumo" class="resumo" role="status" aria-live="polite"></span>
-      <span id="aviso-trilho" class="aviso" hidden></span>
+  <header class="bar">
+    <div class="bar-title">
+      <h1>Kindlewild cards</h1>
+      <span id="summary" class="summary" role="status" aria-live="polite"></span>
+      <span id="track-warning" class="warning" hidden></span>
     </div>
-    <div class="controles">
-      <label>Folha
-        <select id="seletor-pagina" disabled></select>
+    <div class="controls">
+      <label>Sheet
+        <select id="sheet-select" disabled></select>
       </label>
-      <label>Habilidades liberadas
-        <select id="seletor-habilidades">
+      <label>Unlocked skills
+        <select id="skills-select">
           <option value="1" selected>1</option>
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
         </select>
       </label>
-      <button id="botao-imprimir" type="button" disabled>Imprimir selecionados</button>
-      <nav class="links"><a href="legenda.html">Legenda</a></nav>
+      <button id="print-button" type="button" disabled>Print selected</button>
+      <nav class="links"><a href="legend.html">Legend</a></nav>
     </div>
   </header>
 
-  <section class="painel-selecao" aria-labelledby="titulo-selecao">
-    <div class="selecao-cabecalho">
+  <section class="selection-panel" aria-labelledby="selection-title">
+    <div class="selection-header">
       <div>
-        <h2 id="titulo-selecao">Escolher criaturas</h2>
-        <span id="resumo-selecao" class="resumo-selecao" role="status" aria-live="polite"></span>
+        <h2 id="selection-title">Choose creatures</h2>
+        <span id="selection-summary" class="selection-summary" role="status" aria-live="polite"></span>
       </div>
-      <div class="selecao-acoes">
-        <label class="busca-criatura" for="busca-criatura">Buscar
-          <input id="busca-criatura" type="search" placeholder="Nome ou número" autocomplete="off">
+      <div class="selection-actions">
+        <label class="creature-search" for="creature-search">Search
+          <input id="creature-search" type="search" placeholder="Name or number" autocomplete="off">
         </label>
-        <button id="selecionar-todos" class="botao-secundario" type="button" disabled>Selecionar todos</button>
-        <button id="limpar-selecao" class="botao-secundario" type="button" disabled>Limpar seleção</button>
+        <button id="select-all" class="button-secondary" type="button" disabled>Select all</button>
+        <button id="clear-selection" class="button-secondary" type="button" disabled>Clear selection</button>
       </div>
     </div>
-    <div id="lista-criaturas" class="lista-criaturas" aria-label="Criaturas disponíveis"></div>
+    <div id="creature-list" class="creature-list" aria-label="Available creatures"></div>
   </section>
 
   <main>
-    <div id="mensagem" class="mensagem" role="alert" hidden></div>
-    <div id="paginas"></div>
+    <div id="message" class="message" role="alert" hidden></div>
+    <div id="pages"></div>
   </main>
 
-  <script src="icones.js?v=20261004-1" defer></script>
-  <script src="cenario-web.js" defer></script>
-  <script src="escala-imagens.js" defer></script>
-  <script src="selecao-impressao.js" defer></script>
-  <script src="apresentacao-carta.js" defer></script>
+  <script src="icons.js?v=20261004-1" defer></script>
+  <script src="scenario-web.js" defer></script>
+  <script src="image-scale.js" defer></script>
+  <script src="print-selection.js" defer></script>
+  <script src="card-view.js" defer></script>
   <script src="app.js" defer></script>
 </body>
 </html>

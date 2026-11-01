@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "test": "node --test test/*.test.mjs",
-    "gerar": "node build/gerar-compendio.mjs",
+    "build": "node build/build-module.mjs",
     "deploy": "node build/deploy.mjs"
   },
   "devDependencies": { "@foundryvtt/foundryvtt-cli": "3.0.4" }
