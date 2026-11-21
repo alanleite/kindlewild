@@ -53,7 +53,7 @@ The card has a front and a back. Use **Choose creatures** to search and check on
 5. In **Two-sided** (or "Print on both sides"), choose **flip on long edge** (left or right side, like a book). Do not choose the short edge: the back would come out upside down.
 6. Cut along the light lines of each card.
 
-The back of each sheet already comes out with mirrored columns. This way, each back sits behind the right front card when the sheet is flipped on the long edge.
+The back of each sheet already comes out with mirrored columns. This way, each back sits behind the right front card when the sheet is flipped on the long edge. Cards are approximately 86 × 122 mm, with 5 mm between adjacent cards to make cutting easier; they are smaller than A6.
 
 If the printer does not do automatic two-sided printing, odd pages are the fronts and even pages are the backs. Print only the odd ones first. Put the sheets back in the tray and print only the even ones, flipping on the long edge. The position and order of reinsertion vary by printer; first do a test with a single sheet (pages 1 and 2) before printing the whole set.
 

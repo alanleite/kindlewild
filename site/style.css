@@ -1060,6 +1060,7 @@ main {
   body {
     background: #ffffff;
     color: #000000;
+    min-height: 0;
   }
 
   .bar,
@@ -1087,12 +1088,19 @@ main {
     gap: 0;
   }
 
-  /* Center the 180.6 x 254.6 mm grid on each A4 sheet. */
+  /* Leave slack below the A4 page to avoid an extra blank page from rounding.
+     Matching symmetric gaps on front and back leave room for cutting. */
   .page {
-    width: 210mm;
-    height: 297mm;
-    max-height: 297mm;
-    padding: 21.2mm 14.7mm;
+    width: 200mm;
+    height: 287mm;
+    max-height: 287mm;
+    margin: 5mm auto 0;
+    padding: 0;
+    grid-template-columns: repeat(2, 86mm);
+    grid-template-rows: repeat(2, calc(86mm * 148.5 / 105));
+    gap: 5mm;
+    justify-content: center;
+    align-content: center;
     aspect-ratio: auto;
     overflow: hidden;
     box-shadow: none;
