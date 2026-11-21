@@ -796,12 +796,25 @@ main {
 
 /* ==========================================================================
    Card: back
-   Only the 70-box track: 7 columns x 10 rows, 10 mm boxes,
-   4 mm between them. No text.
+   70-box track: 7 columns x 10 rows, 10 mm boxes,
+   4 mm between them. The small name sits in the bottom margin.
    ========================================================================== */
 .back {
   justify-content: center;
   align-items: center;
+}
+
+.back-name {
+  position: absolute;
+  right: calc(var(--u) * 3);
+  bottom: calc(var(--u) * 1.5);
+  max-width: 90%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: calc(var(--u) * 1.8);
+  line-height: 1;
+  color: var(--color-text);
 }
 
 .track {

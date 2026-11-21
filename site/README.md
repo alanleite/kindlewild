@@ -69,7 +69,7 @@ The CSS uses `@page { size: A4 portrait; margin: 0 }` and a page break after eac
 
 Each field of `creatures.json` is described in `docs/schema.md`. Points the site decides on its own:
 
-- **Text:** the card has the creature name, the move names and the die notation (`d4`, `d6`, `d8`, `d12`). The back has no text. Everything else is an icon, a color or a box.
+- **Text:** the front has the creature name, the move names and the die notation (`d4`, `d6`, `d8`, `d12`). The back has a small creature name in the bottom margin for identification. Everything else is an icon, a color or a box.
 - **Image:** `image` is relative to the folder of the data file (in the scenario: `images/025.png`). If the file does not exist, a dashed circle shows up. The image area (name band included) takes 40% of the card height: 59.4 mm. The creature's optional `image_scale` field (read by `image-scale.js`, capped at 1.18) conservatively enlarges visually small silhouettes, without changing the PNGs (see `docs/design-system.md`, section 6.8).
 - **Stage:** 1 to 3 dots in the bottom left corner of the image, from the evolution chain of the list.
 - **Types:** a small disc per type, with an icon, at the left end of the white name bar. The color is concentrated in the discs and in the soft background of the image; the card edges are neutral so they do not interfere with cutting.

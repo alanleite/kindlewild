@@ -123,7 +123,7 @@ They sit in the **bottom right corner of the image**, over the art, and don't ta
 
 ### 6.2 Track on the back
 
-The 70-box track is **on the back**, 7 columns by 10 rows, 10 mm boxes, 4 mm between boxes. It takes 94 × 136 mm, centered. The back has no text.
+The 70-box track is **on the back**, 7 columns by 10 rows, 10 mm boxes, 4 mm between boxes. It takes 94 × 136 mm, centered. In the browser print layout, a small creature name in the bottom margin identifies the back without moving the track.
 
 Mirrored back: the front and back sheets are separate. With long-edge printing, the back of slot 0 is the card of slot 1, and so on (`mirrorBack` in `site/print-selection.js`).
 

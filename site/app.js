@@ -336,7 +336,7 @@
 
   // ---------------------------------------------------------------- card: back
 
-  // Back: only the 70-box track, in 7 columns by 10 rows.
+   // Back: the 70-box track and a small name for identifying the card.
   function buildBack(p) {
     var card = el('article', 'card back');
     card.setAttribute('aria-label', 'Back of ' + (p.name || 'creature'));
@@ -359,7 +359,7 @@
       }
       track.append(square);
     });
-    card.append(track);
+    card.append(track, el('span', 'back-name', p.name || ''));
     return card;
   }
 
