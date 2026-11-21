@@ -2,6 +2,7 @@
 // Images live in the scenario module: modules/<module>/assets/<file>.
 
 export const SYSTEM = 'kindlewild';
+import { normalizeResistances } from '../module/resistances.mjs';
 const ATTRS = ['strength', 'energy', 'agility', 'defense'];
 const three = (n) => String(n).padStart(3, '0');
 const SIDE = { small: 0.5, medium: 1, large: 2 };
@@ -72,7 +73,7 @@ export function creatureToActor(creature, all, { module } = {}) {
         progress: 0,
         marks: creature.track.map((m) => ({ pos: m.pos, kind: m.kind, detail: m.detail == null ? null : String(m.detail) }))
       },
-      resistances: creature.resistances || {}
+      resistances: normalizeResistances(creature.resistances)
     },
     items: creature.moves.map((m, i) => moveToItem(m, i + 1, creature, _id))
   };

@@ -117,7 +117,7 @@ Move not unlocked: empty square, without the type's background color. No padlock
 
 ### 6.1 Resistances (chips)
 
-Field `resistances` (see `docs/schema.md`). Shows **up to 3 chips**, in this order: vulnerable, immune, resistant. Each chip is a 5.75 mm disc with the type and the effect symbol (2.4 mm) in the corner.
+Field `resistances` (see `docs/schema.md`). Up to three resistant types are shown on the left (½), and up to three vulnerable types on the right (×2), with 8 mm colored type discs. Moves use the same type icons and colors. Unlisted types are neutral and there are no immunities.
 
 They sit in the **bottom right corner of the image**, over the art, and don't take a row of their own. There is no "more" symbol: the full list is on the legend sheet (`legend.html`).
 

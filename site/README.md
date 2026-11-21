@@ -37,7 +37,7 @@ The fixture `fixtures/example-creatures.json` (new move format) has 4 fictional 
 
 - **Brotinho (1):** base form. d4 moves, attributes with a filled base.
 - **Brotão (2):** evolved form. `attributes: null` and `inherits_attributes: true`, so the boxes come out empty.
-- **Mentalix (3):** rare species, with 5 attribute slots, health 16, d12, area, support and a move icon that does not exist (tests the placeholder).
+- **Mentalix (3):** rare species, with 5 attribute slots, health 16, d12, area and support. It also includes an unknown legacy move icon; cards now use the element icon instead.
 - **Mutalu (4):** evolves with a stone, mark at position 40.
 
 The fixture does not replace the scenario.
@@ -76,9 +76,9 @@ Each field of `creatures.json` is described in `docs/schema.md`. Points the site
 - **Stage:** 1 to 3 dots in the bottom left corner of the image, from the evolution chain of the list.
 - **Types:** a small disc per type, with an icon, at the left end of the white name bar. The color is concentrated in the discs and in the soft background of the image; the card edges are neutral so they do not interfere with cutting.
 - **Health:** starting hearts are filled; outlined hearts correspond to future track rewards. Up to 24 hearts fit in two rows of 12.
-- **Resistances:** `resistances` field, with values `vulnerable`, `immune` and `resistant`. The card shows up to 3 chips in the bottom right corner of the image, vulnerable first, then immune and then resistant. The full chart is in `legend.html`.
+- **Type effects:** up to three resistances on the left (½) and three vulnerabilities on the right (×2). Unlisted types are neutral. Old `immune` entries become resistances; extra entries are ignored in both the display and rules.
 - **Attributes:** one column per attribute, with an icon and one box per slot. Base form: `base` fills the natural boxes. Evolved form (`attributes: null`): the boxes come out empty, leaving room to copy the inherited values and for the form's own growth. A negative base becomes 0.
-- **Moves:** format `{ name, icon, element, attribute, die, charges, effect, area, weight, unlocked_at }` (see `docs/moves.md`); the legacy format (`type`/`category`/`uses`) is still accepted. Each row: unlock square, move icon (dashed placeholder if it is not in the map), name, die (`d4`, `d6`, `d8`, `d12`), "+" and the Strength or Energy icon, effect token (8 effects, in `icons.js`, group `effect`), area icon (several targets) and charge dots (3, 2 or 1; unlimited without dots). Support (`die: null`) shows only the effect. The element sets the background color.
+- **Moves:** format `{ name, icon, element, attribute, die, charges, effect, area, weight, unlocked_at }` (see `docs/moves.md`); the legacy format (`type`/`category`/`uses`) is still accepted. Each row: unlock square, colored element disc using the same icons as type effects, name, die, attribute, effect, area and charge dots. Support (`die: null`) shows only the effect. The element sets the background color.
 - **Track (back):** 70 boxes, in 7 columns by 10 rows, each 10 mm. The **next** box has a double border and is the `start` position.
 
 ### Rule warnings

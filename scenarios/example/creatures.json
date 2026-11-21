@@ -177,11 +177,9 @@
       "fire": "vulnerable",
       "ice": "vulnerable",
       "psychic": "vulnerable",
-      "air": "vulnerable",
       "water": "resistant",
       "electric": "resistant",
-      "fighter": "resistant",
-      "plant": "resistant"
+      "fighter": "resistant"
     },
     "size": "small"
   },
@@ -363,11 +361,9 @@
       "fire": "vulnerable",
       "ice": "vulnerable",
       "psychic": "vulnerable",
-      "air": "vulnerable",
       "water": "resistant",
       "electric": "resistant",
-      "fighter": "resistant",
-      "plant": "resistant"
+      "fighter": "resistant"
     },
     "size": "medium"
   },
@@ -752,7 +748,7 @@
     ],
     "resistances": {
       "fighter": "vulnerable",
-      "ghost": "immune"
+      "ghost": "resistant"
     },
     "size": "small"
   }

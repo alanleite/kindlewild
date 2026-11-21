@@ -1,4 +1,5 @@
 // Pure Kindlewild rules. No Foundry dependency: tested with node --test.
+import { normalizeResistances } from './resistances.mjs';
 
 export const HEALTH_CAP = 24;
 export const TRACK = 70;
@@ -40,7 +41,7 @@ export function targetReference(target, element) {
   const defense = target.attributes?.defense;
   const agi = Math.min(AGILITY_CAP, (agility?.base ?? 0) + (agility?.stars ?? 0));
   const def = (defense?.base ?? 0) + (defense?.stars ?? 0);
-  return { agility: String(agi), defense: String(def), resistance: target.resistances?.[element] ?? '—' };
+  return { agility: String(agi), defense: String(def), resistance: normalizeResistances(target.resistances)[element] ?? '—' };
 }
 
 export function healthAfterProgress(base, marks, progress, currentValue) {

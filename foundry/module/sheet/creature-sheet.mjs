@@ -1,10 +1,11 @@
 import { nextClickValue, rest, healthAfterProgress, TRACK } from '../rules.mjs';
+import { normalizeResistances } from '../resistances.mjs';
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
 const ATTRS = ['strength', 'energy', 'agility', 'defense'];
 const TYPE_COLOR = { normal: '#a8a77a', fire: '#ee8130', water: '#6390f0', plant: '#7ac74c', electric: '#f7d02c', ice: '#96d9d6', fighter: '#c22e28', poison: '#a33ea1', earth: '#e2bf65', air: '#a98ff3', psychic: '#f95587', insect: '#a6b91a', stone: '#b6a136', ghost: '#735797', dragon: '#6f35fc' };
-const RESIST_MARK = { vulnerable: '×2', resistant: '½', immune: '0' };
+const RESIST_MARK = { vulnerable: '×2', resistant: '½' };
 const MARK_ICON = { skill: '🗝️', star: '⭐', heart: '❤️', strength: '👊', power: '⬆️', evolution: '✨' };
 const localizeOr = (key, fallback) => (game.i18n.has(key) ? game.i18n.localize(key) : fallback);
 const typeName = (t) => localizeOr(`KINDLEWILD.Type.${t}`, t);
@@ -74,8 +75,8 @@ export class CreatureSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
       const marks = byPos.get(pos) || [];
       return { pos, crossed: pos <= s.track.progress, icon: marks.map((m) => MARK_ICON[m.kind] ?? '•').join(''), kind: marks[0]?.kind ?? '' };
     });
-    const order = { vulnerable: 0, immune: 1, resistant: 2 };
-    context.resistances = Object.entries(s.resistances)
+    const order = { resistant: 0, vulnerable: 1 };
+    context.resistances = Object.entries(normalizeResistances(s.resistances))
       .sort((a, b) => (order[a[1]] ?? 9) - (order[b[1]] ?? 9))
       .map(([element, effect]) => ({ name: typeName(element), color: TYPE_COLOR[element] ?? '#999', effect, mark: RESIST_MARK[effect] ?? '' }));
     return context;

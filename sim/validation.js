@@ -67,16 +67,16 @@ test('Defense 10: damage is 0 when the result is negative (no minimum of 1 per h
   return `${zeros} zeros in ${N}`;
 });
 
-test('Immune target: damage always 0', () => {
+test('Legacy immunity is treated as resistance', () => {
   const rng = createRng(3);
   const a = attacker(5);
   const target = buildSyntheticCard({ agility: 0, defense: 0, resistances: { normal: 'immune' } });
   for (let i = 0; i < N; i += 1) {
     const r = resolveAttack(a, target, a.moves[0], rng);
-    assert(r.damage === 0, `damage ${r.damage} on immune target`);
+    assert(r.damage >= 3 && r.damage <= 6, `damage ${r.damage} on resistant target`);
   }
-  assert(computeDamage({ die: 6, attribute: 5, effect: 'immune', defense: 0 }) === 0, 'immune with Defense 0 should give 0');
-  return 'always 0';
+  assert(computeDamage({ die: 6, attribute: 5, effect: 'immune', defense: 0 }) === 6, 'legacy immune should halve damage');
+  return 'half damage';
 });
 
 test('Vulnerable target ×2, move 1d4 + 0: damage between 2 and 8, minus Defense', () => {
@@ -265,7 +265,7 @@ test('Move attribute: energy adds Energy, strength adds Strength; the element (n
   assert(min === 6 && max === 9, `energy: ${min}..${max}`);
   assert(max2 === 4, `strength 0: maximum ${max2}`);
   const immune = buildSyntheticCard({ agility: 0, resistances: { fire: 'immune' } });
-  assert(resolveAttack(a, immune, a.moves[1], rng).damage === 0, 'immune to fire');
+  assert(resolveAttack(a, immune, a.moves[1], rng).damage > 0, 'legacy immunity now resists fire');
   const resist = buildSyntheticCard({ agility: 0, resistances: { fire: 'resistant' } });
   for (let i = 0; i < 500; i += 1) {
     const r = resolveAttack(a, resist, a.moves[0], rng); // (1..4 + 5) / 2 rounded up = 3..5
@@ -274,9 +274,9 @@ test('Move attribute: energy adds Energy, strength adds Strength; the element (n
   return 'ok';
 });
 
-test('Zero after Defense on a hit becomes 1; immune stays 0', () => {
+test('Zero after Defense on a hit becomes 1', () => {
   assert(computeDamage({ die: 4, attribute: 0, defense: 4 }) === 1, 'zero -> 1');
-  assert(computeDamage({ die: 4, attribute: 0, effect: 'immune', defense: 0 }) === 0, 'immune -> 0');
+  assert(computeDamage({ die: 4, attribute: 0, effect: 'immune', defense: 0 }) === 2, 'legacy immune -> resistance');
   assert(computeDamage({ die: 2, attribute: 0, defense: 4 }) === 0, 'negative -> 0');
   return 'ok';
 });

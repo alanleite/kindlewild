@@ -9,7 +9,6 @@
   var PER_PAGE = 4;            // cards per A4 sheet
   var TRACK_CONFIG = PrintSelection.trackConfig();
   var MOVES = 4;
-  var MAX_CHIPS = 3;           // resistances visible on the card (section 9)
   var HEARTS_PER_ROW = 12;
   var MAX_HEALTH = 24;
   // Where data and images come from: see scenario-web.js (?data=, ?scenario= or scenarios/default.txt).
@@ -26,8 +25,6 @@
   var ATTRIBUTE_ORDER = ['strength', 'energy', 'agility', 'defense'];
   var KNOWN_TYPES = ['normal', 'fire', 'water', 'electric', 'plant', 'ice', 'fighter', 'poison',
     'earth', 'air', 'psychic', 'insect', 'stone', 'ghost', 'dragon'];
-  // Chip order: vulnerable first, then immune, then resistant (schema, resistances field).
-  var EFFECT_PRIORITY = { vulnerable: 0, immune: 1, resistant: 2 };
 
   var state = {
     species: [],
@@ -210,23 +207,21 @@
     return sum;
   }
 
-  // Resistance chips: up to 3, vulnerable first. The rest is in the legend chart.
-  // They sit in the bottom right corner of the image (over the art), without taking their own row.
-  function buildChips(box, p) {
-    var map = p.resistances || {};
-    var entries = Object.keys(map)
-      .filter(function (type) { return EFFECT_PRIORITY[map[type]] !== undefined; })
-      .map(function (type) { return { type: type, effect: map[type] }; })
-      .sort(function (a, b) { return EFFECT_PRIORITY[a.effect] - EFFECT_PRIORITY[b.effect]; });
-    entries.slice(0, MAX_CHIPS).forEach(function (e) {
+  function buildChips(p, effect) {
+    var box = el('div', 'chips ' + effect);
+    var map = Resistances.normalize(p.resistances);
+    box.setAttribute('aria-label', effect === 'resistant' ? 'Resistant: half damage' : 'Vulnerable: double damage');
+    box.append(el('span', 'chips-label', effect === 'resistant' ? '½' : '×2'));
+    Object.keys(map).filter(function (type) { return map[type] === effect; }).forEach(function (type) {
       var chip = el('span', 'chip');
-      chip.setAttribute('aria-label', e.type + ': ' + e.effect);
+      chip.setAttribute('aria-label', type + ': ' + effect);
       var disc = el('span', 'type-disc');
-      disc.style.setProperty('--type-color', typeColor(e.type));
-      disc.append(icon('type', e.type));
-      chip.append(disc, icon('effect', e.effect, 'chip-effect'));
+      disc.style.setProperty('--type-color', typeColor(type));
+      disc.append(icon('type', type));
+      chip.append(disc);
       box.append(chip);
     });
+    return box;
   }
 
   function buildFront(p, unlocked) {
@@ -267,10 +262,9 @@
     for (var s = 1; s <= 3; s++) {
       pips.append(el('span', 'pip' + (s <= stage ? '' : ' empty')));
     }
-    // resistances: bottom right corner of the image, over the art (they take no row)
-    var chips = el('div', 'chips');
-    buildChips(chips, p);
-    top.append(image, name, headerTypes, pips, chips);
+    var resistant = buildChips(p, 'resistant');
+    var vulnerable = buildChips(p, 'vulnerable');
+    top.append(image, name, headerTypes, pips, resistant, vulnerable);
 
     var body = el('div', 'card-body');
 
@@ -322,9 +316,13 @@
       if (m.effect) effect.append(icon('effect', m.effect, 'move-effect-icon'));
       var area = el('span', 'move-area');
       if (m.area) area.append(icon('general', 'area', 'move-area-icon'));
-      // order: move icon (focus), name, die, + attribute, effect, area, charge dots
+      // Use the same colored type disc as the resistance and vulnerability lists.
+      var moveType = el('span', 'type-disc move-element');
+      moveType.style.setProperty('--type-color', typeColor(m.element || 'normal'));
+      moveType.setAttribute('aria-label', 'Element: ' + (m.element || 'normal'));
+      moveType.append(icon('type', m.element || 'normal'));
       box.append(
-        icon('move', m.icon, 'move-icon'),
+        moveType,
         el('span', 'move-name', m.name),
         buildDie(m),
         buildSum(m),
@@ -555,6 +553,9 @@
         } catch (_) { /* Use the default scenario. */ }
       }
       url = source.url;
+      var legendUrl = new URL('legend.html', location.href);
+      legendUrl.searchParams.set('data', new URL(url, location.href).href);
+      document.querySelector('.links a').href = legendUrl.href;
       imagePrefix = source.imagePrefix;
       var species = await loadData(url);
       if (!species.length) {

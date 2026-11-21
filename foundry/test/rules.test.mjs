@@ -52,6 +52,9 @@ test('targetReference: no target and no resistance show a dash', () => {
   const target = { attributes: { agility: { stars: 11 }, defense: { stars: 3 } }, resistances: { water: 'vulnerable' } };
   assert.deepEqual(R.targetReference(target, 'fire'), { agility: '8', defense: '3', resistance: '—' });
   assert.deepEqual(R.targetReference(target, 'water'), { agility: '8', defense: '3', resistance: 'vulnerable' });
+  target.resistances = { fire: 'immune', water: 'resistant', ice: 'resistant', stone: 'resistant' };
+  assert.equal(R.targetReference(target, 'fire').resistance, 'resistant');
+  assert.equal(R.targetReference(target, 'stone').resistance, '—');
 });
 
 test('healthAfterProgress caps saved health at the new max (review #2)', () => {

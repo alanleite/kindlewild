@@ -470,15 +470,19 @@ main {
   border-width: calc(var(--u) * 0.3);
 }
 
-/* Resistances: bottom right corner of the image, over the art. They take no row. */
+/* Type effects: resistance left, vulnerability right, consistently labeled. */
 .chips {
   position: absolute;
-  right: calc(var(--u) * 3);
-  bottom: calc(var(--u) * 2.5);
+  bottom: calc(var(--u) * 7);
   display: flex;
-  gap: calc(var(--u) * 1.2);
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--u) * 0.6);
   z-index: 2;
 }
+.chips.resistant { left: calc(var(--u) * 2); }
+.chips.vulnerable { right: calc(var(--u) * 2); }
+.chips-label { font-size: calc(var(--u) * 3.2); font-weight: 900; line-height: 1; color: var(--color-line); background: var(--color-sheet); border-radius: calc(var(--u) * 1); padding: calc(var(--u) * 0.4); }
 
 /* Stage: 1 to 3 dots in the corner of the image (no text) */
 .stage {
@@ -571,11 +575,11 @@ main {
 
 .hearts .heart.future path { fill: none; stroke: var(--color-heart); stroke-width: 1.5; }
 
-/* Resistance chip (over the image): 5.75 mm type disc + 2.4 mm effect symbol */
+/* Larger type icons, shared by both sides. */
 .chip {
   position: relative;
-  width: calc(var(--u) * 5.75);
-  height: calc(var(--u) * 5.75);
+  width: calc(var(--u) * 8);
+  height: calc(var(--u) * 8);
 }
 
 .chip .type-disc {
@@ -699,9 +703,10 @@ main {
   background: var(--color-sheet);
 }
 
-.move-icon {
-  width: calc(var(--u) * 10);
-  height: calc(var(--u) * 10);
+.move-element {
+  width: calc(var(--u) * 9);
+  height: calc(var(--u) * 9);
+  padding: calc(var(--u) * 1);
 }
 
 /* Move name: smaller than the previous version (4.2 mm), now 3.6 mm (~10 pt).

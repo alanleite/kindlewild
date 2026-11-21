@@ -79,7 +79,7 @@ During the transition the simulator also accepts the legacy format (`type`, `cat
 - Who starts: higher base Agility. Tie: drawn with the seed.
 - One side's turn: Sleep (loses the turn, the token goes), then Paralysis (d10 from 1 to 4: does not attack), then the move, then Poison (loses 1 heart at the end of the turn, even if the turn was lost). Sides always alternate.
 - Hit: d10. Hits if the result is greater than the target's effective Agility (base, +3 with Swift, cap 8). Agility 0 always hits; Agility 8 dodges 80% of attacks.
-- Damage: rolls the `die` (d4, d6, d8, d12) and adds the move's attribute (Strength or Energy), the track's Power and the token adjustments (Extra Strength +2, Weakness −2). Target's type effect by `element`: vulnerable ×2, resistant half rounded up, immune zero. Then subtracts the target's Defense. Negative becomes 0. Zero on a hit becomes 1. Immune is always 0.
+- Damage: rolls the `die` and adds the move's attribute, Power and token adjustments. Vulnerable types deal ×2; resistant types deal half, rounded up. Unlisted types are neutral. Legacy immunities are treated as resistance. Then subtract Defense: negative becomes 0 and zero on a hit becomes 1.
 - Charges: uses 1 per use, even on a miss. Exhausted cannot be chosen. Move 1 is always unlimited (the card ignores `charges` on move 1). If no move is available, the turn passes with no attack.
 - Support move (`die` null): does not roll to hit. A positive effect goes to itself. A negative effect goes to the target and rolls to hit (d10 against the effective Agility).
 - Effects (tokens, do not stack, last until the end of the fight): Weakness −2 on the damage of the target's moves; Poison 1 heart at the end of each of the target's turns; Paralysis (d10 1 to 4 on the target's turn: does not attack); Sleep (target loses its next turn, token goes); Swift +3 Agility (cap 8); Shield (next move received deals 0, token goes); Extra Strength +2 damage; Heal (instant) 1d6 hearts up to max health.
@@ -113,14 +113,14 @@ In practice: the effect is used early (first turn, not applied yet) when it is w
 These points are not settled in the rules. The simulator picked one reading and makes it explicit here:
 
 1. **Copy on evolution.** Full copy of the current value (base + stars + automatic Strength) as the new form's base, following "the new card gets the current value". There is no cut by the new slots. So the "lost excess" of section 14 is not applied.
-2. **Tie.** The literal rule of section 6 gives damage 1 when the result is zero after Defense. For an immune move, the simulator returns 0 before any other math. Without that, immune with Defense 0 would give 1.
+2. **Tie.** The rule gives damage 1 when the result is zero after Defense. Legacy immunities are treated as resistance.
 3. **Charge on a move that misses.** The charge is spent even if the move misses.
 4. **Power before the type effect.** The +1 goes on the die, as section 4 says ("+1 on the die result"). So power is also multiplied by ×2 against vulnerable.
 5. **Turn with no move.** If the side has no available move, the turn passes and counts as a turn.
 6. **Turn limit.** A battle that reaches 1000 actions without a KO ends as `limit`, with no winner. The CLI counts it as a draw. It can happen when one side never hits the other.
 7. **Turns.** The average turn count counts attack actions (and lost turns or turns with no move), not rounds.
 8. **Damage adjustments go into the subtotal.** Extra Strength (+2) and Weakness (−2) add up with die, attribute and Power before the type effect (so vulnerable doubles the +2). With both tokens, they add −2 and +2 = 0.
-9. **Shield only cancels damage.** Consumes the token when a die move hits (even if the damage would already be 0 from immunity). A miss does not consume it. The move's effect (e.g. Poison) is still applied. A negative support move does not consume the Shield.
+9. **Shield only cancels damage.** Consumes the token when a die move hits. A miss does not consume it. The move's effect (e.g. Poison) is still applied. A negative support move does not consume the Shield.
 10. **Negative effect only on a hit; positive always.** On a move with a die and an effect, the negative one requires a hit; the positive one (e.g. Extra Strength alongside damage) is applied on itself when the move is used, hit or miss.
 11. **Poison and Sleep skipped turns still count.** Poison ticks at the end of every turn of the poisoned side, including a turn lost to Sleep or Paralysis. If poison kills, the other side wins. Paralysis rolls the d10 every turn while the token exists and the token does not go.
 12. **Initiative uses base Agility**, without cap 8 and without tokens (they do not exist yet at the start of the fight). Only the hit uses the effective Agility with cap 8.

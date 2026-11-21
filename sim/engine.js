@@ -12,6 +12,7 @@ const NEGATIVE_EFFECTS = ['weakness', 'poison', 'paralysis', 'sleep'];
 const POSITIVE_EFFECTS = ['swift', 'shield', 'extra_strength', 'heal'];
 // Effects that stay on the card as a token (heal is instant).
 const TOKEN_EFFECTS = ['weakness', 'poison', 'paralysis', 'sleep', 'swift', 'shield', 'extra_strength'];
+const { normalize: normalizeResistances } = require('../site/resistances');
 
 // Deterministic generator (mulberry32). Same seed, same sequence.
 function createRng(seed = DEFAULT_SEED) {
@@ -38,9 +39,9 @@ function hitChance(agility) {
   return (10 - ag) / 10;
 }
 
-// Type effect the target applies to the move's element: 'vulnerable' | 'resistant' | 'immune' | 'neutral'.
+// Type effect the target applies: vulnerable, resistant or neutral.
 function typeEffect(target, element) {
-  const map = target.resistances || {};
+  const map = normalizeResistances(target.resistances);
   return map[element] || 'neutral';
 }
 
@@ -60,10 +61,10 @@ function tokenAdjustment(card) {
 }
 
 // Final damage (section 6, steps 2 to 4).
-// Immune zeroes before anything else. `bonus` goes into the subtotal (Power, Extra Strength, Weakness),
+// `bonus` goes into the subtotal (Power, Extra Strength, Weakness),
 // before the type effect. After Defense: negative becomes 0, zero becomes 1.
 function computeDamage({ die, bonus = 0, attribute, effect = 'neutral', defense }) {
-  if (effect === 'immune') return 0;
+  if (effect === 'immune') effect = 'resistant'; // backwards compatibility
   const subtotal = die + bonus + attribute;
   let applied = subtotal;
   if (effect === 'vulnerable') applied = subtotal * 2;

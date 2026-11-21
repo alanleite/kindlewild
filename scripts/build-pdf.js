@@ -51,6 +51,7 @@ const SITE = path.join(ROOT, 'site');
 const ImageScale = require(path.join(SITE, 'image-scale.js'));
 const PrintSelection = require(path.join(SITE, 'print-selection.js'));
 const CardView = require(path.join(SITE, 'card-view.js'));
+const Resistances = require(path.join(SITE, 'resistances.js'));
 
 // Icons: site/icons.js is a browser script that sets window.ICONS. Run in an isolated context.
 function loadIcons() {
@@ -91,8 +92,6 @@ const MARK_COLOR = {
 };
 const ATTRIBUTE_ORDER = ['strength', 'energy', 'agility', 'defense'];
 const MOVE_ATTRIBUTE = { physical: 'strength', elemental: 'energy' };
-const EFFECT_PRIORITY = { vulnerable: 0, immune: 1, resistant: 2 };
-const MAX_CHIPS = 3;
 
 // ---------------------------------------------------------------- utilities
 
@@ -343,22 +342,18 @@ function drawFront(doc, p, opts, chain) {
     else circle(doc, x + 1.5, y + 1.5, 1.5, { fill: PAPER, border: INK, bw: 0.4 });
   }
 
-  // Resistances: up to 3 chips of 5.75 mm, in the bottom right corner of the image (1.2 mm gap).
-  const map = p.resistances || {};
-  const chips = Object.keys(map)
-    .filter(function (t) { return EFFECT_PRIORITY[map[t]] !== undefined; })
-    .sort(function (a, b) { return EFFECT_PRIORITY[map[a]] - EFFECT_PRIORITY[map[b]]; })
-    .slice(0, MAX_CHIPS);
-  const chipsWidth = chips.length * 5.75 + Math.max(0, chips.length - 1) * 1.2;
-  const x0Chips = 102 - chipsWidth;
-  chips.forEach(function (type, i) {
-    const x = x0Chips + i * (5.75 + 1.2), y = 56.9 - 5.75;
-    circle(doc, x + 2.875, y + 2.875, 2.875, { fill: typeColor(type), border: INK, bw: 0.3 });
-    drawIcon(doc, 'type', type, x + 0.9, y + 0.9, 3.95);
-    // effect symbol: 2.4 mm white disc, centered on the chip's bottom right corner
-    const ax = x + 5.35, ay = y + 5.35;
-    circle(doc, ax, ay, 1.2, { fill: PAPER, border: INK, bw: 0.25 });
-    drawIcon(doc, 'effect', map[type], ax - 0.65, ay - 0.65, 1.3, { color: INK });
+  // Up to three colored type discs on each side: resistance left, vulnerability right.
+  const map = Resistances.normalize(p.resistances);
+  ['resistant', 'vulnerable'].forEach(function (effect) {
+    const list = Object.keys(map).filter(type => map[type] === effect);
+    const x = effect === 'resistant' ? 2 : 95;
+    const firstY = 52.4 - list.length * 8 - Math.max(0, list.length - 1) * 0.6;
+    centeredText(doc, effect === 'resistant' ? '1/2' : 'x2', x + 4, firstY - 2, 3.2);
+    list.forEach(function (type, i) {
+      const y = firstY + i * 8.6;
+      circle(doc, x + 4, y + 4, 4, { fill: typeColor(type), border: INK, bw: 0.3 });
+      drawIcon(doc, 'type', type, x + 1, y + 1, 6);
+    });
   });
 
   // 2. Health: starting hearts plus outlined track rewards, twelve per row.
@@ -395,10 +390,12 @@ function drawFront(doc, p, opts, chain) {
     box(doc, 3, y, 10, 10, 1.5, { fill: PAPER, border: INK, bw: 0.4 });
     if (isUnlocked) drawIcon(doc, 'general', 'checked', 3 + 1.25, y + 1.25, 7.5, { stroke: 2.6 });
     // move box: x 14.5, width 87.5, radius 2.4, type background at 22% (only if unlocked)
-    const moveFill = isUnlocked ? mixWithWhite(typeColor(m.type || 'normal'), 0.22) : PAPER;
+    const element = m.element || m.type || 'normal';
+    const moveFill = isUnlocked ? mixWithWhite(typeColor(element), 0.22) : PAPER;
     box(doc, 14.5, y, 87.5, 10, 2.4, { fill: moveFill, border: INK, bw: 0.35 });
-    // move icon: column 15.5 (10 mm)
-    drawIcon(doc, 'move', m.icon, 15.5, y, 10);
+    // Same colored element disc as the type-effect groups.
+    circle(doc, 20.5, y + 5, 4.5, { fill: typeColor(element), border: INK, bw: 0.3 });
+    drawIcon(doc, 'type', element, 17, y + 1.5, 7);
     // name: column 26.5 with 37 mm, up to 2 lines of 3.6 mm, line-height 1.05
     const NAME_SIZE = 3.6, LH = 1.05 * NAME_SIZE;
     doc.font(FONT).fontSize(NAME_SIZE);
@@ -413,15 +410,15 @@ function drawFront(doc, p, opts, chain) {
     if (label) centeredText(doc, label, 64.5 + 4, y + 5, 4.5);
     else console.warn(m.name + ': die ' + m.die + ' is not valid (only d4, d6 and d8).');
     // "+" and attribute icon (Strength or Energy, by category): columns 73.5 (3 mm) and 77.5 (10 mm)
-    const attribute = MOVE_ATTRIBUTE[m.category];
+    const attribute = m.attribute || MOVE_ATTRIBUTE[m.category];
     if (attribute) {
       drawIcon(doc, 'symbol', 'plus', 73.5, y + 3.5, 3);
       drawIcon(doc, 'attribute', attribute, 77.5, y, 10);
-    } else {
+    } else if (m.die) {
       console.warn(m.name + ': category ' + m.category + ' without attribute (physical or elemental).');
     }
     // use dots: 12 mm wide, right-aligned (100.5), 4.2 mm step, 3.4 mm diameter
-    const uses = m.uses === null || m.uses === undefined ? 0 : integer(m.uses, 0);
+    const uses = integer(m.charges === undefined ? m.uses : m.charges, 0);
     if (uses) {
       const total = uses * 3.4 + (uses - 1) * 0.8;
       let x = 100.5 - total;

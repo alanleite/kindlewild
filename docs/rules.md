@@ -39,7 +39,7 @@ No other dice in combat.
   4. Health in hearts.
   5. Attributes in boxes.
   6. Moves (4), each with name, icon, die and dots when it has limited uses.
-  7. Resistances (up to 3 visible chips, see section 9).
+  7. Resistances and vulnerabilities (up to 3 of each, see section 9).
 - **Back:** XP track (50 boxes), and only that. Leaves room for the pen and for bigger icons.
 - Allowed text: only the creature name and the move names. Everything else is icon, color or box.
 
@@ -106,7 +106,7 @@ Species with no evolution use the die according to their strength: d6 for common
 
 **Damage:**
 1. Roll the move's die (d4, d6 or d8) and add the attribute for the move's kind (Strength if physical, Energy if elemental).
-2. Apply the target's type effect: vulnerable ×2, resistant half (rounded up), immune zero.
+2. Apply the target's type effect: vulnerable ×2, resistant half (rounded up); an unlisted type is neutral.
 3. Subtract the target's Defense.
 4. A negative result becomes 0. A tie (zero after defense) becomes 1.
 
@@ -134,12 +134,8 @@ Species with no evolution use the die according to their strength: d6 for common
 
 ## 9. Resistances
 
-- Each species has types and may have resistances and vulnerabilities. Effects: **vulnerable** (×2), **resistant** (half, rounded up), **immune** (zero).
-- **Layout problem:** species have 6 to 7 resistances. That is a lot for a small card and for a child.
-- **[to decide]** Options:
-  - a) Show only the 3 most relevant on the card, and the rest in the legend/sheet.
-  - b) Group by category (e.g.: "fire and plant", "water and ice"), with one icon per group.
-  - c) Show everything, but in a grid of large colored icons.
+- Each creature has up to **3 resistances** (half damage, rounded up) and **3 vulnerabilities** (double damage). There are no immunities. An unlisted type deals normal damage.
+- On the card, resistances are on the left (½) and vulnerabilities on the right (×2). The move's colored element disc matches the target's type icons. The printed lists are the complete rules for the creature; no hidden type effects apply.
 - Required legend: a reference page (or a strip on the back) showing what each icon and each color means. It can have text, because it is for the adult.
 
 ## 10. Printed XP
@@ -164,7 +160,7 @@ The loop agent evaluates the site against these criteria. Each item can be check
 1. Track: no run of more than 3 empty boxes in a row; marks spread over the whole track, not grouped at the start.
 2. Text: only the creature name and the move names. Nothing else.
 3. Icons: at least 1 cm; color per type; readable when printed.
-4. Resistances: at most 3 icons visible on the card (or whatever is decided in 9).
+4. Resistances and vulnerabilities: at most 3 icons in each group, all displayed on the card.
 5. Differentiation: two species of the same evolution line cannot have the same attribute and dice profile.
 6. Spacing: 4 mm between the main blocks of the front; inner distances follow the design system.
 7. Printing: 4 cards per A4 portrait sheet, no content cut off, no page break in the middle of a card.
@@ -173,7 +169,7 @@ The loop agent evaluates the site against these criteria. Each item can be check
 ## 13. Open items
 
 
-- Resistances on the card (options a, b, c of section 9). **Not decided.**
+- Choose and playtest the most recognizable type effects for each scenario.
 - Moves with uses: how they recover outside the Center (specific mark or not).
 - Final values of health, DC and slots per species: draft, to be calibrated.
 - **Critical:** a natural 10 on the d10 hit roll gives +1 or +2 damage. Suggested critical, not confirmed yet.
@@ -191,7 +187,7 @@ The loop agent evaluates the site against these criteria. Each item can be check
 - Skills per card: **4**, the first at position 1.
 - Evolution: **full** copy of the attributes (current value). No loss from fewer slots.
 - Effective Agility **capped at 8** (maximum dodge of 80%).
-- Immune is **always 0**. The tie (becomes 1) only happens when Defense zeroes a move that hit.
+- No immunity: legacy immune entries are treated as resistance. A tie (zero after Defense) becomes 1 on a hit.
 
 
 - Evolution switches cards. **The new card starts with an empty track, always, with no history.** No XP progress is carried over. Reason: an already evolved form captured in the wild starts exactly like a new card, so the rule has to hold in both cases.

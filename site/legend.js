@@ -40,9 +40,8 @@
     });
   }
 
-  // Chart: all resistances of each species (resistances field), by effect.
-  // Same order as the card: vulnerable, immune, resistant.
-  var EFFECTS = ['vulnerable', 'immune', 'resistant'];
+  // Same two groups and limits as the printed card.
+  var EFFECTS = ['resistant', 'vulnerable'];
 
   function chart(species) {
     var body = document.getElementById('chart-body');
@@ -50,9 +49,10 @@
     species.forEach(function (p) {
       var row = el('tr');
       row.append(el('td', 'name-col', p.name || ''));
-      var groups = { immune: [], vulnerable: [], resistant: [] };
-      Object.keys(p.resistances || {}).forEach(function (type) {
-        var effect = p.resistances[type];
+      var groups = { vulnerable: [], resistant: [] };
+      var effects = Resistances.normalize(p.resistances);
+      Object.keys(effects).forEach(function (type) {
+        var effect = effects[type];
         if (groups[effect]) groups[effect].push(type);
       });
       EFFECTS.forEach(function (effect) {
