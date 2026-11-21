@@ -67,8 +67,8 @@ function computeDamage({ die, bonus = 0, attribute, effect = 'neutral', defense 
   if (effect === 'immune') effect = 'resistant'; // backwards compatibility
   const subtotal = die + bonus + attribute;
   let applied = subtotal;
-  if (effect === 'vulnerable') applied = subtotal * 2;
-  else if (effect === 'resistant') applied = Math.ceil(subtotal / 2);
+  if (effect === 'vulnerable') applied = subtotal + 1;
+  else if (effect === 'resistant' && subtotal > 0) applied = Math.max(1, subtotal - 1);
   const net = applied - defense;
   if (net < 0) return 0;
   if (net === 0) return 1;

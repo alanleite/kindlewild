@@ -73,13 +73,13 @@ test('Legacy immunity is treated as resistance', () => {
   const target = buildSyntheticCard({ agility: 0, defense: 0, resistances: { normal: 'immune' } });
   for (let i = 0; i < N; i += 1) {
     const r = resolveAttack(a, target, a.moves[0], rng);
-    assert(r.damage >= 3 && r.damage <= 6, `damage ${r.damage} on resistant target`);
+    assert(r.damage >= 5 && r.damage <= 10, `damage ${r.damage} on resistant target`);
   }
-  assert(computeDamage({ die: 6, attribute: 5, effect: 'immune', defense: 0 }) === 6, 'legacy immune should halve damage');
-  return 'half damage';
+  assert(computeDamage({ die: 6, attribute: 5, effect: 'immune', defense: 0 }) === 10, 'legacy immune should reduce damage by one');
+  return 'one less damage';
 });
 
-test('Vulnerable target ×2, move 1d4 + 0: damage between 2 and 8, minus Defense', () => {
+test('Vulnerable target +1, move 1d4 + 0: damage between 2 and 5, minus Defense', () => {
   const rng = createRng(4);
   const a = buildSyntheticCard({ moves: [{ die: 'd4', attribute: 'energy', element: 'electric' }], energy: 0 });
   const target = buildSyntheticCard({ agility: 0, defense: 0, resistances: { electric: 'vulnerable' } });
@@ -90,8 +90,8 @@ test('Vulnerable target ×2, move 1d4 + 0: damage between 2 and 8, minus Defense
     min = Math.min(min, r.damage);
     max = Math.max(max, r.damage);
   }
-  assert(min === 2 && max === 8, `min ${min}, max ${max}`);
-  // With Defense 1: (1..4)*2 - 1 = 1..7
+  assert(min === 2 && max === 5, `min ${min}, max ${max}`);
+  // With Defense 1: (1..4) + 1 - 1 = 1..4
   const targetDef = buildSyntheticCard({ agility: 0, defense: 1, resistances: { electric: 'vulnerable' } });
   let min2 = Infinity;
   let max2 = -Infinity;
@@ -100,7 +100,7 @@ test('Vulnerable target ×2, move 1d4 + 0: damage between 2 and 8, minus Defense
     min2 = Math.min(min2, r.damage);
     max2 = Math.max(max2, r.damage);
   }
-  assert(min2 === 1 && max2 === 7, `with Defense 1: min ${min2}, max ${max2}`);
+  assert(min2 === 1 && max2 === 4, `with Defense 1: min ${min2}, max ${max2}`);
   return `no Defense: ${min}..${max}; Defense 1: ${min2}..${max2}`;
 });
 
@@ -268,15 +268,19 @@ test('Move attribute: energy adds Energy, strength adds Strength; the element (n
   assert(resolveAttack(a, immune, a.moves[1], rng).damage > 0, 'legacy immunity now resists fire');
   const resist = buildSyntheticCard({ agility: 0, resistances: { fire: 'resistant' } });
   for (let i = 0; i < 500; i += 1) {
-    const r = resolveAttack(a, resist, a.moves[0], rng); // (1..4 + 5) / 2 rounded up = 3..5
-    assert(r.damage >= 3 && r.damage <= 5, `resistant: ${r.damage}`);
+    const r = resolveAttack(a, resist, a.moves[0], rng); // 1..4 + 5 - 1 = 5..8
+    assert(r.damage >= 5 && r.damage <= 8, `resistant: ${r.damage}`);
   }
   return 'ok';
 });
 
 test('Zero after Defense on a hit becomes 1', () => {
+  assert(computeDamage({ die: 4, attribute: 0, effect: 'vulnerable', defense: 0 }) === 5, 'vulnerability adds 1');
+  assert(computeDamage({ die: 4, attribute: 0, effect: 'resistant', defense: 0 }) === 3, 'resistance subtracts 1');
   assert(computeDamage({ die: 4, attribute: 0, defense: 4 }) === 1, 'zero -> 1');
-  assert(computeDamage({ die: 4, attribute: 0, effect: 'immune', defense: 0 }) === 2, 'legacy immune -> resistance');
+  assert(computeDamage({ die: 4, attribute: 0, effect: 'immune', defense: 0 }) === 3, 'legacy immune -> resistance');
+  assert(computeDamage({ die: 1, attribute: 0, effect: 'resistant', defense: 0 }) === 1, 'resistance alone cannot reduce a positive subtotal below 1');
+  assert(computeDamage({ die: 1, attribute: 0, bonus: -2, effect: 'resistant', defense: 0 }) === 0, 'resistance cannot increase nonpositive damage');
   assert(computeDamage({ die: 2, attribute: 0, defense: 4 }) === 0, 'negative -> 0');
   return 'ok';
 });

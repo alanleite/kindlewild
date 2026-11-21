@@ -106,7 +106,7 @@ Species with no evolution use the die according to their strength: d6 for common
 
 **Damage:**
 1. Roll the move's die (d4, d6 or d8) and add the attribute for the move's kind (Strength if physical, Energy if elemental).
-2. Apply the target's type effect: vulnerable ×2, resistant half (rounded up); an unlisted type is neutral.
+2. Apply the target's type effect: vulnerable +1, resistant −1; an unlisted type is neutral. Resistance does not reduce a positive subtotal below 1 at this step, nor increase a nonpositive subtotal.
 3. Subtract the target's Defense.
 4. A negative result becomes 0. A tie (zero after defense) becomes 1.
 
@@ -134,8 +134,8 @@ Species with no evolution use the die according to their strength: d6 for common
 
 ## 9. Resistances
 
-- Each creature has up to **3 resistances** (half damage, rounded up) and **3 vulnerabilities** (double damage). There are no immunities. An unlisted type deals normal damage.
-- On the card, resistances are on the left (½) and vulnerabilities on the right (×2). The move's colored element disc matches the target's type icons. The printed lists are the complete rules for the creature; no hidden type effects apply.
+- Each creature has up to **3 resistances** (−1 damage) and **3 vulnerabilities** (+1 damage), applied before Defense. Resistance cannot reduce a positive subtotal below 1 at this step; Defense is applied afterwards. There are no immunities. An unlisted type deals normal damage.
+- On the card, resistances are on the left (−1) and vulnerabilities on the right (+1). The move's colored element disc matches the target's type icons. The printed lists are the complete rules for the creature; no hidden type effects apply.
 - Required legend: a reference page (or a strip on the back) showing what each icon and each color means. It can have text, because it is for the adult.
 
 ## 10. Printed XP

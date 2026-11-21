@@ -5,7 +5,7 @@ const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
 const ATTRS = ['strength', 'energy', 'agility', 'defense'];
 const TYPE_COLOR = { normal: '#a8a77a', fire: '#ee8130', water: '#6390f0', plant: '#7ac74c', electric: '#f7d02c', ice: '#96d9d6', fighter: '#c22e28', poison: '#a33ea1', earth: '#e2bf65', air: '#a98ff3', psychic: '#f95587', insect: '#a6b91a', stone: '#b6a136', ghost: '#735797', dragon: '#6f35fc' };
-const RESIST_MARK = { vulnerable: '×2', resistant: '½' };
+const RESIST_MARK = { vulnerable: '+1', resistant: '−1' };
 const MARK_ICON = { skill: '🗝️', star: '⭐', heart: '❤️', strength: '👊', power: '⬆️', evolution: '✨' };
 const localizeOr = (key, fallback) => (game.i18n.has(key) ? game.i18n.localize(key) : fallback);
 const typeName = (t) => localizeOr(`KINDLEWILD.Type.${t}`, t);

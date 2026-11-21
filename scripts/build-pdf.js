@@ -348,7 +348,7 @@ function drawFront(doc, p, opts, chain) {
     const list = Object.keys(map).filter(type => map[type] === effect);
     const x = effect === 'resistant' ? 2 : 95;
     const firstY = 52.4 - list.length * 8 - Math.max(0, list.length - 1) * 0.6;
-    centeredText(doc, effect === 'resistant' ? '1/2' : 'x2', x + 4, firstY - 2, 3.2);
+    centeredText(doc, effect === 'resistant' ? '-1' : '+1', x + 4, firstY - 2, 3.2);
     list.forEach(function (type, i) {
       const y = firstY + i * 8.6;
       circle(doc, x + 4, y + 4, 4, { fill: typeColor(type), border: INK, bw: 0.3 });

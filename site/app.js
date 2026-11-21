@@ -210,8 +210,8 @@
   function buildChips(p, effect) {
     var box = el('div', 'chips ' + effect);
     var map = Resistances.normalize(p.resistances);
-    box.setAttribute('aria-label', effect === 'resistant' ? 'Resistant: half damage' : 'Vulnerable: double damage');
-    box.append(el('span', 'chips-label', effect === 'resistant' ? '½' : '×2'));
+    box.setAttribute('aria-label', effect === 'resistant' ? 'Resistant: minus one damage' : 'Vulnerable: plus one damage');
+    box.append(el('span', 'chips-label', effect === 'resistant' ? '−1' : '+1'));
     Object.keys(map).filter(function (type) { return map[type] === effect; }).forEach(function (type) {
       var chip = el('span', 'chip');
       chip.setAttribute('aria-label', type + ': ' + effect);

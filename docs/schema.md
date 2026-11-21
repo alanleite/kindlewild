@@ -124,8 +124,8 @@ A scenario can have other folders of its own (maps, printing, calibration propos
   - `pos`: position of the `evolution` mark on this form's track.
   - `requires`: optional. An item id defined by the scenario (e.g. `water-stone`, `spark-crystal`) or `trade`. No field when the evolution is by level.
 - **resistances:** map type → `"resistant"` | `"vulnerable"`, with no more than three of each. Types not listed are neutral. For old data, `"immune"` is interpreted as `"resistant"`; if a group has more than three, only the first three entries apply.
-  - `resistant`: damage divided by 2, rounded up.
-  - `vulnerable`: damage ×2.
+  - `resistant`: −1 damage before Defense, without reducing a positive subtotal below 1.
+  - `vulnerable`: +1 damage before Defense.
 
 ## `scenarios/<id>/types.json`
 

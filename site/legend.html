@@ -31,10 +31,10 @@
 
       <section class="legend-block" aria-labelledby="t-resistances">
         <h2 id="t-resistances">Resistances (chips)</h2>
-        <p>On the creature card, the left side (½) lists up to three resistances; the right side (×2) lists up to three vulnerabilities. Match the colored type icon on the move to the icons on the target. If it is not listed, damage is normal. There are no immunities.</p>
+        <p>On the creature card, the left side (−1) lists up to three resistances; the right side (+1) lists up to three vulnerabilities. Match the colored type icon on the move to the icons on the target. Apply the adjustment before Defense. If it is not listed, damage is normal. There are no immunities.</p>
         <div class="legend-grid">
-          <div class="legend-item"><span class="icon" data-group="effect" data-name="vulnerable"></span><span>Vulnerable<small>Double damage (×2).</small></span></div>
-          <div class="legend-item"><span class="icon" data-group="effect" data-name="resistant"></span><span>Resistant<small>Half the damage, rounded up.</small></span></div>
+          <div class="legend-item"><span class="icon" data-group="effect" data-name="vulnerable"></span><span>Vulnerable<small>+1 damage before Defense.</small></span></div>
+          <div class="legend-item"><span class="icon" data-group="effect" data-name="resistant"></span><span>Resistant<small>−1 damage before Defense; a positive subtotal stays at least 1 at this step.</small></span></div>
         </div>
       </section>
 
@@ -128,7 +128,7 @@
         <div id="chart-status" class="legend-chart-status"></div>
         <div class="legend-table-wrap">
           <table class="legend-table">
-            <thead><tr><th scope="col">Creature</th><th scope="col">Resistant (½)</th><th scope="col">Vulnerable (×2)</th></tr></thead>
+            <thead><tr><th scope="col">Creature</th><th scope="col">Resistant (−1)</th><th scope="col">Vulnerable (+1)</th></tr></thead>
             <tbody id="chart-body"></tbody>
           </table>
         </div>
