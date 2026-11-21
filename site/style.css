@@ -357,9 +357,7 @@ main {
    Top to bottom: image (40% of the height, with types on the name band and
    resistances in the bottom right corner), health (2 rows of 7 mm hearts),
    attributes, moves (4 rows of 10 mm).
-   Measurements in mm (see docs/design-system.md, section 7):
-   top 59.4 | gap 6.1 | health row 15 | gap 6.1 | attributes 12.6 |
-   gap 6.1 | moves 4 x 10 | bottom margin 3 = 148.3 mm.
+   The body uses compact gaps to give the attribute boxes more space.
    Visible text: creature name, move names and die notation.
    ========================================================================== */
 .card {
@@ -506,15 +504,14 @@ main {
 }
 
 /* ---- body ---- */
-/* Space between blocks on the front: 6.1 mm (top -> health through the top padding; health -> attributes
-   -> moves through the gap). The bottom margin stays at 3 mm, the side margin at 3 mm. */
+/* Give the attribute grid room for larger, writable boxes, including evolved forms. */
 .card-body {
   flex: 1;
   min-height: 0;
   display: flex;
   flex-direction: column;
-  gap: calc(var(--u) * 6.1);
-  padding: calc(var(--u) * 6.1) calc(var(--u) * 3) calc(var(--u) * 3);
+  gap: calc(var(--u) * 2);
+  padding: calc(var(--u) * 2) calc(var(--u) * 3) calc(var(--u) * 3);
 }
 
 .card-body > * {
@@ -602,10 +599,9 @@ main {
   color: var(--color-accent);
 }
 
-/* row 2: attributes (4 columns: 8 mm icon, same as the move row, 2 mm breathing room and 2.6 mm boxes).
-   Boxes reduced from 3.6 to 2.6 mm to fit the 4 mm space above health. */
+/* Four attribute columns, each fitting up to four rows of six larger boxes. */
 .attributes {
-  height: calc(var(--u) * 12.6);
+  height: calc(var(--u) * 23.5);
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--space-1);
@@ -620,22 +616,22 @@ main {
 }
 
 .attribute-icon {
-  width: calc(var(--u) * 5);
-  height: calc(var(--u) * 5);
+  width: calc(var(--u) * 8);
+  height: calc(var(--u) * 8);
 }
 
 .boxes {
   display: flex;
   flex-wrap: wrap;
-  width: calc(var(--u) * 16.2);
+  width: calc(var(--u) * 22.2);
   max-width: 100%;
   justify-content: center;
-  gap: calc(var(--u) * 0.25);
+  gap: calc(var(--u) * 0.35);
 }
 
 .box {
-  width: calc(var(--u) * 2.1);
-  height: calc(var(--u) * 2.1);
+  width: calc(var(--u) * 3.4);
+  height: calc(var(--u) * 3.4);
   border: calc(var(--u) * 0.35) solid var(--color-line);
   border-radius: calc(var(--u) * 0.45);
   background: var(--color-sheet);
