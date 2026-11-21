@@ -149,7 +149,7 @@ The card shows the stage with 1 to 3 dots in the bottom left corner of the image
 
 ### 6.6 Attributes of an evolved form
 
-`attributes: null` and `inherits_attributes: true` on evolved forms. The boxes come out **empty**: the value is inherited on evolution. The slots of that form come from the stage (initial 2, middle 3, last 4, no evolution 4), because the data doesn't carry the number. Base forms use the colored base.
+`attributes: null` and `inherits_attributes: true` on evolved forms. The boxes come out **empty**: copy the inherited value on evolution. Their count leaves room for the possible inherited values and the new form's growth. Base forms use the colored base.
 
 The boxes show each species' profile from `attributes.base` and `attributes.slots`. The layout doesn't assume equal values between species. If each species' attributes look standardized, that comes from the data, not from the layout.
 

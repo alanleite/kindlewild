@@ -134,9 +134,11 @@
     state.previous = parent;
   }
 
-  // Slots of an evolved form (attributes = null): the data has no number, so they come from the
-  // form's stage (section 5): base 2, middle 3, last evolution 4, no evolution 4.
-  function derivedSlots(p) {
+  // Evolved forms need room for inherited values and further growth; fall back to stage sizes
+  // only when the scenario does not include their previous forms.
+  function derivedSlots(p, attribute) {
+    var inherited = CardView.inheritedSlots(p, state.species, attribute);
+    if (inherited !== null) return inherited;
     var hasEvolution = evolutionList(p).length > 0;
     var hasPrevious = !!state.previous[p.name];
     if (hasPrevious) return hasEvolution ? 3 : 4;
@@ -152,7 +154,7 @@
       if (a) {
         out[key] = { base: Math.max(0, Number(a.base) || 0), slots: integer(a.slots, 0), inherited: false };
       } else {
-        out[key] = { base: 0, slots: derivedSlots(p), inherited: true };
+        out[key] = { base: 0, slots: derivedSlots(p, key), inherited: true };
       }
     });
     return out;

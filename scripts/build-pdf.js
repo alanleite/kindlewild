@@ -222,11 +222,13 @@ function computeChain(species) {
     return Math.min(3, stageOf(parent[name], guard + 1) + 1);
   }
   species.forEach(function (p) { stages[p.name] = stageOf(p.name, 0); });
-  return { stages: stages, previous: parent };
+  return { stages: stages, previous: parent, species: species };
 }
 
 // Evolved form (attributes null): slots by stage (section 5 of the rules).
-function derivedSlots(p, chain) {
+function derivedSlots(p, chain, attribute) {
+  const inherited = CardView.inheritedSlots(p, chain.species, attribute);
+  if (inherited !== null) return inherited;
   const hasEvolution = evolutionList(p).length > 0;
   const hasPrevious = !!chain.previous[p.name];
   if (hasPrevious) return hasEvolution ? 3 : 4;
@@ -238,7 +240,7 @@ function formAttributes(p, chain) {
   ATTRIBUTE_ORDER.forEach(function (k) {
     const a = p.attributes && p.attributes[k] ? p.attributes[k] : null;
     if (a) out[k] = { base: Math.max(0, Number(a.base) || 0), slots: integer(a.slots, 0), inherited: false };
-    else out[k] = { base: 0, slots: derivedSlots(p, chain), inherited: true };
+    else out[k] = { base: 0, slots: derivedSlots(p, chain, k), inherited: true };
   });
   return out;
 }
@@ -376,13 +378,12 @@ function drawFront(doc, p, opts, chain) {
     const x0 = 3 + i * 25;
     drawIcon(doc, 'attribute', k, x0 + 7, 88.4, 10);
     const filled = Math.min(a.base, a.slots);
-    const gap = 0.3;
-    const side = Math.max(0.5, Math.min(2.6, (24 - Math.max(0, a.slots - 1) * gap) / Math.max(1, a.slots)));
-    const total = a.slots * side + Math.max(0, a.slots - 1) * gap;
-    let x = x0 + 12 - total / 2;
+    const gap = 0.2, perRow = 7, side = 2;
     for (let j = 0; j < a.slots; j++) {
-      box(doc, x, 98.9, side, side, 0.45, { fill: j < filled ? INK : PAPER, border: INK, bw: 0.35 });
-      x += side + gap;
+      const row = Math.floor(j / perRow), col = j % perRow;
+      const count = Math.min(perRow, a.slots - row * perRow);
+      const x = x0 + 12 - (count * side + (count - 1) * gap) / 2 + col * (side + gap);
+      box(doc, x, 98.9 + row * (side + gap), side, side, 0.45, { fill: j < filled ? INK : PAPER, border: INK, bw: 0.35 });
     }
   });
 

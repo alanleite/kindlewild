@@ -101,7 +101,7 @@ Each move is worth `expected damage + effect value` (in hearts); it picks the hi
 | Poison | 1 per turn |
 | Paralysis | 40% x target's best expected damage, per turn |
 | Sleep | target's best expected damage (1 turn) |
-| Swift | 0.3 x target's best expected damage, per turn (0 if I already have Agility 8) |
+| Swift | Reduction in hit chance (up to 0.3) x target's best expected damage, per turn, respecting the Agility cap |
 | Shield | target's best expected damage (cancels 1 move) |
 | Extra Strength | 2 x P(hit) per turn |
 | Heal | average of min(1d6, missing hearts) |

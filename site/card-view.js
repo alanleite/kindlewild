@@ -20,6 +20,32 @@
     return (Array.isArray(types) ? types : []).filter(Boolean).slice(0, 2);
   }
 
+  // Enough blank boxes to copy an inherited value and retain this form's growth.
+  function inheritedSlots(creature, species, attribute) {
+    var parents = {};
+    species.forEach(function (c) {
+      (c.evolutions || []).forEach(function (e) { parents[e.into] = { creature: c, pos: e.pos }; });
+    });
+    var current = creature, chain = [], seen = new Set();
+    while (current && current.inherits_attributes && parents[current.name] && !seen.has(current.name)) {
+      seen.add(current.name);
+      var parent = parents[current.name];
+      chain.push(parent);
+      current = parent.creature;
+    }
+    var attr = current && current.attributes && current.attributes[attribute];
+    if (!attr) return null;
+    var growth = Math.max(0, Number(attr.slots) - Number(attr.base));
+    var total = Math.max(0, Number(attr.base) || 0) + growth;
+    chain.forEach(function (link) {
+      var marks = (link.creature.track || []).filter(function (m) { return m.pos <= link.pos; });
+      total += Math.min(growth, marks.filter(function (m) { return m.kind === 'star'; }).length);
+      if (attribute === 'strength') total += marks.filter(function (m) { return m.kind === 'strength'; }).length;
+    });
+    if (attribute === 'strength') total += (creature.track || []).filter(function (m) { return m.kind === 'strength'; }).length;
+    return total;
+  }
+
   // Move in the new format (element, attribute, die, charges, effect, area), from the new or the legacy one.
   function normalizeMove(m) {
     m = m || {};
@@ -60,6 +86,7 @@
     moveProblems: moveProblems,
     EFFECTS: EFFECTS,
     dieLabel: dieLabel,
-    headerTypes: headerTypes
+    headerTypes: headerTypes,
+    inheritedSlots: inheritedSlots
   };
 }));

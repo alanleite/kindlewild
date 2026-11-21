@@ -616,22 +616,22 @@ main {
 }
 
 .attribute-icon {
-  width: calc(var(--u) * 7.2);
-  height: calc(var(--u) * 7.2);
+  width: calc(var(--u) * 5);
+  height: calc(var(--u) * 5);
 }
 
 .boxes {
   display: flex;
   flex-wrap: wrap;
-  width: calc(var(--u) * 16.9);
+  width: calc(var(--u) * 16.2);
   max-width: 100%;
   justify-content: center;
   gap: calc(var(--u) * 0.25);
 }
 
 .box {
-  width: calc(var(--u) * 2.2);
-  height: calc(var(--u) * 2.2);
+  width: calc(var(--u) * 2.1);
+  height: calc(var(--u) * 2.1);
   border: calc(var(--u) * 0.35) solid var(--color-line);
   border-radius: calc(var(--u) * 0.45);
   background: var(--color-sheet);
