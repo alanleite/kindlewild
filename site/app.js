@@ -15,6 +15,11 @@
   // Where data and images come from: see scenario-web.js (?data=, ?scenario= or scenarios/default.txt).
   // The `image` field is relative to the folder of the data file ("images/025.png").
   var imagePrefix = '';
+  var selectionSource = '';
+
+  function saveSelection() {
+    try { PrintSelection.save(window.localStorage, selectionSource, state.selectedIds); } catch (_) { /* Storage can be disabled. */ }
+  }
   // Front and back go on separate sheets. The PrintSelection module groups only
   // the checked cards and mirrors the back columns for long-edge printing.
 
@@ -464,6 +469,7 @@
       location.assign(page.href);
     });
     document.getElementById('reset-data').addEventListener('click', function () {
+      try { localStorage.removeItem('kindlewild.database.v1'); } catch (_) { /* Storage can be disabled. */ }
       var page = new URL(location.href);
       page.searchParams.delete('data');
       page.searchParams.delete('scenario');
@@ -491,6 +497,7 @@
       var id = Number(event.target.value);
       if (event.target.checked) state.selectedIds.add(id);
       else state.selectedIds.delete(id);
+      saveSelection();
       render();
     });
 
@@ -506,12 +513,14 @@
 
     document.getElementById('select-all').addEventListener('click', function () {
       state.selectedIds = PrintSelection.selectAll(state.species);
+      saveSelection();
       updateCheckboxes();
       render();
     });
 
     document.getElementById('clear-selection').addEventListener('click', function () {
       state.selectedIds.clear();
+      saveSelection();
       updateCheckboxes();
       render();
     });
@@ -536,6 +545,13 @@
     bindControls();
     try {
       var source = await ScenarioWeb.dataSource();
+      var params = new URL(location.href).searchParams;
+      if (!params.has('data') && !params.has('scenario')) {
+        try {
+          var remembered = localStorage.getItem('kindlewild.database.v1');
+          if (remembered && new URL(remembered).protocol === 'https:') source = { url: remembered, imagePrefix: new URL('.', remembered).href };
+        } catch (_) { /* Use the default scenario. */ }
+      }
       url = source.url;
       imagePrefix = source.imagePrefix;
       var species = await loadData(url);
@@ -544,7 +560,13 @@
         return;
       }
       state.species = species;
-      state.selectedIds = PrintSelection.selectAll(species);
+      selectionSource = new URL(url, location.href).href;
+      try { state.selectedIds = PrintSelection.restore(window.localStorage, selectionSource, species); }
+      catch (_) { state.selectedIds = PrintSelection.selectAll(species); }
+      if (/^https:\/\//i.test(url) && (params.has('data') || !params.has('scenario'))) {
+        document.getElementById('data-url').value = url;
+        try { localStorage.setItem('kindlewild.database.v1', url); } catch (_) { /* Storage can be disabled. */ }
+      }
       computeChain(species);
       checkCards(species);
       hideMessage();

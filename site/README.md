@@ -23,6 +23,8 @@ If you open `index.html` with a double click, the page shows a message explainin
 
 On the cards page, enter a public HTTPS URL in **Creature database URL** and select **Load database**. The JSON must be an array of creatures in the format described in `docs/schema.md`. Each `image` can be an absolute HTTPS URL or a path relative to the JSON file. **Use example** returns to the default scenario.
 
+The browser remembers the external database URL and the selected creature IDs separately for each database, including an empty selection. They remain on this browser and device until its site data is cleared. New creatures are not selected automatically when restoring a saved selection. In private browsing or when storage is unavailable, the selection may not persist.
+
 The storage server must allow cross-origin requests from the site using CORS (for example, `Access-Control-Allow-Origin: https://alanleite.github.io`). Images must also be publicly accessible. The database URL appears in the browser address bar and history, so do not use passwords, API keys or secret signed URLs. The browser fetches the data directly; the site does not upload it to the repository.
 
 To pick the scenario: http://localhost:8000/site/?scenario=example

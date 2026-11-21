@@ -23,6 +23,20 @@
     return new Set(species.map(function (p) { return Number(p.id); }));
   }
 
+  function restore(storage, source, species) {
+    try {
+      var saved = JSON.parse(storage.getItem('kindlewild.selection.v1:' + source));
+      if (!Array.isArray(saved) || !saved.every(Number.isInteger)) return selectAll(species);
+      var available = selectAll(species);
+      return new Set(saved.filter(function (id) { return available.has(id); }));
+    } catch (_) { return selectAll(species); }
+  }
+
+  function save(storage, source, selectedIds) {
+    try { storage.setItem('kindlewild.selection.v1:' + source, JSON.stringify(Array.from(selectedIds))); return true; }
+    catch (_) { return false; }
+  }
+
   function summarize(count, total, perPage) {
     var sheets = count ? Math.ceil(count / perPage) : 0;
     return {
@@ -82,6 +96,8 @@
     filter: filter,
     matchesSearch: matchesSearch,
     selectAll: selectAll,
+    restore: restore,
+    save: save,
     summarize: summarize,
     group: group,
     mirrorBack: mirrorBack,
