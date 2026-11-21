@@ -16,7 +16,7 @@
     var params = new URL(location.href).searchParams;
     var url = params.get('data');
     if (!url) url = SCENARIOS_DIR + (params.get('scenario') || await defaultScenario()) + '/creatures.json';
-    return { url: url, imagePrefix: url.slice(0, url.lastIndexOf('/') + 1) };
+    return { url: url, imagePrefix: new URL('.', new URL(url, location.href)).href };
   }
 
   window.ScenarioWeb = Object.freeze({ dataSource: dataSource });

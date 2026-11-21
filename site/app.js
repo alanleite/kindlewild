@@ -55,8 +55,7 @@
 
   function imageUrl(file) {
     if (!file) return null;
-    if (/^(https?:|data:|\/)/.test(file)) return file;
-    return imagePrefix + file;
+    try { return new URL(file, imagePrefix).href; } catch (_) { return null; }
   }
 
   function integer(value, min) {
@@ -85,11 +84,7 @@
     try {
       response = await fetch(url, { cache: 'no-store' });
     } catch (e) {
-      throw new Error(
-        'Could not read ' + url + '. If you opened index.html straight from your computer (file://), ' +
-        'the browser blocks this read. At the project root, run "python3 -m http.server" ' +
-        'and open http://localhost:8000/site/ (details in site/README.md).'
-      );
+      throw new Error('Could not load the database. Check the URL and network, and ensure the server allows cross-origin requests (CORS). If using file://, serve the site over HTTP instead.');
     }
     if (!response.ok) {
       throw new Error('The file ' + url + ' was not found (error ' + response.status + ').');
@@ -103,6 +98,13 @@
     if (!Array.isArray(data)) {
       throw new Error('The file ' + url + ' must be a list (array) of creatures.');
     }
+    var ids = new Set();
+    data.forEach(function (creature) {
+      if (!creature || !Number.isInteger(creature.id) || ids.has(creature.id) || typeof creature.name !== 'string' || !Array.isArray(creature.moves) || !Array.isArray(creature.track) || !Array.isArray(creature.types)) {
+        throw new Error('Invalid creature data: each entry needs a unique numeric id, name, types, moves and track. See docs/schema.md.');
+      }
+      ids.add(creature.id);
+    });
     return data;
   }
 
@@ -448,6 +450,25 @@
   }
 
   function bindControls() {
+    var dataUrl = document.getElementById('data-url');
+    var currentData = new URL(location.href).searchParams.get('data');
+    if (currentData && /^https:\/\//i.test(currentData)) dataUrl.value = currentData;
+    document.getElementById('data-form').addEventListener('submit', function (event) {
+      event.preventDefault();
+      var source;
+      try { source = new URL(dataUrl.value.trim()); } catch (_) { message('Enter a valid HTTPS database URL.'); return; }
+      if (source.protocol !== 'https:' || source.username || source.password) { message('Use an HTTPS URL without a username or password.'); return; }
+      var page = new URL(location.href);
+      page.searchParams.delete('scenario');
+      page.searchParams.set('data', source.href);
+      location.assign(page.href);
+    });
+    document.getElementById('reset-data').addEventListener('click', function () {
+      var page = new URL(location.href);
+      page.searchParams.delete('data');
+      page.searchParams.delete('scenario');
+      location.assign(page.href);
+    });
     var sheetSelect = document.getElementById('sheet-select');
     sheetSelect.addEventListener('change', function () {
       var target = document.getElementById('sheet-' + sheetSelect.value + '-front');

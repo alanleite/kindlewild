@@ -30,6 +30,14 @@
     </div>
   </header>
 
+  <form id="data-form" class="data-form">
+    <label for="data-url">Creature database URL</label>
+    <input id="data-url" type="url" placeholder="https://example.com/creatures.json" required>
+    <button type="submit" class="button-secondary">Load database</button>
+    <button id="reset-data" type="button" class="button-secondary">Use example</button>
+    <p>Use a public HTTPS JSON URL that allows cross-origin access. The URL appears in the address bar; do not include secrets.</p>
+  </form>
+
   <section class="selection-panel" aria-labelledby="selection-title">
     <div class="selection-header">
       <div>
