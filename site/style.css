@@ -1076,11 +1076,10 @@ main {
     gap: 0;
   }
 
-  /* Print slack: 20 mm margin at the top and 14 mm on the left, applied
-     by @page, so it applies to every sheet (not only the first). */
+  /* Margins are inside the sheet so the browser's "None" setting keeps them. */
   @page {
     size: A4 portrait;
-    margin: 20mm 0 0 14mm;
+    margin: 0;
   }
 
   #pages {
@@ -1088,13 +1087,12 @@ main {
     gap: 0;
   }
 
-  /* Physical size already reduced (86% of 210 x 296 mm), no zoom: the browser
-     fragments the page at the right place when the real size fits the printed
-     area (277 mm high after the 20 mm margin). */
+  /* Center the 180.6 x 254.6 mm grid on each A4 sheet. */
   .page {
-    width: 180.6mm;
-    height: 254.6mm;
-    max-height: 254.6mm;
+    width: 210mm;
+    height: 297mm;
+    max-height: 297mm;
+    padding: 21.2mm 14.7mm;
     aspect-ratio: auto;
     overflow: hidden;
     box-shadow: none;
