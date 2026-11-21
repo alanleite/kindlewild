@@ -7,7 +7,7 @@
     "Effect": { "weakness": "Fraqueza", "poison": "Veneno", "paralysis": "Paralisia", "sleep": "Sono", "swift": "Ligeiro", "shield": "Escudo", "extra_strength": "Força Extra", "heal": "Cura" },
     "Sheet": { "Area": "Área", "Support": "suporte" },
     "Button": { "HealingCenter": "Centro de Cura", "Rest": "Descanso" },
-    "Chat": { "Hit": "Acerto", "HitsIf": "acerta se ≥ Agilidade do alvo", "Damage": "Dano", "Effect": "Efeito", "Area": "Acerta todos os inimigos", "Target": "Alvo", "Defense": "Defesa", "Agility": "Agilidade", "Resistance": "Resistência" },
+    "Chat": { "Hit": "Acerto", "HitsIf": "acerta se > Agilidade do alvo", "Damage": "Dano", "Effect": "Efeito", "Area": "Acerta todos os inimigos", "Target": "Alvo", "Defense": "Defesa", "Agility": "Agilidade", "Resistance": "Resistência" },
     "Warning": { "NoCharges": "{name}: sem cargas. Use o Centro de Cura.", "Locked": "{name}: golpe ainda não liberado." }
   }
 }

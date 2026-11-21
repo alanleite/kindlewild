@@ -10,8 +10,8 @@
   var TRACK_CONFIG = PrintSelection.trackConfig();
   var MOVES = 4;
   var MAX_CHIPS = 3;           // resistances visible on the card (section 9)
-  var HEARTS_PER_ROW = 8;      // 1 cm hearts: 8 per row, 2 rows (16 at most)
-  var MAX_HEALTH = 16;         // above this the hearts do not fit in the health row
+  var HEARTS_PER_ROW = 12;
+  var MAX_HEALTH = 24;
   // Where data and images come from: see scenario-web.js (?data=, ?scenario= or scenarios/default.txt).
   // The `image` field is relative to the folder of the data file ("images/025.png").
   var imagePrefix = '';
@@ -173,7 +173,7 @@
 
     var moves = p.moves || [];
     if (moves.length !== MOVES) problems.push(moves.length + ' moves (expected ' + MOVES + ')');
-    if (integer(p.health, 0) > MAX_HEALTH) problems.push('health ' + p.health + ' does not fit in the 2 rows of hearts (max ' + MAX_HEALTH + ')');
+    if (integer(p.health, 0) + (p.track || []).filter(function (m) { return m.kind === 'heart'; }).length > MAX_HEALTH) problems.push('health and track hearts exceed ' + MAX_HEALTH);
     moves.map(CardView.normalizeMove).forEach(function (m) {
       CardView.moveProblems(m).forEach(function (msg) { problems.push('move ' + msg); });
     });
@@ -272,16 +272,16 @@
 
     var body = el('div', 'card-body');
 
-    // 2. row: health (1 cm hearts, 8 per row, up to 2 rows)
+    // 2. row: filled starting hearts and outlined future track hearts.
     var row = el('div', 'health-row');
     var health = integer(p.health, 0);
     var hearts = el('div', 'hearts');
-    hearts.setAttribute('aria-label', 'Health ' + health);
-    // up to MAX_HEALTH hearts fit in the 2 rows; above that the card is flagged in validation
-    for (var i = 0; i < Math.min(health, MAX_HEALTH); i++) {
-      hearts.append(icon('general', 'heart', 'heart'));
+    var futureHearts = (p.track || []).filter(function (m) { return m.kind === 'heart'; }).length;
+    hearts.setAttribute('aria-label', 'Starting health ' + health + ', ' + futureHearts + ' unlockable hearts');
+    for (var i = 0; i < Math.min(health + futureHearts, MAX_HEALTH); i++) {
+      hearts.append(icon('general', 'heart', 'heart' + (i >= health ? ' future' : '')));
     }
-    if (health > MAX_HEALTH) console.warn(p.name + ': health ' + health + ' does not fit in the 2 rows of hearts (max ' + MAX_HEALTH + ').');
+    if (health + futureHearts > MAX_HEALTH) console.warn(p.name + ': total hearts exceed ' + MAX_HEALTH + '.');
     row.append(hearts);
 
     // 3. attributes: one column per attribute, icon and boxes (no number).

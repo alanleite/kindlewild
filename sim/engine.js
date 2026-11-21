@@ -6,7 +6,7 @@
 const DEFAULT_SEED = 12345;
 
 const AGILITY_CAP = 8;
-const HEALTH_CAP = 16;
+const HEALTH_CAP = 24;
 const PARALYSIS_LIMIT = 4; // d10 from 1 to 4: does not attack
 const NEGATIVE_EFFECTS = ['weakness', 'poison', 'paralysis', 'sleep'];
 const POSITIVE_EFFECTS = ['swift', 'shield', 'extra_strength', 'heal'];
@@ -30,13 +30,12 @@ function roll(sides, rng) {
   return Math.floor(rng() * sides) + 1;
 }
 
-// Hit chance against the target's Agility: P(d10 >= Agility).
-// Agility 0 or 1 always hits. Agility above 10 never hits.
+// Hit chance against the target's Agility: P(d10 > Agility).
 function hitChance(agility) {
   const ag = Math.max(0, agility);
-  if (ag <= 1) return 1;
-  if (ag > 10) return 0;
-  return (11 - ag) / 10;
+  if (ag === 0) return 1;
+  if (ag >= 10) return 0;
+  return (10 - ag) / 10;
 }
 
 // Type effect the target applies to the move's element: 'vulnerable' | 'resistant' | 'immune' | 'neutral'.
@@ -85,7 +84,7 @@ function moveAttribute(move) {
 function resolveAttack(attacker, defender, move, rng) {
   const hitRoll = roll(10, rng);
   const agility = effectiveAgility(defender);
-  if (hitRoll < agility) {
+  if (hitRoll <= agility) {
     return { hit: false, hitRoll, damage: 0 };
   }
   const die = roll(move.sides, rng);
@@ -217,7 +216,7 @@ function battle(a, b, options = {}) {
         } else if (negative) {
           // Support with a negative effect: rolls to hit against the target.
           const hitRoll = roll(10, rng);
-          const hit = hitRoll >= effectiveAgility(def);
+          const hit = hitRoll > effectiveAgility(def);
           Object.assign(event, { hit, hitRoll, damage: 0 });
           if (hit) event.appliedEffect = applyEffect(def, move.effect, rng);
         }

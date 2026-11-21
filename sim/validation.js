@@ -116,7 +116,7 @@ test('Target Agility 0: hits 100% of the time', () => {
   return `${N} of ${N}`;
 });
 
-test('Target Agility 8: hits 30% (±2 percentage points)', () => {
+test('Target Agility 8: hits 20% (±2 percentage points)', () => {
   const rng = createRng(6);
   const a = attacker(1);
   const target = buildSyntheticCard({ agility: 8 });
@@ -125,14 +125,25 @@ test('Target Agility 8: hits 30% (±2 percentage points)', () => {
     if (resolveAttack(a, target, a.moves[0], rng).hit) hits += 1;
   }
   const rate = hits / N;
-  assert(Math.abs(rate - 0.3) <= 0.02, `rate ${rate}`);
+  assert(Math.abs(rate - 0.2) <= 0.02, `rate ${rate}`);
   return `rate ${(rate * 100).toFixed(2)}%`;
 });
 
-test('Hit table: P(d10 >= Agility) for 0 to 11', () => {
-  const expected = [1, 1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0];
+test('Hit table: P(d10 > Agility) for 0 to 11', () => {
+  const expected = [1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0, 0];
   expected.forEach((p, ag) => assert(hitChance(ag) === p, `Agility ${ag}`));
   return 'exact';
+});
+
+test('Natural attribute points preserve the empty growth boxes', () => {
+  const c = JSON.parse(JSON.stringify(FIXTURES.find((s) => s.name === 'Novo')));
+  c.attributes.strength = { base: 2, slots: 5 };
+  c.attributes.energy = { base: 0, slots: 0 };
+  for (let i = 0; i < 8; i++) c.track.push({ pos: 60 + i, kind: 'star' });
+  const result = buildCard(c, { progress: 70, stars: 'strength', list: [c] });
+  assert(result.attributes.strength.base === 2, 'expected two natural points');
+  assert(result.attributes.strength.stars === 3, 'expected three growth boxes');
+  return 'two natural points plus three growth boxes';
 });
 
 test('Battle: same seed, same result', () => {
@@ -166,20 +177,20 @@ test('Card from data: health = base health + track hearts up to progress; moves 
   const base = DEFAULT_DATA.find((s) => s.track.some((m) => m.kind === 'heart'));
   const c = buildCard(base, { progress: 70 });
   const hearts = base.track.filter((m) => m.kind === 'heart').length;
-  assert(c.maxHealth === Math.min(16, base.health + hearts), `maxHealth ${c.maxHealth}`);
+  assert(c.maxHealth === Math.min(24, base.health + hearts), `maxHealth ${c.maxHealth}`);
   assert(c.moves.every((m) => m.unlocked), 'not all moves unlocked at 70');
   const c0 = buildCard(base, { progress: 0 });
   assert(c0.maxHealth === base.health && c0.moves.filter((m) => m.unlocked).length === 1, 'progress 0: only move 1');
   return `health ${c.maxHealth}`;
 });
 
-test('All species fit the card\'s physical limit of 16 hearts', () => {
+test('All species fit the card\'s physical limit of 24 hearts', () => {
   const overLimit = [];
   for (const species of DEFAULT_DATA) {
-    if (species.health > 16) overLimit.push(`${species.name} (${species.health})`);
+    if (species.health + species.track.filter(m => m.kind === 'heart').length > 24) overLimit.push(`${species.name} (${species.health})`);
   }
-  assert(overLimit.length === 0, `over 16: ${overLimit.join(', ')}`);
-  return 'maximum 16';
+  assert(overLimit.length === 0, `over 24: ${overLimit.join(', ')}`);
+  return 'maximum 24';
 });
 
 test('Evolution: the evolved form copies the previous form\'s value (no +1) and has a new track', () => {
@@ -329,13 +340,13 @@ test('Legacy format (type/category/uses) is converted', () => {
   return 'ok';
 });
 
-test('Health cap of 16: base health + track hearts, at most 16', () => {
+test('Health cap of 24: base health + track hearts, at most 24', () => {
   const v = FIXTURES.find((s) => s.name === 'Vida16');
   assert(buildCard(v, { progress: 7 }).maxHealth === 15, 'before the hearts');
   assert(buildCard(v, { progress: 8 }).maxHealth === 16, 'one heart: 16');
-  assert(buildCard(v, { progress: 70 }).maxHealth === 16, '15 + 3 = 18 becomes 16');
+  assert(buildCard(v, { progress: 70 }).maxHealth === 18, '15 + 3 = 18');
   const novo = FIXTURES.find((s) => s.name === 'Novo');
-  assert(buildCard(novo, { progress: 70 }).maxHealth === 16, 'Novo at the cap');
+  assert(buildCard(novo, { progress: 70 }).maxHealth === 18, 'Novo adds its hearts');
   const legado = FIXTURES.find((s) => s.name === 'Legado');
   assert(buildCard(legado, { progress: 70 }).maxHealth === 9, 'below the cap adds up normally');
   return 'ok';
@@ -350,12 +361,12 @@ test('Effective Agility: cap 8; Swift +3 with cap 8', () => {
   const low = buildSyntheticCard({ agility: 0 });
   low.tokens.swift = true;
   assert(effectiveAgility(low) === 3, '0+3 = 3');
-  // Hit against Agility 12 (effective 8): 30%.
+  // Hit against Agility 12 (effective 8): 20%.
   const rng = createRng(23);
   const a = attacker(1);
   let hits = 0;
   for (let i = 0; i < N; i += 1) if (resolveAttack(a, high, a.moves[0], rng).hit) hits += 1;
-  assert(Math.abs(hits / N - 0.3) <= 0.02, `rate ${hits / N}`);
+  assert(Math.abs(hits / N - 0.2) <= 0.02, `rate ${hits / N}`);
   return 'ok';
 });
 
@@ -369,7 +380,7 @@ test('Positive support does not roll to hit and applies the effect on itself', (
   return 'ok';
 });
 
-test('Negative support rolls to hit against the target (Agility 8: ~30%)', () => {
+test('Negative support rolls to hit against the target (Agility 8: ~20%)', () => {
   const a = buildSyntheticCard({ agility: 9, moves: [{ name: 'Sleep', die: null, attribute: null, effect: 'sleep' }] });
   const target = wall({ agility: 8 });
   let hits = 0;
@@ -381,7 +392,7 @@ test('Negative support rolls to hit against the target (Agility 8: ~30%)', () =>
     assert((e.hit && e.appliedEffect) || (!e.hit && !e.appliedEffect), 'effect only on a hit');
     if (e.hit) hits += 1;
   }
-  assert(Math.abs(hits / M - 0.3) <= 0.03, `rate ${hits / M}`);
+  assert(Math.abs(hits / M - 0.2) <= 0.03, `rate ${hits / M}`);
   return `${(hits / M * 100).toFixed(1)}%`;
 });
 
@@ -391,7 +402,7 @@ test('Weakness: −2 on the damage of the target\'s moves, does not stack', () =
   const damages = [];
   for (let seed = 1; seed <= 20; seed += 1) {
     const r = battle(a, b, { seed, maxTurns: 100 });
-    attacks(r.log, 'b').forEach((e) => damages.push(e.damage));
+    attacks(r.log, 'b').filter((e) => e.hit).forEach((e) => damages.push(e.damage));
   }
   assert(Math.min(...damages) === 1 && Math.max(...damages) === 6, `${Math.min(...damages)}..${Math.max(...damages)} (expected 1..6 = d6+2−2)`);
   const c = buildSyntheticCard({ strength: 0 });
@@ -454,7 +465,7 @@ test('Swift: +3 Agility (cap 8) lowers the enemy\'s hit chance', () => {
     const r = battle(a, b, { seed, maxTurns: 400 });
     attacks(r.log, 'b').forEach((e) => { total += 1; if (e.hit) hits += 1; });
   }
-  assert(Math.abs(hits / total - 0.3) <= 0.03, `rate ${hits / total}`);
+  assert(Math.abs(hits / total - 0.2) <= 0.03, `rate ${hits / total}`);
   return `${(hits / total * 100).toFixed(1)}%`;
 });
 
@@ -635,7 +646,7 @@ test('Scenario: every card builds and fights (new or legacy format)', () => {
     const ca = buildCard(s, { progress: 70 });
     const cb = buildCard(other, { progress: 70 });
     assert(ca.moves[0].charges === null, `${s.name}: move 1 should be unlimited`);
-    assert(ca.maxHealth <= 16, `${s.name}: health ${ca.maxHealth}`);
+    assert(ca.maxHealth <= 24, `${s.name}: health ${ca.maxHealth}`);
     for (const pol of [defaultPolicy, random]) {
       const r = battle(ca, cb, { seed: 11, policy: pol, log: false });
       assert(r.turns > 0, 'turns');

@@ -77,7 +77,7 @@ Four attributes:
 | **Agility** | Chance to dodge (see section 6). |
 | **Defense** | Reduces damage taken, against physical and elemental. |
 
-- Each attribute has a **base** (printed colored on the card, from the species) and **slots** (boxes where the child places stars).
+- Each attribute has a **base** (filled boxes, from the species) and **slots** (total boxes, filled plus empty). Natural boxes are added without removing existing growth boxes.
 - **Value = base + stars.** Minimum 0. No negative value.
 - Base 0 and negative base: a negative base becomes 0. There is no penalty below zero.
 **Slots per species (variable, from 2 to 5):**
@@ -100,8 +100,9 @@ Species with no evolution use the die according to their strength: d6 for common
 
 **Hit:**
 - The attacker rolls d10.
-- Hits if the roll equals or beats the target's **Agility**.
-- Agility 0: always hits. Agility 8: dodges 70% of the time.
+- Hits only if the roll is greater than the target's **Agility**. Each point of effective Agility is a 10% dodge chance.
+- Agility 0: always hits. Effective Agility is capped at 8, which dodges 80% of the time.
+- The creature with higher Agility acts first; when tied, choose the first creature randomly.
 
 **Damage:**
 1. Roll the move's die (d4, d6 or d8) and add the attribute for the move's kind (Strength if physical, Energy if elemental).
@@ -117,7 +118,7 @@ Species with no evolution use the die according to their strength: d6 for common
 
 - **Unit: 1 heart = 1 point of damage.** Damage left after defense removes hearts, one by one.
 - High starting health. Reference scale: small and frail creature 7, sturdy final form 12–13, very tough creature 15–16. **Health is the main balancing knob.**
-- Heart on the track: +1 health.
+- Heart on the track: +1 health. The front shows starting hearts filled and future track hearts outlined; fill an outlined heart when unlocked. Cards support up to 24 hearts total.
 - **Healing Center:** restores all hearts and all move uses.
 - **Rest outside the Center:** restores half the hearts (rounded up). Limited moves only recover with a specific mark on the card **[to decide]** (rest icon next to some moves).
 
@@ -183,13 +184,13 @@ The loop agent evaluates the site against these criteria. Each item can be check
 
 **Layout (author's decisions, 2026-10-04):**
 - Spacing between blocks: **4 mm**.
-- Maximum health: **16 hearts**. No species goes above that.
+- Maximum health: **24 hearts**, including heart rewards on the track (updated balance).
 - Move name: **smaller than the previous version (4.2 mm)**. This overrides the 14 pt minimum of section 11. It is a conscious decision by the author, not a mistake.
 
 **Assumed from the recommendation (you didn't answer; confirm or change):**
 - Skills per card: **4**, the first at position 1.
 - Evolution: **full** copy of the attributes (current value). No loss from fewer slots.
-- Effective Agility **capped at 8** (maximum dodge of 70%).
+- Effective Agility **capped at 8** (maximum dodge of 80%).
 - Immune is **always 0**. The tie (becomes 1) only happens when Defense zeroes a move that hit.
 
 

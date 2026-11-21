@@ -7,7 +7,7 @@
     "Effect": { "weakness": "Weakness", "poison": "Poison", "paralysis": "Paralysis", "sleep": "Sleep", "swift": "Swift", "shield": "Shield", "extra_strength": "Extra Strength", "heal": "Heal" },
     "Sheet": { "Area": "Area", "Support": "support" },
     "Button": { "HealingCenter": "Healing Center", "Rest": "Rest" },
-    "Chat": { "Hit": "Hit", "HitsIf": "hits if ≥ target's Agility", "Damage": "Damage", "Effect": "Effect", "Area": "Hits every enemy", "Target": "Target", "Defense": "Defense", "Agility": "Agility", "Resistance": "Resistance" },
+    "Chat": { "Hit": "Hit", "HitsIf": "hits if > target's Agility", "Damage": "Damage", "Effect": "Effect", "Area": "Hits every enemy", "Target": "Target", "Defense": "Defense", "Agility": "Agility", "Resistance": "Resistance" },
     "Warning": { "NoCharges": "{name}: no charges left. Use the Healing Center.", "Locked": "{name}: move not unlocked yet." }
   }
 }

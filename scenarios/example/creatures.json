@@ -6,7 +6,7 @@
       "plant"
     ],
     "description": "Criatura de tipo Planta.",
-    "health": 8,
+    "health": 10,
     "status": "draft",
     "attributes": {
       "strength": {
@@ -192,7 +192,7 @@
       "plant"
     ],
     "description": "Criatura de tipo Planta.",
-    "health": 9,
+    "health": 11,
     "status": "draft",
     "attributes": null,
     "inherits_attributes": true,
@@ -379,7 +379,7 @@
       "psychic"
     ],
     "description": "Criatura de tipo Psíquico.",
-    "health": 16,
+    "health": 20,
     "status": "draft",
     "attributes": {
       "strength": {
@@ -598,7 +598,7 @@
       "normal"
     ],
     "description": "Criatura de tipo Normal.",
-    "health": 8,
+    "health": 10,
     "status": "draft",
     "attributes": {
       "strength": {

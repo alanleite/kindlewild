@@ -10,7 +10,7 @@ Changes in this version (author's feedback, round 3):
 
 Decisions closed later in the round:
 - 6.1 mm between the main blocks of the front.
-- Maximum health of 16 hearts; the only species of the test scenario with 17 was adjusted to 16.
+- Maximum health of 24 hearts, including hearts unlocked along the track.
 - Move name smaller than the previous version (4.2 mm): now **3.6 mm (~10 pt)**, in up to 2 lines. Author's decision; it overrides the 14 pt minimum of section 11 of the rules.
 - Space between the blocks of the front: **6.1 mm** in all three gaps (image → health, health → attributes, attributes → moves). To fit, the attribute boxes went from 3.6 to **2.6 mm**. The hearts were reduced from 10 to 7 mm (author's request), which freed space for the 6.1 mm gap.
 
@@ -84,7 +84,7 @@ The creature name keeps at least 14 pt. The author decided that the move name mu
 | Element | Size | Side | Reason |
 |---|---|---|---|
 | Type disc (with icon) | 6.4 mm | name bar | up to 2, in the left corner |
-| Heart | 7 mm | front | reduced 30% at the author's request, 8 per row |
+| Heart | 6.2 mm | front | 12 per row; outlined hearts are future track rewards |
 | Move unlock square | 10 mm | front | pen target (1 cm) |
 | Move icon | 10 mm | front | 1 cm icon, focus of the row |
 | Attribute icon (on the move and in the column) | 8 mm | front | same size in both places |
@@ -174,7 +174,7 @@ The site normalizes the perceived size with each creature's optional `image_scal
 
 ### 6.9 Health
 
-Up to 16 hearts, in 2 rows of 8 (7 mm each). The health row is always 15 mm, so the cards stay aligned. The data ceiling is 16; the site keeps the warning as protection against invalid data.
+Up to 24 hearts, in 2 rows of 12 (6.2 mm each). Starting hearts are filled; future hearts from the track are outlined. The health row stays 15 mm high, keeping the cards aligned.
 
 ## 7. Front and back measurements
 

@@ -21,7 +21,7 @@
       {{#each attributes}}
       <div class="kw-attribute">
         <span class="kw-label">{{label}}</span>
-        <span class="kw-boxes">{{#each boxes}}<button type="button" class="kw-box {{#if full}}full{{/if}}" data-action="star" data-attribute="{{../key}}" data-index="{{index}}" aria-label="star {{index}}"></button>{{/each}}</span>
+        <span class="kw-boxes">{{#each boxes}}<button type="button" class="kw-box {{#if full}}full{{/if}}" data-action="star" data-attribute="{{../key}}" data-index="{{index}}" aria-label="attribute box {{index}}" {{#if natural}}disabled{{/if}}></button>{{/each}}</span>
       </div>
       {{/each}}
     </div>

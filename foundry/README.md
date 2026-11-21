@@ -2,6 +2,8 @@
 
 Card-style creature sheet and move rolls in the chat. The system ships no creatures: they come from a **per-scenario module** (e.g. `kindlewild-example`), built from `scenarios/<id>/`.
 
+Version 0.4.0 adds natural attribute bases. Existing actors default to base 0; rebuilding a scenario module does not update actors already in a world. Back up the world and re-import or update those actors deliberately, preserving any player progress. Evolution inheritance remains a manual operation in Foundry.
+
 ## Commands (run inside `foundry/`)
 
 - `npm install`: installs Foundry's compendium packer.

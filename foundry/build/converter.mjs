@@ -49,7 +49,7 @@ export function creatureToActor(creature, all, { module } = {}) {
   if (!module) throw new Error('creatureToActor: the scenario module is required');
   const _id = actorId(creature.id);
   const source = root(creature, all);
-  const attributes = Object.fromEntries(ATTRS.map((a) => [a, { slots: source.attributes[a].slots, stars: 0 }]));
+  const attributes = Object.fromEntries(ATTRS.map((a) => [a, { base: creature.inherits_attributes ? 0 : source.attributes[a].base, slots: source.attributes[a].slots, stars: 0 }]));
   const img = image(creature, module);
   return {
     _id,

@@ -4,11 +4,12 @@ import * as R from '../module/rules.mjs';
 
 const marks = [{ pos: 5, kind: 'heart' }, { pos: 20, kind: 'heart' }, { pos: 30, kind: 'star' }];
 
-test('maxHealth adds hearts up to the progress, capped at 16', () => {
+test('maxHealth adds hearts up to the progress, capped at 24', () => {
   assert.equal(R.maxHealth(8, marks, 0), 8);
   assert.equal(R.maxHealth(8, marks, 5), 9);
   assert.equal(R.maxHealth(8, marks, 70), 10);
-  assert.equal(R.maxHealth(15, marks, 70), 16);
+  assert.equal(R.maxHealth(15, marks, 70), 17);
+  assert.equal(R.maxHealth(23, marks, 70), 24);
 });
 
 test('maxHealth drops when the progress goes back (Review Focus)', () => {
@@ -43,6 +44,7 @@ test('damageFormula: die + attribute stars; support has no formula', () => {
   assert.equal(R.damageFormula({ die: 'd6', attribute: 'strength' }, attrs), '1d6 + 2');
   assert.equal(R.damageFormula({ die: 'd12', attribute: 'energy' }, attrs), '1d12 + 0');
   assert.equal(R.damageFormula({ die: null, attribute: null }, attrs), null);
+  assert.equal(R.damageFormula({ die: 'd6', attribute: 'strength' }, { strength: { base: 2, stars: 3 } }), '1d6 + 5');
 });
 
 test('targetReference: no target and no resistance show a dash', () => {

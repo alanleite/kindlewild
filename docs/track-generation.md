@@ -249,8 +249,7 @@ Glossary, to avoid confusion: a **skill** is the track mark that unlocks a move 
 
 ### 10.5 Attributes start empty
 
-- Confirmed by the author ("that's it"): creatures **don't start with pre-filled attributes**. The `base` column becomes 0 for every species. The speed difference comes from the number of **slots** per attribute.
-- Consequence: extensible capacity = slots (`max(0, base)` = 0). The bonus caps (80% and 60%) are recalculated from this value.
+- Historical decision (superseded): creatures originally started with zero natural attributes. They now start with species-specific filled boxes, in addition to the prior growth capacity. Calculate the capacity as `slots - base`.
 - Evolved forms inherit the assigned attributes (author's decision, round 2).
 
 ## 11. Calibration 2026-10-04

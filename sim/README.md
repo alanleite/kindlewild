@@ -78,13 +78,13 @@ During the transition the simulator also accepts the legacy format (`type`, `cat
 
 - Who starts: higher base Agility. Tie: drawn with the seed.
 - One side's turn: Sleep (loses the turn, the token goes), then Paralysis (d10 from 1 to 4: does not attack), then the move, then Poison (loses 1 heart at the end of the turn, even if the turn was lost). Sides always alternate.
-- Hit: d10. Hits if the result is greater than or equal to the target's effective Agility (base, +3 with Swift, cap 8). Agility 0 or 1 always hits.
+- Hit: d10. Hits if the result is greater than the target's effective Agility (base, +3 with Swift, cap 8). Agility 0 always hits; Agility 8 dodges 80% of attacks.
 - Damage: rolls the `die` (d4, d6, d8, d12) and adds the move's attribute (Strength or Energy), the track's Power and the token adjustments (Extra Strength +2, Weakness −2). Target's type effect by `element`: vulnerable ×2, resistant half rounded up, immune zero. Then subtracts the target's Defense. Negative becomes 0. Zero on a hit becomes 1. Immune is always 0.
 - Charges: uses 1 per use, even on a miss. Exhausted cannot be chosen. Move 1 is always unlimited (the card ignores `charges` on move 1). If no move is available, the turn passes with no attack.
 - Support move (`die` null): does not roll to hit. A positive effect goes to itself. A negative effect goes to the target and rolls to hit (d10 against the effective Agility).
 - Effects (tokens, do not stack, last until the end of the fight): Weakness −2 on the damage of the target's moves; Poison 1 heart at the end of each of the target's turns; Paralysis (d10 1 to 4 on the target's turn: does not attack); Sleep (target loses its next turn, token goes); Swift +3 Agility (cap 8); Shield (next move received deals 0, token goes); Extra Strength +2 damage; Heal (instant) 1d6 hearts up to max health.
 - Area: in 1 vs 1 it is a normal move.
-- Health: 1 heart = 1 point. Max health = base health + track hearts up to the progress, capped at 16. Zero health loses the fight.
+- Health: 1 heart = 1 point. Max health = base health + track hearts up to the progress, capped at 24. Zero health loses the fight.
 - Unlocked moves: the first starts unlocked. The others unlock at the track's `skill` mark (new format: `detail` is the move number, 1 to 4; legacy format: `detail` is the name). With no mark with the number, the i-th skill mark in position order applies.
 - Stars: `progress` limits the stars done. The distribution follows the `--stars` policy, respecting each attribute's slots.
 - Strength: the Strength marks done up to the progress are added automatically.

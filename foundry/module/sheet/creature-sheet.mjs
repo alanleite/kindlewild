@@ -52,7 +52,7 @@ export class CreatureSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     context.attributes = ATTRS.map((a) => ({
       key: a,
       label: game.i18n.localize(`KINDLEWILD.Attribute.${a}`),
-      boxes: Array.from({ length: s.attributes[a].slots }, (_, i) => ({ index: i + 1, full: i < s.attributes[a].stars }))
+      boxes: Array.from({ length: s.attributes[a].slots }, (_, i) => ({ index: i + 1, natural: i < s.attributes[a].base, full: i < s.attributes[a].base + s.attributes[a].stars }))
     }));
     context.moves = this.actor.items
       .filter((i) => i.type === 'move')
@@ -95,7 +95,9 @@ export class CreatureSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   static async #star(event, target) {
     const a = target.dataset.attribute;
     const attr = this.actor.system.attributes[a];
-    await this.actor.update({ [`system.attributes.${a}.stars`]: nextClickValue(attr.stars, Number(target.dataset.index), attr.slots) });
+    const index = Number(target.dataset.index) - attr.base;
+    if (index <= 0) return;
+    await this.actor.update({ [`system.attributes.${a}.stars`]: nextClickValue(attr.stars, index, attr.slots - attr.base) });
   }
 
   static async #unlock(event, target) {

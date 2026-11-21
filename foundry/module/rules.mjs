@@ -1,6 +1,6 @@
 // Pure Kindlewild rules. No Foundry dependency: tested with node --test.
 
-export const HEALTH_CAP = 16;
+export const HEALTH_CAP = 24;
 export const TRACK = 70;
 export const AGILITY_CAP = 8;
 
@@ -29,14 +29,17 @@ export function canUse(move) {
 
 export function damageFormula(move, attributes) {
   if (!move.die) return null;
-  const bonus = move.attribute ? (attributes[move.attribute]?.stars ?? 0) : 0;
+  const a = move.attribute ? attributes[move.attribute] : null;
+  const bonus = a ? (a.base ?? 0) + (a.stars ?? 0) : 0;
   return `1${move.die} + ${bonus}`;
 }
 
 export function targetReference(target, element) {
   if (!target) return { agility: '—', defense: '—', resistance: '—' };
-  const agi = Math.min(AGILITY_CAP, target.attributes?.agility?.stars ?? 0);
-  const def = target.attributes?.defense?.stars ?? 0;
+  const agility = target.attributes?.agility;
+  const defense = target.attributes?.defense;
+  const agi = Math.min(AGILITY_CAP, (agility?.base ?? 0) + (agility?.stars ?? 0));
+  const def = (defense?.base ?? 0) + (defense?.stars ?? 0);
   return { agility: String(agi), defense: String(def), resistance: target.resistances?.[element] ?? '—' };
 }
 

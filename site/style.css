@@ -548,26 +548,28 @@ main {
    An empty row keeps its place: the health row is always 15 mm. */
 .hearts {
   flex: none;
-  width: calc(var(--u) * 59.5);
+  width: calc(var(--u) * 78.8);
   min-width: 0;
   display: grid;
-  grid-template-columns: repeat(8, calc(var(--u) * 7));
-  grid-template-rows: repeat(2, calc(var(--u) * 7));
-  column-gap: calc(var(--u) * 0.5);
+  grid-template-columns: repeat(12, calc(var(--u) * 6.2));
+  grid-template-rows: repeat(2, calc(var(--u) * 6.2));
+  column-gap: calc(var(--u) * 0.4);
   row-gap: calc(var(--u) * 1);
   justify-content: center;
   align-content: center;
 }
 
 .hearts .heart {
-  width: calc(var(--u) * 7);
-  height: calc(var(--u) * 7);
+  width: calc(var(--u) * 6.2);
+  height: calc(var(--u) * 6.2);
   color: var(--color-heart);
 }
 
 .hearts .heart path {
   fill: currentColor;
 }
+
+.hearts .heart.future path { fill: none; stroke: var(--color-heart); stroke-width: 1.5; }
 
 /* Resistance chip (over the image): 5.75 mm type disc + 2.4 mm effect symbol */
 .chip {
@@ -610,23 +612,26 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: calc(var(--u) * 2);
+  gap: calc(var(--u) * 0.6);
 }
 
 .attribute-icon {
-  width: calc(var(--u) * 8);
-  height: calc(var(--u) * 8);
+  width: calc(var(--u) * 7.2);
+  height: calc(var(--u) * 7.2);
 }
 
 .boxes {
   display: flex;
+  flex-wrap: wrap;
+  width: calc(var(--u) * 16.9);
+  max-width: 100%;
   justify-content: center;
-  gap: calc(var(--u) * 0.6);
+  gap: calc(var(--u) * 0.25);
 }
 
 .box {
-  width: calc(var(--u) * 2.6);
-  height: calc(var(--u) * 2.6);
+  width: calc(var(--u) * 2.2);
+  height: calc(var(--u) * 2.2);
   border: calc(var(--u) * 0.35) solid var(--color-line);
   border-radius: calc(var(--u) * 0.45);
   background: var(--color-sheet);

@@ -69,7 +69,7 @@ const CARD = { w: 105, h: 148.5 };
 const PER_SHEET = 4;
 const TRACK = { columns: 7, rows: 10, size: 70, box: 10, gap: 4 };
 const LEGACY_TRACK = 50;            // legacy format (docs/track-generation.md, section 10.1)
-const MAX_HEALTH = 16;
+const MAX_HEALTH = 24;
 const MOVES = 4;
 const MARK_BAND = 3.2;              // band outside the grid reserved for the marks
 const ASC = 0.905, DESC = 0.212;    // Arial Bold ascender and descender (per em), to center text
@@ -266,7 +266,7 @@ function checkData(species) {
     if (pos.some(function (q) { return q > TRACK.size || q < 1; })) warnings.push(p.name + ': mark outside 1 to ' + TRACK.size + '.');
     if (new Set(pos).size !== pos.length) warnings.push(p.name + ': repeated position on the track.');
     if ((p.moves || []).length !== MOVES) warnings.push(p.name + ': ' + (p.moves || []).length + ' moves (expected ' + MOVES + ').');
-    if (integer(p.health, 0) > MAX_HEALTH) warnings.push(p.name + ': health ' + p.health + ' above ' + MAX_HEALTH + ' (does not fit in the 2 rows of hearts).');
+    if (integer(p.health, 0) + (p.track || []).filter(m => m.kind === 'heart').length > MAX_HEALTH) warnings.push(p.name + ': total hearts above ' + MAX_HEALTH + '.');
     (p.moves || []).forEach(function (m) {
       if (!CardView.dieLabel(m.die)) warnings.push(p.name + ': move ' + m.name + ' with die ' + m.die + ' (only d4, d6 and d8).');
     });
@@ -359,13 +359,14 @@ function drawFront(doc, p, opts, chain) {
     drawIcon(doc, 'effect', map[type], ax - 0.65, ay - 0.65, 1.3, { color: INK });
   });
 
-  // 2. Health row: 2 rows of 1 cm hearts, 8 per row. 83.5 x 21 mm block centered at 63.4.
+  // 2. Health: starting hearts plus outlined track rewards, twelve per row.
   const health = integer(p.health, 0);
-  const x0Health = 3 + (99 - 83.5) / 2, y0Health = 63.4;
-  for (let k = 0; k < Math.min(health, MAX_HEALTH); k++) {
-    const col = k % 8, row = Math.floor(k / 8);
-    drawIcon(doc, 'general', 'heart', x0Health + col * 10.5, y0Health + row * 11, 10,
-      { color: HEART, fill: HEART });
+  const future = (p.track || []).filter(m => m.kind === 'heart').length;
+  const x0Health = (105 - 78.8) / 2, y0Health = 65;
+  for (let k = 0; k < Math.min(health + future, MAX_HEALTH); k++) {
+    const col = k % 12, row = Math.floor(k / 12);
+    drawIcon(doc, 'general', 'heart', x0Health + col * 6.6, y0Health + row * 8, 6.2,
+      k < health ? { color: HEART, fill: HEART } : { color: HEART });
   }
 
   // 3. Attributes: 4 columns of 24 mm at x = 3, 28, 53, 78; 10 mm icon at y = 88.4; 2.6 mm boxes at y = 98.9.
@@ -375,11 +376,13 @@ function drawFront(doc, p, opts, chain) {
     const x0 = 3 + i * 25;
     drawIcon(doc, 'attribute', k, x0 + 7, 88.4, 10);
     const filled = Math.min(a.base, a.slots);
-    const total = a.slots * 2.6 + Math.max(0, a.slots - 1) * 0.6;
+    const gap = 0.3;
+    const side = Math.max(0.5, Math.min(2.6, (24 - Math.max(0, a.slots - 1) * gap) / Math.max(1, a.slots)));
+    const total = a.slots * side + Math.max(0, a.slots - 1) * gap;
     let x = x0 + 12 - total / 2;
     for (let j = 0; j < a.slots; j++) {
-      box(doc, x, 98.9, 2.6, 2.6, 0.45, { fill: j < filled ? INK : PAPER, border: INK, bw: 0.35 });
-      x += 2.6 + 0.6;
+      box(doc, x, 98.9, side, side, 0.45, { fill: j < filled ? INK : PAPER, border: INK, bw: 0.35 });
+      x += side + gap;
     }
   });
 

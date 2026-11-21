@@ -77,7 +77,8 @@ function effectValue(attacker, defender, move, horizon) {
   else if (effect === 'paralysis') value = 0.4 * damage * horizon;
   else if (effect === 'sleep') value = damage;
   else if (effect === 'swift') {
-    const gain = effectiveAgility(attacker) >= 8 ? 0 : 0.3;
+    const agility = effectiveAgility(attacker);
+    const gain = hitChance(agility) - hitChance(Math.min(8, agility + 3));
     value = gain * damage * horizon;
   } else if (effect === 'shield') value = damage;
   else if (effect === 'extra_strength') value = 2 * pHit * horizon;

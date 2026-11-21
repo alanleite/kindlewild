@@ -30,7 +30,7 @@ test('creatureToActor builds an actor with embedded moves', () => {
   assert.equal(a.img, 'modules/kindlewild-test/assets/001.png');
   assert.equal(a.prototypeToken.texture.src, a.img);
   assert.deepEqual(a.system.health, { base: 8, value: 8 });
-  assert.deepEqual(a.system.attributes.energy, { slots: 4, stars: 0 });
+  assert.deepEqual(a.system.attributes.energy, { base: 0, slots: 4, stars: 0 });
   assert.equal(a.system.track.progress, 0);
   assert.equal(a.system.track.marks[0].detail, '1');
   assert.equal(a.items.length, 4);
@@ -46,7 +46,7 @@ test('creatureToActor builds an actor with embedded moves', () => {
 test('evolved form without attributes gets slots from the root (Review Focus)', () => {
   const a = creatureToActor(evolved, all, { module: MOD });
   assert.equal(a.system.inheritsAttributes, true);
-  assert.deepEqual(a.system.attributes.defense, { slots: 4, stars: 0 });
+  assert.deepEqual(a.system.attributes.defense, { base: 0, slots: 4, stars: 0 });
 });
 
 test('token size: small 0.5, medium 1, large 2', () => {

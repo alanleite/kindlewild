@@ -2,7 +2,7 @@ import { maxHealth } from '../rules.mjs';
 
 const { NumberField, StringField, BooleanField, SchemaField, ArrayField, ObjectField } = foundry.data.fields;
 const integer = (initial = 0, extra = {}) => new NumberField({ required: true, integer: true, min: 0, initial, ...extra });
-const attribute = () => new SchemaField({ slots: integer(1), stars: integer(0) });
+const attribute = () => new SchemaField({ base: integer(0), slots: integer(1), stars: integer(0) });
 
 export class CreatureData extends foundry.abstract.TypeDataModel {
   static defineSchema() {
@@ -40,6 +40,6 @@ export class CreatureData extends foundry.abstract.TypeDataModel {
   prepareDerivedData() {
     this.health.max = maxHealth(this.health.base, this.track.marks, this.track.progress);
     this.health.value = Math.min(this.health.value, this.health.max);
-    for (const a of Object.values(this.attributes)) a.stars = Math.min(a.stars, a.slots);
+    for (const a of Object.values(this.attributes)) a.stars = Math.min(a.stars, Math.max(0, a.slots - a.base));
   }
 }

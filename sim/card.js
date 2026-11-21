@@ -10,7 +10,7 @@ const DEFAULT_DATA = scenario.creatures();
 
 const ATTRIBUTES = ['strength', 'energy', 'agility', 'defense'];
 const SIDES = { d4: 4, d6: 6, d8: 8, d12: 12 };
-const HEALTH_CAP = 16;
+const HEALTH_CAP = 24;
 
 // Converts a move (new or legacy format) to the new format.
 // Legacy: type -> element; category physical/elemental -> attribute strength/energy; uses -> charges.
@@ -80,6 +80,7 @@ function findPrevious(species, list) {
 function attributesAt(species, p, policy, list) {
   let base;
   let slots;
+  let capacity;
   if (species.attributes) {
     base = {};
     slots = {};
@@ -87,6 +88,7 @@ function attributesAt(species, p, policy, list) {
       base[a] = Math.max(0, species.attributes[a].base);
       slots[a] = species.attributes[a].slots;
     }
+    capacity = Object.fromEntries(ATTRIBUTES.map((a) => [a, Math.max(0, slots[a] - base[a])]));
   } else {
     const previous = findPrevious(species, list);
     if (!previous) throw new Error(`${species.name}: no attributes and no previous form to inherit from.`);
@@ -98,15 +100,17 @@ function attributesAt(species, p, policy, list) {
     let root = previous;
     while (root && root.inherits_attributes) root = findPrevious(root, list);
     if (!root || !root.attributes) throw new Error(`${species.name}: root form has no stored attributes.`);
+    capacity = {};
     for (const a of ATTRIBUTES) {
       base[a] = previousValue[a].value;
       slots[a] = root.attributes[a].slots;
+      capacity[a] = Math.max(0, slots[a] - root.attributes[a].base);
     }
   }
 
-  const totalCapacity = ATTRIBUTES.reduce((s, a) => s + slots[a], 0);
+  const totalCapacity = ATTRIBUTES.reduce((s, a) => s + capacity[a], 0);
   const available = Math.min(count(species, 'star', p), totalCapacity);
-  const stars = distributeStars(available, slots, policy);
+  const stars = distributeStars(available, capacity, policy);
   const automatic = { strength: count(species, 'strength', p), energy: 0, agility: 0, defense: 0 };
 
   const result = {};
