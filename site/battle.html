@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Battle board · Kindlewild</title>
+  <link rel="stylesheet" href="battle.css">
+</head>
+<body>
+  <header><div><h1>Battle board</h1><p>Prepare and track creatures without changing your database.</p></div><a href="index.html">Printable cards</a></header>
+  <main>
+    <form id="database-form" class="panel database">
+      <label for="database-url">Creature database URL</label>
+      <input id="database-url" type="url" placeholder="https://example.com/creatures.json" required>
+      <button type="submit">Load database</button>
+    </form>
+    <p id="message" role="status" aria-live="polite"></p>
+    <section class="panel picker" aria-labelledby="add-title">
+      <h2 id="add-title">Add a creature</h2>
+      <label for="search">Search by name or number</label>
+      <input id="search" type="search" autocomplete="off" placeholder="Name or number" disabled>
+      <div id="results" class="results"></div>
+    </section>
+    <section aria-labelledby="battle-title">
+      <div class="section-title"><h2 id="battle-title">Battle</h2><button id="clear" class="secondary" type="button" disabled>Clear battle</button></div>
+      <p id="empty">No creatures yet. Search above to add one.</p>
+      <div id="battle" class="battle-grid"></div>
+    </section>
+  </main>
+  <script src="scenario-web.js" defer></script>
+  <script src="card-view.js" defer></script>
+  <script src="resistances.js" defer></script>
+  <script src="battle.js" defer></script>
+</body>
+</html>

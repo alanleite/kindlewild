@@ -4,6 +4,10 @@ Static site that lets you pick the scenario's creatures and lays out their cards
 
 Visual rules (tokens, icon sizes, states, decisions): `docs/design-system.md`. Game rules (track, attributes, resistances): `docs/rules.md`.
 
+## Battle board
+
+`battle.html` is a touch-friendly, manual tracker for a game master. Add multiple independent instances of a creature, adjust health and attributes, mark effects and charges, and remove individuals or clear the battle. All moves are shown; the game master decides which are available and resolves rolls and effects manually. Evolved creatures with inherited attributes start at zero and must be set manually. Battles are saved per database URL in the browser's local storage; no changes are sent to the database. Clearing browser data removes the saved battle. The board uses the database URL shared with the printing site, or accepts `?data=` / `?scenario=`.
+
 ## How to run
 
 The site reads the creatures of a scenario (`../scenarios/<id>/creatures.json`) with `fetch`. The scenario comes from `?scenario=<id>` or, without a parameter, from `scenarios/default.txt` (see `scenario-web.js`). Browsers block `fetch` when the file is opened straight from disk (`file://`), so the project folder has to be served. At the project root (`kindlewild/`):

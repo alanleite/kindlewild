@@ -555,7 +555,7 @@
       url = source.url;
       var legendUrl = new URL('legend.html', location.href);
       legendUrl.searchParams.set('data', new URL(url, location.href).href);
-      document.querySelector('.links a').href = legendUrl.href;
+      document.getElementById('legend-link').href = legendUrl.href;
       imagePrefix = source.imagePrefix;
       var species = await loadData(url);
       if (!species.length) {
