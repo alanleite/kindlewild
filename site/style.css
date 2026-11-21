@@ -1088,23 +1088,23 @@ main {
     gap: 0;
   }
 
-  /* Leave slack below the A4 page to avoid an extra blank page from rounding.
-     Matching symmetric gaps on front and back leave room for cutting. */
+  /* Fit comfortably inside the printable area even when a browser or printer
+     adds its own page margins. The same grid is used on both sides. */
   .page {
-    width: 200mm;
-    height: 287mm;
-    max-height: 287mm;
-    margin: 5mm auto 0;
+    width: 180mm;
+    height: 250mm;
+    max-height: 250mm;
+    margin: 10mm auto 0;
     padding: 0;
-    grid-template-columns: repeat(2, 86mm);
-    grid-template-rows: repeat(2, calc(86mm * 148.5 / 105));
+    grid-template-columns: repeat(2, 82mm);
+    grid-template-rows: repeat(2, calc(82mm * 148.5 / 105));
     gap: 5mm;
     justify-content: center;
     align-content: center;
     aspect-ratio: auto;
     overflow: hidden;
     box-shadow: none;
-    break-inside: avoid;
+    break-inside: auto;
     break-after: page;
     page-break-after: always;
   }
